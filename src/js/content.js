@@ -5,8 +5,6 @@ QRWrap.append(QRBox);
 QRWrap.appendTo(document.body);
 
 chrome.extension.onRequest.addListener(function (response){
-    console.log(response);
-
     if (response.valid) {
         switch (response.menuItemId) {
             case 'QRDecode':

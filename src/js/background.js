@@ -10,27 +10,29 @@ chrome.tabs.onUpdated.addListener(function (uuid){
  */
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse){
     if (request.action === 'QREncodeLink') {
-        QRCode.QREncode({
-            text: 'hello',
-            moduleSize: 3,
-            margin: 2,
-            logo: 'images/qrlogo.ico',
-            success: function (canvas){
-                sendResponse({
-                    valid: true,
-                    srcUrl: canvas.toDataURL('image/png')
-                });
-            },
-            error: function (e){
-                var message = e.errorCode === 2
-                    ? '网址长度超过了二维码的最大存储上限，请使用短链接服务生成短链接后重试！'
-                    : e.message;
+        chrome.tabs.getSelected(function (tab){
+            QRCode.QREncode({
+                text: tab.url,
+                moduleSize: 3,
+                margin: 2,
+                logo: 'images/qrlogo.ico',
+                success: function (canvas){
+                    sendResponse({
+                        valid: true,
+                        srcUrl: canvas.toDataURL('image/png')
+                    });
+                },
+                error: function (e){
+                    var message = e.errorCode === 2
+                        ? '网址长度超过了二维码的最大存储上限，请使用短链接服务生成短链接后重试！'
+                        : e.message;
 
-                sendResponse({
-                    valid: false,
-                    message: message
-                });
-            }
+                    sendResponse({
+                        valid: false,
+                        message: message
+                    });
+                }
+            });
         });
     }
 });
