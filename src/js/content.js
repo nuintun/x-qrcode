@@ -28,3 +28,7 @@ chrome.extension.onRequest.addListener(function (response){
         QRWrap.show();
     }
 });
+
+$(document.body).on('click', function (e){
+    !$.contains(QRWrap[0], e.target) && QRWrap.hide();
+});
