@@ -16,6 +16,9 @@ function showError(message){
 chrome.extension.sendRequest({
     action: 'QREncodeLink'
 }, function (response){
-    console.log(response);
-    QRBox.html('<img src="' + response.srcUrl + '"/>')
+    if (response.valid) {
+        QRBox.html('<img src="' + response.srcUrl + '" alt="QRCode"/>')
+    } else {
+        showError(response.message)
+    }
 });
