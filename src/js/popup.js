@@ -11,19 +11,11 @@ function showError(message){
 }
 
 /**
- * 获取当前标签网址并生成二维码图片
+ * 向背景页请求获取二维码
  */
-chrome.tabs.getSelected(function (tab){
-    QRBox.QREncode({
-        text: tab.url,
-        moduleSize: 3,
-        logo: 'images/qrlogo.ico',
-        error: function (e){
-            var message = e.errorCode === 2
-                ? '网址长度超过了二维码的最大存储上限，请使用短链接服务生成短链接后重试！'
-                : e.message;
-
-            showError(message)
-        }
-    });
+chrome.extension.sendRequest({
+    action: 'QREncodeLink'
+}, function (response){
+    console.log(response);
+    QRBox.html('<img src="' + response.srcUrl + '"/>')
 });

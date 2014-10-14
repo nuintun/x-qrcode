@@ -1,6 +1,6 @@
-(function ($, window, document, undefined){
-    'use strict';
+'use strict';
 
+(function ($, window, document, undefined){
     if (!$.QREncode) {
         return;
     }

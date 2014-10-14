@@ -3,7 +3,11 @@
  */
 'use strict';
 
+window.QRCode = window.QRCode || {};
+
 (function ($, window, document, undefined){
+    var QRCode = window.QRCode;
+
     $.QREncode = {
         /**
          * 配置
@@ -18,9 +22,10 @@
             ECLevel: 2, // 纠错码等级，默认30%
             margin: 4, // 留白
             logo: '', // logo;
+            success: $.noop,
             error: $.noop
         },
-        Render: []
+        Render: {}
     };
 
     /**
@@ -64,9 +69,8 @@
      * @param cfg
      * @constructor
      */
-    $.fn.QREncode = function (cfg){
-        var that = this,
-            config = {};
+    QRCode.QREncode = function (cfg){
+        var config = {};
 
         if (typeof(cfg) === 'string') {
             config.text = cfg;
@@ -79,10 +83,6 @@
         config.moduleSize = config.moduleSize > 0 ? config.moduleSize : $.QREncode.config.moduleSize;
         config.margin = config.margin < 0 ? $.QREncode.config.margin : config.margin;
 
-        new Encode(config, function (qrdom){
-            that.each(function (i, item){
-                $(item).empty().append(qrdom);
-            });
-        });
+        new Encode(config, config.success);
     };
 })(jQuery, window, document);
