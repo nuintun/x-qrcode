@@ -52,7 +52,7 @@
     top: -10px;
     width: 24px;
     height: 24px;
-    font: normal 24px/21px tahoma, sans-serif;
+    font: bold 20px/24px SimHei, sans-serif;
     border: 2px solid rgba(0, 0, 0, .6);
     border-radius: 14px;
     text-align: center;
@@ -63,6 +63,7 @@
     transition: transform .6s ease-in-out;
     box-sizing: content-box;
     background: #fff;
+    -webkit-appearance: none;
 }
 
 .qruri-dialog .qruri-dialog-close:hover {
