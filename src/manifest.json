@@ -26,7 +26,7 @@
         "default_title": "二维码链接",
         "default_popup": "popup.html"
     },
-    "homepage_url": "https://github.com/Nuintun/qrcode-uri",
+    "homepage_url": "https://github.com/Nuintun/qruri",
     "permissions": [
         "tabs",
         "contextMenus",
