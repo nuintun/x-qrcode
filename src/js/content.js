@@ -1,4 +1,4 @@
-var isVisible = false, // 弹窗是否可见
+var TimeUUID, // 计算器标识
     QRDialog = {
         // 弹窗模板
         template: [
@@ -11,14 +11,15 @@ var isVisible = false, // 弹窗是否可见
         ].join('')
     };
 
-// 初始化弹窗
+// 初始化弹窗属性
 QRDialog.dialog = $(QRDialog.template);
-QRDialog.content = QRDialog.dialog.find('.qruri-dialog-content');
 QRDialog.inner = QRDialog.dialog.find('.qruri-dialog-inner');
+QRDialog.content = QRDialog.dialog.find('.qruri-dialog-content');
 
 // 监听动画结束事件
 QRDialog.inner.on('webkitTransitionEnd', function (e){
-    !isVisible && e.originalEvent.propertyName === 'opacity'
+    e.originalEvent.propertyName === 'opacity'
+    && !QRDialog.dialog.hasClass('qruri-dialog-show')
     && QRDialog.dialog.removeClass('qruri-dialog-visible');
 });
 
@@ -30,16 +31,20 @@ $(QRDialog.dialog).on('click', '.qruri-dialog-close', function (e){
 
 // 显示弹窗
 QRDialog.show = function (content){
-    !$.contains(document.body, QRDialog.dialog[0]) && QRDialog.dialog.appendTo(document.body);
-    QRDialog.content.html(content);
-    QRDialog.dialog.addClass('qruri-dialog-visible qruri-dialog-show');
-    isVisible = true;
+    !$.contains(document.body, QRDialog.dialog[0])
+    && QRDialog.dialog.appendTo(document.body);
+
+    clearTimeout(TimeUUID);
+
+    TimeUUID = setTimeout(function (){
+        QRDialog.content.html(content);
+        QRDialog.dialog.addClass('qruri-dialog-visible qruri-dialog-show');
+    }, 16);
 };
 
 // 关闭弹窗
 QRDialog.hide = function (){
     QRDialog.dialog.removeClass('qruri-dialog-show');
-    isVisible = false;
 };
 
 // 监听右键菜单事件
