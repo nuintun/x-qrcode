@@ -4,7 +4,7 @@ var TimeUUID, // 计算器标识
         template: [
             '<div class="qruri-dialog">',
             '  <div class="qruri-dialog-inner">',
-            '    <a href="javascript:;" class="qruri-dialog-close">&#215;</a>',
+            '    <a href="javascript:;" class="qruri-dialog-close" title="关闭"></a>',
             '    <div class="qruri-dialog-content"></div>',
             '  </div>',
             '</div>'
