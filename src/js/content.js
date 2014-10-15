@@ -15,7 +15,6 @@ var isVisible = false, // 弹窗是否可见
 QRDialog.dialog = $(QRDialog.template);
 QRDialog.content = QRDialog.dialog.find('.qruri-dialog-content');
 QRDialog.inner = QRDialog.dialog.find('.qruri-dialog-inner');
-QRDialog.dialog.appendTo(document.body);
 
 // 监听动画结束事件
 QRDialog.inner.on('webkitTransitionEnd', function (e){
@@ -31,6 +30,7 @@ $(QRDialog.dialog).on('click', '.qruri-dialog-close', function (e){
 
 // 显示弹窗
 QRDialog.show = function (content){
+    !$.contains(document.body, QRDialog.dialog[0]) && QRDialog.dialog.appendTo(document.body);
     QRDialog.content.html(content);
     QRDialog.dialog.addClass('qruri-dialog-visible qruri-dialog-show');
     isVisible = true;
