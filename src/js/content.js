@@ -4,7 +4,7 @@ var isVisible = false, // 弹窗是否可见
         template: [
             '<div class="qruri-dialog">',
             '  <div class="qruri-dialog-inner">',
-            '    <a href="javascript:;" class="qruri-dialog-close">╳</a>',
+            '    <a href="javascript:;" class="qruri-dialog-close">×</a>',
             '    <div class="qruri-dialog-content"></div>',
             '  </div>',
             '</div>'
