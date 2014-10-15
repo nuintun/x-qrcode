@@ -3,6 +3,8 @@
     top: 66px;
     left: 50%;
     z-index: 99999;
+    padding: 0;
+    margin: 0;
     visibility: hidden;
 }
 
@@ -15,6 +17,7 @@
     top: 0;
     left: -50%;
     padding: 9px;
+    margin: 0;
     border-radius: 6px;
     background: rgba(204, 204, 204, .6);
     -webkit-text-size-adjust: none;
@@ -36,6 +39,8 @@
 }
 
 .qruri-dialog .qruri-dialog-content {
+    padding: 0;
+    margin: 0;
     border: 1px solid #ccc;
     -webkit-text-size-adjust: none;
     font-size: 0;
@@ -73,6 +78,7 @@
 
 .qruri-dialog .qruri-error-tips {
     color: #f00;
+    margin: 0;
     padding: 6px 9px;
     background-color: #fff;
     display: block;
@@ -83,6 +89,7 @@
     width: 500px;
     height: 300px;
     padding: 6px;
+    margin: 0;
     border: none;
     resize: none;
     font: normal 14px/1.5 microsoft yahei, Simsun, sans-serif;
