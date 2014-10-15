@@ -42,7 +42,7 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse){
  */
 chrome.contextMenus.create({
     id: 'QRDecode',
-    title: '解析二维码图片',
+    title: '解码所选图片',
     contexts: ['image'],
     onclick: function (data, tab){
         var image = new Image(),
