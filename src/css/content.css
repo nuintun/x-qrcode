@@ -1,0 +1,88 @@
+.qruri-dialog {
+    position: fixed;
+    top: 66px;
+    left: 50%;
+    z-index: 9999;
+    visibility: hidden;
+}
+
+.qruri-dialog-visible {
+    visibility: visible;
+}
+
+.qruri-dialog .qruri-dialog-inner {
+    position: relative;
+    top: 0;
+    left: -50%;
+    padding: 9px;
+    border-radius: 6px;
+    background: rgba(204, 204, 204, .6);
+    -webkit-text-size-adjust: none;
+    font-size: 0;
+    line-height: 0;
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform .15s ease-in-out, opacity .15s ease-in-out;
+    transition: transform .15s ease-in-out, opacity .15s ease-in-out;
+}
+
+.qruri-dialog-show .qruri-dialog-inner {
+    opacity: 1 !important;
+    -webkit-transform: scale(1) !important;
+    transform: scale(1) !important;
+}
+
+.qruri-dialog .qruri-dialog-content {
+    border: 1px solid #ccc;
+    -webkit-text-size-adjust: none;
+    font-size: 0;
+    line-height: 0;
+}
+
+.qruri-dialog .qruri-dialog-close {
+    outline: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 24px;
+    height: 24px;
+    font: bold 20px/24px tahoma, sans-serif;
+    border: 2px solid rgba(0, 0, 0, .6);
+    border-radius: 14px;
+    text-align: center;
+    color: rgba(0, 0, 0, .6);
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transition: -webkit-transform .6s ease-in-out;
+    transition: transform .6s ease-in-out;
+    box-sizing: content-box;
+    background: #fff;
+}
+
+.qruri-dialog .qruri-dialog-close:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.qruri-dialog .qruri-error-tips {
+    color: #f00;
+    padding: 6px 9px;
+    background-color: #fff;
+    display: block;
+    font: normal 14px/23px microsoft yahei, Simsun, sans-serif;
+}
+
+.qruri-dialog .qruri-decode-text {
+    width: 500px;
+    height: 300px;
+    padding: 6px;
+    border: none;
+    resize: none;
+    font: normal 14px/1.5 microsoft yahei, Simsun, sans-serif;
+}

@@ -24,7 +24,7 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse){
                 },
                 error: function (e){
                     var message = e.errorCode === 2
-                        ? '网址长度超过了二维码的最大存储上限，请使用短链接服务生成短链接后重试！'
+                        ? '网址长度超过了二维码的最大存储上限！'
                         : e.message;
 
                     sendResponse({
@@ -57,10 +57,10 @@ chrome.contextMenus.create({
             ctx.drawImage(image, 0, 0, image.width, image.height);
             image.onload = null;
 
-            text = QRCode.QRDecode(canvas, function (e){
+            text = QRCode.QRDecode(canvas, function (){
                 chrome.tabs.sendRequest(tab.id, {
                     valid: false,
-                    message: e.message,
+                    message: '图片解码失败，请选择标准二维码图片进行解码！',
                     menuItemId: data.menuItemId
                 });
             });
@@ -98,8 +98,8 @@ chrome.contextMenus.create({
             },
             error: function (e){
                 var message = e.errorCode === 2
-                    ? '网址长度超过了二维码的最大存储上限，请使用短链接服务生成短链接后重试！'
-                    : e.message;
+                    ? '网址长度超过了二维码的最大存储上限！'
+                    : '编码错误，请刷新重试！';
 
                 chrome.tabs.sendRequest(tab.id, {
                     valid: false,
@@ -133,8 +133,8 @@ chrome.contextMenus.create({
             },
             error: function (e){
                 var message = e.errorCode === 2
-                    ? '网址长度超过了二维码的最大存储上限，请使用短链接服务生成短链接后重试！'
-                    : e.message;
+                    ? '文本长度超过了二维码的最大存储上限！'
+                    : '编码错误，请刷新重试！';
 
                 chrome.tabs.sendRequest(tab.id, {
                     valid: false,

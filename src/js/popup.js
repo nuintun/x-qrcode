@@ -22,3 +22,10 @@ chrome.extension.sendRequest({
         showError(response.message)
     }
 });
+
+/**
+ * 禁用弹出页右键
+ */
+$(document).on('contextmenu', function (e){
+    e.preventDefault();
+});

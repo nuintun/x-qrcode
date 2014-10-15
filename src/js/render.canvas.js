@@ -1,10 +1,6 @@
 'use strict';
 
 (function ($, window, document, undefined){
-    if (!$.QREncode) {
-        return;
-    }
-
     $.QREncode.Render.canvas = function (self, callback){
         var i, j, cfg = self.config,
             mSize = cfg.moduleSize,
