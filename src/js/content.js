@@ -83,11 +83,11 @@ chrome.extension.onRequest.addListener(function (response){
                 break;
             // 编码连接
             case 'QREncodeLink':
-                QRDialog.show('<img src="' + response.srcUrl + '"/>');
+                QRDialog.show('<img src="' + response.srcUrl + '" alt="QRCode"/>');
                 break;
             // 编码文本
             case 'QREncodeSelection':
-                QRDialog.show('<img src="' + response.srcUrl + '"/>');
+                QRDialog.show('<img src="' + response.srcUrl + '" alt="QRCode"/>');
                 break;
             default :
                 break;
