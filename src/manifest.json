@@ -46,7 +46,6 @@
         }
     ],
     "web_accessible_resources": [
-        "images/close.png",
-        "images/loading.gif"
+        "images/close.png"
     ]
 }
