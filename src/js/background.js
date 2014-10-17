@@ -86,6 +86,16 @@ chrome.contextMenus.create({
             });
         };
 
+        image.onerror = function (){
+            chrome.tabs.sendRequest(tab.id, {
+                valid: false,
+                message: '图片加载失败，无法获取图片数据！',
+                menuItemId: data.menuItemId
+            });
+
+            image.onerror = null;
+        };
+
         image.src = data.srcUrl;
     }
 });

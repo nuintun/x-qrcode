@@ -44,5 +44,9 @@
             "css": ["css/content.css"],
             "run_at": "document_end"
         }
+    ],
+    "web_accessible_resources": [
+        "images/close.png",
+        "images/loading.gif"
     ]
 }

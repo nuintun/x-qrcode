@@ -1,6 +1,8 @@
 var TimeUUID, // 计算器标识
     QRDialog = {
-        dialog: $(),
+        frame: {
+            wrap: $()
+        },
         // 弹窗模板
         template: [
             '<div class="qruri-dialog">',
@@ -17,34 +19,44 @@ var TimeUUID, // 计算器标识
  */
 QRDialog.init = function (){
     // 初始化弹窗数据
-    QRDialog.dialog = $(QRDialog.template);
-    QRDialog.inner = QRDialog.dialog.find('.qruri-dialog-inner');
-    QRDialog.content = QRDialog.dialog.find('.qruri-dialog-content');
+    QRDialog.frame.wrap = $(QRDialog.template);
+    QRDialog.frame.inner = QRDialog.frame.wrap.find('.qruri-dialog-inner');
+    QRDialog.frame.close = QRDialog.frame.inner.find('.qruri-dialog-close');
+    QRDialog.frame.content = QRDialog.frame.inner.find('.qruri-dialog-content');
+
+    // 设置关闭按钮图标
+    QRDialog.frame.close.css({
+        backgroundImage: 'url(' + chrome.extension.getURL('images/close.png') + ')'
+    });
 
     // 绑定关闭按钮事件
-    QRDialog.dialog.on('click', '.qruri-dialog-close', function (e){
+    QRDialog.frame.close.on('click', function (e){
         e.preventDefault();
         QRDialog.hide();
     });
 
     // 监听动画结束事件
-    QRDialog.inner.on('webkitTransitionEnd', function (e){
-        e.originalEvent.propertyName === 'opacity'
-        && !QRDialog.dialog.hasClass('qruri-dialog-show')
+    QRDialog.frame.inner.on('webkitTransitionEnd', function (e){
+        e.target === this
+        && e.originalEvent.propertyName === 'opacity'
+        && !QRDialog.frame.wrap.hasClass('qruri-dialog-show')
         && QRDialog.remove();
     });
 
     // 添加弹窗到DOM树
-    QRDialog.dialog.appendTo(document.body);
+    QRDialog.frame.wrap.appendTo(document.body);
 };
 
 /**
  * 移除弹窗
  */
 QRDialog.remove = function (){
-    QRDialog.inner.off('webkitTransitionEnd');
-    QRDialog.dialog.off('click');
-    QRDialog.dialog.remove();
+    // 只有当前DOM树有弹窗时才能做移除处理
+    if ($.contains(document.body, QRDialog.frame.wrap[0])) {
+        QRDialog.frame.inner.off('webkitTransitionEnd');
+        QRDialog.frame.close.off('click');
+        QRDialog.frame.wrap.remove();
+    }
 };
 
 /**
@@ -52,15 +64,19 @@ QRDialog.remove = function (){
  * @param content
  */
 QRDialog.show = function (content){
-    // 当前DOM树没有弹窗时初始化
-    !$.contains(document.body, QRDialog.dialog[0]) && QRDialog.init();
+    // 移除弹窗
+    QRDialog.remove();
+
+    // 初始化弹窗
+    QRDialog.init();
 
     // 清除计时器
     clearTimeout(TimeUUID);
 
+    // 异步添加内容和动画类，否则无动画效果
     TimeUUID = setTimeout(function (){
-        QRDialog.content.html(content);
-        QRDialog.dialog.addClass('qruri-dialog-show');
+        QRDialog.frame.content.html(content);
+        QRDialog.frame.wrap.addClass('qruri-dialog-show');
     }, 16);
 };
 
@@ -68,7 +84,7 @@ QRDialog.show = function (content){
  * 关闭弹窗
  */
 QRDialog.hide = function (){
-    QRDialog.dialog.removeClass('qruri-dialog-show');
+    QRDialog.frame.wrap.removeClass('qruri-dialog-show');
 };
 
 /**
