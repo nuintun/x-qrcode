@@ -101,6 +101,7 @@
 .qruri-dialog *::-webkit-scrollbar-track-piece {
     background-color: transparent;
 }
+
 .qruri-dialog *::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, .4);
