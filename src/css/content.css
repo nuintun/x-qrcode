@@ -92,3 +92,28 @@
     resize: none;
     font: normal 14px/1.5 microsoft yahei, Simsun, sans-serif;
 }
+
+.qruri-dialog *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.qruri-dialog *::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+.qruri-dialog *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.qruri-dialog *::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.qruri-dialog *::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.qruri-dialog *::-webkit-scrollbar-button {
+    display: none;
+}

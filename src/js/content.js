@@ -95,7 +95,7 @@ chrome.extension.onRequest.addListener(function (response){
         switch (response.menuItemId) {
             // 解码图片
             case 'QRDecode':
-                QRDialog.show('<textarea class="qruri-decode-text">' + response.text + '</textarea>');
+                QRDialog.show('<textarea readonly class="qruri-decode-text">' + response.text + '</textarea>');
                 break;
             // 编码连接
             case 'QREncodeLink':
