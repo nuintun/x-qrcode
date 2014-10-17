@@ -40,37 +40,34 @@ chrome.tabs.onUpdated.addListener(function (uuid){
  */
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse){
     if (request.action === 'QREncodeLink') {
-        console.log(Sync.SYNCLOCK);
-        chrome.tabs.getSelected(function (tab){
-            Sync.lock('PAGEACTION-' + tab.id, function (unlock){
-                QRCode.QREncode({
-                    text: tab.url,
-                    moduleSize: 3,
-                    margin: 2,
-                    logo: 'images/qrlogo.ico',
-                    success: function (canvas){
-                        sendResponse({
-                            valid: true,
-                            srcUrl: canvas.toDataURL('image/png')
-                        });
+        Sync.lock('PAGEACTION-' + request.tab.id, function (unlock){
+            QRCode.QREncode({
+                text: request.tab.url,
+                moduleSize: 3,
+                margin: 2,
+                logo: 'images/qrlogo.ico',
+                success: function (canvas){
+                    sendResponse({
+                        valid: true,
+                        srcUrl: canvas.toDataURL('image/png')
+                    });
 
-                        // 解锁
-                        unlock();
-                    },
-                    error: function (e){
-                        var message = e.errorCode === 2
-                            ? '网址长度超过了二维码的最大存储上限！'
-                            : e.message;
+                    // 解锁
+                    unlock();
+                },
+                error: function (e){
+                    var message = e.errorCode === 2
+                        ? '网址长度超过了二维码的最大存储上限！'
+                        : e.message;
 
-                        sendResponse({
-                            valid: false,
-                            message: message
-                        });
+                    sendResponse({
+                        valid: false,
+                        message: message
+                    });
 
-                        // 解锁
-                        unlock();
-                    }
-                });
+                    // 解锁
+                    unlock();
+                }
             });
         });
     }

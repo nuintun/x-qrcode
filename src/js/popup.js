@@ -13,14 +13,17 @@ function showError(message){
 /**
  * 向背景页请求获取二维码
  */
-chrome.extension.sendRequest({
-    action: 'QREncodeLink'
-}, function (response){
-    if (response.valid) {
-        QRBox.html('<img src="' + response.srcUrl + '" alt="QRCode"/>')
-    } else {
-        showError(response.message)
-    }
+chrome.tabs.getSelected(function (tab){
+    chrome.extension.sendRequest({
+        tab: tab,
+        action: 'QREncodeLink'
+    }, function (response){
+        if (response.valid) {
+            QRBox.html('<img src="' + response.srcUrl + '" alt="QRCode"/>')
+        } else {
+            showError(response.message)
+        }
+    });
 });
 
 /**
