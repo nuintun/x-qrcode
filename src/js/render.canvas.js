@@ -2,12 +2,14 @@
 
 (function ($, window, document, undefined){
   $.QREncode.Render.canvas = function (self, callback){
-    var i, j, cfg = self.config,
-      mSize = cfg.moduleSize,
-      size = self.pixArr.length,
-      outSize = 2 * cfg.margin + size,
-      canvas = document.createElement('canvas'),
-      ctx = canvas.getContext('2d');
+    var i;
+    var j;
+    var cfg = self.config;
+    var mSize = cfg.moduleSize;
+    var size = self.pixArr.length;
+    var outSize = 2 * cfg.margin + size;
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
 
     function getRGB(color){
       var red, green, blue;
@@ -55,10 +57,12 @@
       var img = new Image();
 
       img.onload = function (){
-        var zoom, x, y,
-          imgW = img.width,
-          imgH = img.height,
-          imgSize = Math.max(imgW, imgH);
+        var x;
+        var y;
+        var zoom;
+        var imgW = img.width;
+        var imgH = img.height;
+        var imgSize = Math.max(imgW, imgH);
 
         if (imgSize > size * mSize * 0.3) {
           zoom = (size * mSize * 0.3) / imgSize;
