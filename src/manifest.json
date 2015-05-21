@@ -1,51 +1,51 @@
 {
-    "name": "二维码链接",
-    "version": "0.0.1",
-    "manifest_version": 2,
-    "description": "将当前标签的链接地址转换成二维码",
-    "icons": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
-    },
-    "background": {
-        "scripts": [
-            "js/jquery-2.1.1.js",
-            "js/reedsolomon.js",
-            "js/qrbase.js",
-            "js/encode.js",
-            "js/qrcode.js",
-            "js/render.canvas.js",
-            "js/decode.js",
-            "js/qrdecode.js",
-            "js/background.js"
-        ]
-    },
-    "page_action": {
-        "default_icon": "images/icon19.png",
-        "default_title": "二维码链接",
-        "default_popup": "popup.html"
-    },
-    "homepage_url": "https://github.com/Nuintun/qruri",
-    "permissions": [
-        "tabs",
-        "contextMenus",
-        "<all_urls>"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "js/jquery-2.1.1.js",
-                "js/content.js"
-            ],
-            "css": ["css/content.css"],
-            "run_at": "document_end"
-        }
-    ],
-    "web_accessible_resources": [
-        "images/close.png"
+  "name": "二维码链接",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "将当前标签的链接地址转换成二维码",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "background": {
+    "scripts": [
+      "js/jquery-2.1.1.js",
+      "js/reedsolomon.js",
+      "js/qrbase.js",
+      "js/encode.js",
+      "js/qrcode.js",
+      "js/render.canvas.js",
+      "js/decode.js",
+      "js/qrdecode.js",
+      "js/background.js"
     ]
+  },
+  "page_action": {
+    "default_icon": "images/icon19.png",
+    "default_title": "二维码链接",
+    "default_popup": "popup.html"
+  },
+  "homepage_url": "https://github.com/Nuintun/qruri",
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/jquery-2.1.1.js",
+        "js/content.js"
+      ],
+      "css": ["css/content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    "images/close.png"
+  ]
 }

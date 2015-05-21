@@ -1,27 +1,23 @@
 html, body, div {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
-
 body {
-    font: normal 12px/1.5 MICROSOFT YAHEI, Arial, serif;
-    color: #333;
-    background-color: #fff;
+  font: normal 12px/1.5 MICROSOFT YAHEI, Arial, serif;
+  color: #333;
+  background-color: #fff;
 }
-
 .qrcode {
-    -webkit-text-size-adjust: none;
-    font-size: 0;
-    line-height: 0;
+  -webkit-text-size-adjust: none;
+  font-size: 0;
+  line-height: 0;
 }
-
 .loading {
-    margin: 10px 17px;
+  margin: 10px 17px;
 }
-
 .error-tips {
-    display: none;
-    padding: 6px 10px;
-    color: #f00;
-    white-space: nowrap;
+  display: none;
+  padding: 6px 10px;
+  color: #f00;
+  white-space: nowrap;
 }
