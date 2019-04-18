@@ -1,4 +1,4 @@
-// import '../css/content.css';
+import '../css/content.css';
 
 // let TimeUUID; // 计算器标识
 // const QRDialog = {
