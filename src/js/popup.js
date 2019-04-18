@@ -1,34 +1,25 @@
-var QRBox = $('#qr-box'), // 二维码显示区域
-  ErrorTips = $('#error-tips'); // 错误信息显示区域
+import '../css/popup.css';
 
-/**
- * 显示错误消息
- * @param message
- */
-function showError(message){
-  QRBox.hide();
-  ErrorTips.html(message).show();
-}
+const stage = document.getElementById('stage');
+const toast = document.getElementById('toast');
 
-/**
- * 向背景页请求获取二维码
- */
-chrome.tabs.getSelected(function (tab){
-  chrome.extension.sendRequest({
-    tab: tab,
-    action: 'QREncodeLink'
-  }, function (response){
-    if (response.valid) {
-      QRBox.html('<img src="' + response.srcUrl + '" alt="QRCode"/>')
-    } else {
-      showError(response.message)
+chrome.tabs.getSelected(tab => {
+  chrome.extension.sendRequest(
+    {
+      url: tab.url,
+      action: 'GetTabURLQRCode'
+    },
+    response => {
+      if (response.ok) {
+        stage.innerHTML = `<img src="${response.src}" alt="QRCode" />`;
+      } else {
+        toast.innerHTML = response.message;
+      }
     }
-  });
+  );
 });
 
 /**
  * 禁用弹出页右键
  */
-$(document).on('contextmenu', function (e){
-  e.preventDefault();
-});
+// document.addEventListener('contextmenu', e => e.preventDefault(), false);

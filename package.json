@@ -1,0 +1,48 @@
+{
+  "name": "qruri",
+  "version": "1.0.0",
+  "description": "The qrcode-uri professional edition.",
+  "scripts": {
+    "build": "webpack --config=webpack.config.prod.js",
+    "start": "webpack --config=webpack.config.dev.js --watch --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuintun/qruri.git"
+  },
+  "keywords": [
+    "qrcode"
+  ],
+  "author": "nuintun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuintun/qruri/issues"
+  },
+  "homepage": "https://github.com/nuintun/qruri#readme",
+  "dependencies": {
+    "@nuintun/qrcode": "^0.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/runtime": "^7.4.3",
+    "autoprefixer": "^9.5.1",
+    "babel-loader": "^8.0.5",
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
+    "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.2",
+    "css-loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "optimize-css-assets-webpack-plugin": "5.0.1",
+    "postcss": "^7.0.14",
+    "postcss-loader": "^3.0.0",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
+  }
+}

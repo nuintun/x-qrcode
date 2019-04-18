@@ -1,21 +1,22 @@
-html, body, div {
-  padding: 0;
+html,
+body,
+div {
   margin: 0;
+  padding: 0;
 }
 body {
-  font: normal 12px/1.5 MICROSOFT YAHEI, Arial, serif;
   color: #333;
   background-color: #fff;
+  font: normal 12px/1.5 MICROSOFT YAHEI, Arial, serif;
 }
-.qrcode {
-  -webkit-text-size-adjust: none;
+.stage {
   font-size: 0;
   line-height: 0;
 }
 .loading {
   margin: 10px 17px;
 }
-.error-tips {
+.toast {
   display: none;
   padding: 6px 10px;
   color: #f00;
