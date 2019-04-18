@@ -114,5 +114,5 @@ chrome.extension.onRequest.addListener(response => {
   //   QRDialog.show('<span class="qruri-error-tips">' + response.message + '</span>');
   // }
 
-  console.dir(response);
+  console.log(response);
 });
