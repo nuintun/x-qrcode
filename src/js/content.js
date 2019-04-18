@@ -89,28 +89,30 @@ import '../css/content.css';
 //   QRDialog.frame.wrap.removeClass('qruri-dialog-show');
 // };
 
-// /**
-//  * 监听右键菜单事件
-//  */
-// chrome.extension.onRequest.addListener(function(response) {
-//   if (response.valid) {
-//     switch (response.menuItemId) {
-//       // 解码图片
-//       case 'QRDecode':
-//         QRDialog.show('<textarea readonly class="qruri-decode-text">' + response.text + '</textarea>');
-//         break;
-//       // 编码连接
-//       case 'QREncodeLink':
-//         QRDialog.show('<img src="' + response.srcUrl + '" alt="QRCode"/>');
-//         break;
-//       // 编码文本
-//       case 'QREncodeSelection':
-//         QRDialog.show('<img src="' + response.srcUrl + '" alt="QRCode"/>');
-//         break;
-//       default:
-//         break;
-//     }
-//   } else {
-//     QRDialog.show('<span class="qruri-error-tips">' + response.message + '</span>');
-//   }
-// });
+/**
+ * 监听右键菜单事件
+ */
+chrome.extension.onRequest.addListener(response => {
+  // if (response.ok) {
+  //   switch (response.menuItemId) {
+  //     // 解码图片
+  //     case 'QRDecode':
+  //       QRDialog.show('<textarea readonly class="qruri-decode-text">' + response.text + '</textarea>');
+  //       break;
+  //     // 编码连接
+  //     case 'QREncodeLink':
+  //       QRDialog.show('<img src="' + response.srcUrl + '" alt="QRCode"/>');
+  //       break;
+  //     // 编码文本
+  //     case 'QREncodeSelection':
+  //       QRDialog.show('<img src="' + response.srcUrl + '" alt="QRCode"/>');
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // } else {
+  //   QRDialog.show('<span class="qruri-error-tips">' + response.message + '</span>');
+  // }
+
+  console.dir(response);
+});
