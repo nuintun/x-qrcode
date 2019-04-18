@@ -43,7 +43,7 @@ module.exports = {
       { from: './src/popup.html', to: path.resolve('dist/popup.html') },
       { from: './src/manifest.json', to: path.resolve('dist/manifest.json') }
     ]),
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false, cleanOnceBeforeBuildPatterns: ['./dist'] })
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false, cleanOnceBeforeBuildPatterns: [path.resolve('dist')] })
   ],
   node: {
     fs: 'empty',
