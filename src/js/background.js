@@ -76,7 +76,7 @@ chrome.contextMenus.removeAll(() => {
    */
   chrome.contextMenus.create({
     id: 'QREncodeLink',
-    title: '编码所选链接',
+    title: '编码当前链接',
     contexts: ['link'],
     onclick(data, tab) {
       encode(data.linkUrl)
@@ -102,7 +102,7 @@ chrome.contextMenus.removeAll(() => {
    */
   chrome.contextMenus.create({
     id: 'QREncodeSelection',
-    title: '编码所选文本',
+    title: '编码当前文本',
     contexts: ['selection'],
     onclick(data, tab) {
       encode(data.selectionText)
