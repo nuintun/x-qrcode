@@ -1,44 +1,9 @@
 import { Encoder, ErrorCorrectLevel } from '@nuintun/qrcode';
 
-// // 同步锁
-// const Sync = {
-//   SYNCLOCK: {},
-//   lock: function(uuid, callback) {
-//     if (!Sync.SYNCLOCK[uuid] && typeof callback === 'function') {
-//       Sync.SYNCLOCK[uuid] = true;
-
-//       callback(() => delete Sync.SYNCLOCK[uuid]);
-//     }
-//   }
-// };
-
-// /**
-//  * 获取初始化标签并显示pageAction按钮
-//  */
-// chrome.tabs.getSelected(tab => {
-//   chrome.pageAction.show(tab.id);
-// });
-
-// /**
-//  * 监听标签的选择变更事件并显示pageAction按钮
-//  */
-// chrome.tabs.onSelectionChanged.addListener(uuid => {
-//   chrome.pageAction.show(uuid);
-// });
-
-// /**
-//  * 监听标签的状态更新事件并显示pageAction按钮
-//  */
-// chrome.tabs.onUpdated.addListener(uuid => {
-//   chrome.pageAction.show(uuid);
-// });
-
 /**
  * 监听标签请求绘制二维码并返回
  */
 chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
-  console.log(request);
-
   if (request.action === 'GetTabURLQRCode') {
     const qrcode = new Encoder();
 
