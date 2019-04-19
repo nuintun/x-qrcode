@@ -52,7 +52,7 @@ chrome.extension.onRequest.addListener(response => {
         break;
       case 'QREncodeLink':
       case 'QREncodeSelection':
-        popup.content(`<img src="${response.src}" alt="qrcode" />`);
+        popup.content(`<img src="${response.src}" alt="QRCode" />`);
     }
   } else {
     popup.content(`<pre style="color: red;">${response.message}</pre>`);
