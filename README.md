@@ -1,3 +1,3 @@
-# qruri
+# x-qrcode
 
->A chrome extension can transform tab url to qrcode
+> A powerfull chrome extension for qrcode encoding and decoding.

@@ -67,4 +67,4 @@ typings/
 package-lock.json
 
 # build file
-dist/
+x-qrcode/

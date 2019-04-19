@@ -16,7 +16,7 @@
     "default_title": "全能二维码",
     "default_popup": "popup.html"
   },
-  "homepage_url": "https://github.com/nuintun/qruri",
+  "homepage_url": "https://github.com/nuintun/x-qrcode",
   "permissions": ["tabs", "contextMenus", "<all_urls>"],
   "content_scripts": [
     {

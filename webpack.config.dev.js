@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     filename: 'js/[name].js',
-    path: path.resolve('dist')
+    path: path.resolve('x-qrcode')
   },
   module: {
     rules: [
@@ -39,11 +39,11 @@ module.exports = {
     new CaseSensitivePathsPlugin(),
     new MiniCssExtractPlugin({ filename: 'css/[name].css' }),
     new CopyWebpackPlugin([
-      { from: './src/images', to: path.resolve('dist/images') },
-      { from: './src/popup.html', to: path.resolve('dist/popup.html') },
-      { from: './src/manifest.json', to: path.resolve('dist/manifest.json') }
+      { from: './src/images', to: path.resolve('x-qrcode/images') },
+      { from: './src/popup.html', to: path.resolve('x-qrcode/popup.html') },
+      { from: './src/manifest.json', to: path.resolve('x-qrcode/manifest.json') }
     ]),
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false, cleanOnceBeforeBuildPatterns: [path.resolve('dist')] })
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false, cleanOnceBeforeBuildPatterns: [path.resolve('x-qrcode')] })
   ],
   node: {
     fs: 'empty',

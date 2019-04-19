@@ -1,14 +1,14 @@
 {
   "name": "x-qrcode",
   "version": "1.0.0",
-  "description": "The qrcode-uri professional edition.",
+  "description": "A powerfull chrome extension for qrcode encoding and decoding.",
   "scripts": {
     "build": "webpack --config=webpack.config.prod.js",
     "start": "webpack --config=webpack.config.dev.js --watch --progress"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nuintun/qruri.git"
+    "url": "git+https://github.com/nuintun/x-qrcode.git"
   },
   "keywords": [
     "qrcode"
@@ -16,9 +16,9 @@
   "author": "nuintun",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nuintun/qruri/issues"
+    "url": "https://github.com/nuintun/x-qrcode/issues"
   },
-  "homepage": "https://github.com/nuintun/qruri#readme",
+  "homepage": "https://github.com/nuintun/x-qrcode#readme",
   "dependencies": {
     "@nuintun/qrcode": "^0.1.0"
   },
