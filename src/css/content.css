@@ -21,6 +21,7 @@
 }
 
 .x-qrcode-dialog pre {
+  word-break: break-all;
   white-space: pre-wrap;
   padding: 16px !important;
   font: normal 12px/1.5 "Microsoft YaHei", Arial, serif;
