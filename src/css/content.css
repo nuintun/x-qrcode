@@ -19,6 +19,11 @@
   display: block !important;
 }
 
+.x-qrcode-dialog img {
+  max-width: 370px !important;
+  max-height: 370px !important;
+}
+
 .x-qrcode-dialog pre {
   padding: 16px !important;
   max-width: 560px !important;
