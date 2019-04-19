@@ -13,17 +13,17 @@
 
 .x-qrcode-dialog pre,
 .x-qrcode-dialog img {
-  display: block;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
+  display: block !important;
 }
 
 .x-qrcode-dialog pre {
-  max-width: 560px;
-  text-align: left;
-  word-break: break-all;
-  white-space: pre-wrap;
   padding: 16px !important;
-  font: normal 14px/1.5 "Microsoft YaHei", Arial, serif;
+  max-width: 560px !important;
+  text-align: left !important;
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
+  font: normal 14px/1.5 "Microsoft YaHei", Arial, serif !important;
 }
