@@ -21,6 +21,7 @@
 }
 
 .x-qrcode-dialog pre {
+  text-align: left;
   word-break: break-all;
   white-space: pre-wrap;
   padding: 16px !important;
