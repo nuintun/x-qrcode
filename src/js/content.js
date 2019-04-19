@@ -67,7 +67,7 @@ chrome.extension.onRequest.addListener(response => {
         popup.content(`<img src="${response.src}" alt="QRCode" />`);
     }
   } else {
-    popup.content(`<pre style="color: red;">${escapeHTML(response.message)}</pre>`);
+    popup.content(`<pre class="error">${escapeHTML(response.message)}</pre>`);
   }
 
   popupActived && popupActived.close();
