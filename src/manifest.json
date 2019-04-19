@@ -1,6 +1,6 @@
 {
   "name": "全能二维码",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "manifest_version": 2,
   "description": "将当前标签的链接地址转换成二维码，并支持二维码编码和解码。",
   "icons": {

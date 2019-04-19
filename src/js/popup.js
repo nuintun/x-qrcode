@@ -19,7 +19,4 @@ chrome.tabs.getSelected(tab => {
   );
 });
 
-/**
- * 禁用弹出页右键
- */
 document.addEventListener('contextmenu', e => e.preventDefault(), false);

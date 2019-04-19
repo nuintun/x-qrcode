@@ -23,9 +23,6 @@ function decode(src) {
   return qrcode.scan(src);
 }
 
-/**
- * 监听标签请求绘制二维码并返回
- */
 chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
   if (request.action === 'GetTabURLQRCode') {
     encode(request.url)
@@ -45,9 +42,6 @@ chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
 });
 
 chrome.contextMenus.removeAll(() => {
-  /**
-   * 添加右键解析二维码菜单
-   */
   chrome.contextMenus.create({
     id: 'QRDecode',
     title: '解码当前图片',
@@ -71,9 +65,6 @@ chrome.contextMenus.removeAll(() => {
     }
   });
 
-  /**
-   * 添加右键编码链接地址
-   */
   chrome.contextMenus.create({
     id: 'QREncodeLink',
     title: '编码当前链接',
@@ -97,9 +88,6 @@ chrome.contextMenus.removeAll(() => {
     }
   });
 
-  /**
-   * 添加右键编码选中文本
-   */
   chrome.contextMenus.create({
     id: 'QREncodeSelection',
     title: '编码当前文本',

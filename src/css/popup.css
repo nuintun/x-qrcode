@@ -7,7 +7,7 @@ div {
 body {
   color: #333;
   background-color: #fff;
-  font: normal 12px/1.5 MICROSOFT YAHEI, Arial, serif;
+  font: normal 12px/1.5 "Microsoft YaHei", Arial, serif;
 }
 .stage {
   font-size: 0;
@@ -17,8 +17,8 @@ body {
   margin: 10px 17px;
 }
 .toast {
+  color: #f00;
   display: none;
   padding: 6px 10px;
-  color: #f00;
   white-space: nowrap;
 }
