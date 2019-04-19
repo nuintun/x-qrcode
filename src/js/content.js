@@ -40,6 +40,18 @@ class Popup {
   }
 }
 
+const HTML_ESCAPE_MAP = {
+  '<': '&lt;',
+  '>': '&gt;',
+  '&': '&amp;',
+  "'": '&#39;',
+  '"': '&quot;'
+};
+
+function escapeHTML(html) {
+  return String(html).replace(/[<>&'"]/g, char => HTML_ESCAPE_MAP[char]);
+}
+
 let popupActived = null;
 
 chrome.extension.onRequest.addListener(response => {
@@ -48,7 +60,7 @@ chrome.extension.onRequest.addListener(response => {
   if (response.ok) {
     switch (response.menuItemId) {
       case 'QRDecode':
-        popup.content(`<pre>${response.data}</pre>`);
+        popup.content(`<pre>${escapeHTML(response.data)}</pre>`);
         break;
       case 'QREncodeLink':
       case 'QREncodeSelection':
