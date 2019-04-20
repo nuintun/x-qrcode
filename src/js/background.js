@@ -1,3 +1,8 @@
+/**
+ * @module background
+ * @author nuintun
+ */
+
 import { Encoder, Decoder, ErrorCorrectLevel } from '@nuintun/qrcode';
 
 function encode(data) {

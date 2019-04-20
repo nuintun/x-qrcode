@@ -1,4 +1,10 @@
+/**
+ * @module content
+ * @author nuintun
+ */
+
 import '../css/content.css';
+import { escapeHTML } from './utils';
 
 class Popup {
   constructor(content) {
@@ -38,18 +44,6 @@ class Popup {
       this.destroyed = true;
     }
   }
-}
-
-const HTML_ESCAPE_MAP = {
-  '<': '&lt;',
-  '>': '&gt;',
-  '&': '&amp;',
-  "'": '&#39;',
-  '"': '&quot;'
-};
-
-function escapeHTML(html) {
-  return String(html).replace(/[<>&'"]/g, char => HTML_ESCAPE_MAP[char]);
 }
 
 let popupActived = null;

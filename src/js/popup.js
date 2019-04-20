@@ -1,7 +1,12 @@
+/**
+ * @module popup
+ * @author nuintun
+ */
+
 import '../css/popup.css';
+import { escapeHTML } from './utils';
 
 const stage = document.getElementById('stage');
-const toast = document.getElementById('toast');
 
 chrome.tabs.getSelected(tab => {
   chrome.extension.sendRequest(
@@ -13,7 +18,7 @@ chrome.tabs.getSelected(tab => {
       if (response.ok) {
         stage.innerHTML = `<img src="${response.src}" alt="QRCode" />`;
       } else {
-        toast.innerHTML = response.message;
+        stage.innerHTML = `<pre class="error">${escapeHTML(response.message)}</pre>`;
       }
     }
   );
