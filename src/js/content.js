@@ -52,7 +52,7 @@ chrome.extension.onRequest.addListener(response => {
   const popup = new Popup();
 
   if (response.ok) {
-    switch (response.menuItemId) {
+    switch (response.action) {
       case 'QRDecode':
         popup.content(`<pre>${escapeHTML(response.data)}</pre>`);
         break;

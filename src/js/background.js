@@ -57,14 +57,14 @@ chrome.contextMenus.removeAll(() => {
           chrome.tabs.sendRequest(tab.id, {
             ok: true,
             data: qrcode.data,
-            menuItemId: data.menuItemId
+            action: data.menuItemId
           });
         })
         .catch(error => {
           chrome.tabs.sendRequest(tab.id, {
             ok: false,
             message: error,
-            menuItemId: data.menuItemId
+            action: data.menuItemId
           });
         });
     }
@@ -80,14 +80,14 @@ chrome.contextMenus.removeAll(() => {
           chrome.tabs.sendRequest(tab.id, {
             ok: true,
             src: image,
-            menuItemId: data.menuItemId
+            action: data.menuItemId
           });
         })
         .catch(error => {
           chrome.tabs.sendRequest(tab.id, {
             ok: false,
             message: error,
-            menuItemId: data.menuItemId
+            action: data.menuItemId
           });
         });
     }
@@ -103,14 +103,14 @@ chrome.contextMenus.removeAll(() => {
           chrome.tabs.sendRequest(tab.id, {
             ok: true,
             src: image,
-            menuItemId: data.menuItemId
+            action: data.menuItemId
           });
         })
         .catch(error => {
           chrome.tabs.sendRequest(tab.id, {
             ok: false,
             message: error,
-            menuItemId: data.menuItemId
+            action: data.menuItemId
           });
         });
     }
