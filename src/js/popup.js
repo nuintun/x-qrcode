@@ -11,8 +11,8 @@ const stage = document.getElementById('stage');
 chrome.tabs.getSelected(tab => {
   chrome.extension.sendRequest(
     {
-      url: tab.url,
-      action: 'GetTabURLQRCode'
+      data: tab.url,
+      action: 'GetQRCode'
     },
     response => {
       if (response.ok) {

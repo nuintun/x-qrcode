@@ -60,23 +60,39 @@ let popupActived = null;
 
 chrome.extension.onRequest.addListener(response => {
   const popup = new Popup();
+  const openPopup = () => {
+    popupActived && popupActived.close();
 
-  if (response.ok) {
-    switch (response.action) {
-      case 'QRDecode':
-        popup.content(`<pre>${escapeHTML(response.data)}</pre>`);
-        break;
-      case 'QREncodeLink':
-      case 'QREncodeSelection':
+    popup.show();
+
+    popupActived = popup;
+  };
+
+  if (response.action === 'GetSelectionText') {
+    const selectionText = window.getSelection().toString();
+
+    chrome.extension.sendRequest({ data: selectionText, action: 'GetQRCode' }, response => {
+      if (response.ok) {
         popup.content(`<img src="${response.src}" alt="QRCode" />`);
-    }
+      } else {
+        popup.content(`<pre class="error">${escapeHTML(response.message)}</pre>`);
+      }
+
+      openPopup();
+    });
   } else {
-    popup.content(`<pre class="error">${escapeHTML(response.message)}</pre>`);
+    if (response.ok) {
+      switch (response.action) {
+        case 'QRDecode':
+          popup.content(`<pre>${escapeHTML(response.data)}</pre>`);
+          break;
+        case 'QREncodeLink':
+          popup.content(`<img src="${response.src}" alt="QRCode" />`);
+      }
+    } else {
+      popup.content(`<pre class="error">${escapeHTML(response.message)}</pre>`);
+    }
+
+    openPopup();
   }
-
-  popupActived && popupActived.close();
-
-  popup.show();
-
-  popupActived = popup;
 });

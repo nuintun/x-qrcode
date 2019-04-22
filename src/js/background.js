@@ -29,20 +29,21 @@ function decode(src) {
 }
 
 chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
-  if (request.action === 'GetTabURLQRCode') {
-    encode(request.url)
-      .then(image => {
-        sendResponse({
-          ok: true,
-          src: image
+  switch (request.action) {
+    case 'GetQRCode':
+      encode(request.data)
+        .then(image => {
+          sendResponse({
+            ok: true,
+            src: image
+          });
+        })
+        .catch(error => {
+          sendResponse({
+            ok: false,
+            message: error
+          });
         });
-      })
-      .catch(error => {
-        sendResponse({
-          ok: false,
-          message: error
-        });
-      });
   }
 });
 
@@ -98,21 +99,9 @@ chrome.contextMenus.removeAll(() => {
     title: '编码当前文本',
     contexts: ['selection'],
     onclick(data, tab) {
-      encode(data.selectionText)
-        .then(image => {
-          chrome.tabs.sendRequest(tab.id, {
-            ok: true,
-            src: image,
-            action: data.menuItemId
-          });
-        })
-        .catch(error => {
-          chrome.tabs.sendRequest(tab.id, {
-            ok: false,
-            message: error,
-            action: data.menuItemId
-          });
-        });
+      chrome.tabs.sendRequest(tab.id, {
+        action: 'GetSelectionText'
+      });
     }
   });
 });
