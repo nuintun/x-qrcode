@@ -13,6 +13,7 @@ class Popup {
     this.dialog = document.createElement('dialog');
 
     this.dialog.classList.add('x-qrcode-dialog');
+    this.dialog.classList.add('x-qrcode-dialog-open');
 
     this.content(content);
 
@@ -36,10 +37,19 @@ class Popup {
 
   close() {
     if (!this.destroyed) {
-      this.dialog.close();
+      const handleAnimationEnd = () => {
+        this.dialog.close();
+        this.dialog.removeEventListener('animationend', handleAnimationEnd, false);
 
-      document.body.removeChild(this.dialog);
+        document.body.removeChild(this.dialog);
+      };
+
       document.removeEventListener('click', this.handler, false);
+
+      this.dialog.addEventListener('animationend', handleAnimationEnd, false);
+
+      this.dialog.classList.remove('x-qrcode-dialog-open');
+      this.dialog.classList.add('x-qrcode-dialog-close');
 
       this.destroyed = true;
     }

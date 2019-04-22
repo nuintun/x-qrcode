@@ -1,3 +1,29 @@
+@keyframes x-qrcode-zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes x-qrcode-zoomOut {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .x-qrcode-dialog {
   top: 16% !important;
   left: 50% !important;
@@ -7,8 +33,19 @@
   background: #fff !important;
   z-index: 2147483647 !important;
   border: 1px solid #ccc !important;
+  animation-duration: 0.36s !important;
+  animation-fill-mode: both !important;
   box-shadow: 0 0 8px #ccc !important;
+  transform-origin: -25% center !important;
   transform: translate3d(-50%, 0, 0) !important;
+}
+
+.x-qrcode-dialog-open {
+  animation-name: x-qrcode-zoomIn !important;
+}
+
+.x-qrcode-dialog-close {
+  animation-name: x-qrcode-zoomOut !important;
 }
 
 .x-qrcode-dialog pre,
