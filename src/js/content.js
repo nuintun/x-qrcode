@@ -69,7 +69,10 @@ chrome.extension.onRequest.addListener(response => {
   };
 
   if (response.action === 'GetSelectionText') {
-    const selectionText = window.getSelection().toString();
+    const selection = window.getSelection();
+    const selectionText = selection.toString();
+
+    selection.removeAllRanges();
 
     chrome.extension.sendRequest({ data: selectionText, action: 'GetQRCode' }, response => {
       if (response.ok) {
