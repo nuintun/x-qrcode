@@ -28,18 +28,18 @@ function decode(src) {
   return qrcode.scan(src);
 }
 
-chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
+chrome.extension.onRequest.addListener((request, sender, response) => {
   switch (request.action) {
     case 'GetQRCode':
       encode(request.data)
         .then(image => {
-          sendResponse({
+          response({
             ok: true,
             src: image
           });
         })
         .catch(error => {
-          sendResponse({
+          response({
             ok: false,
             message: error
           });
