@@ -25,10 +25,10 @@
 }
 
 .x-qrcode-dialog pre {
-  padding: 16px !important;
   color: #000 !important;
   max-width: 560px !important;
   text-align: left !important;
+  padding: 10px 16px !important;
   word-break: break-all !important;
   white-space: pre-wrap !important;
   font: normal 14px/1.5 "Microsoft YaHei", Arial, serif !important;
