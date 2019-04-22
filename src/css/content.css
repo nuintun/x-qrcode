@@ -64,7 +64,7 @@
 .x-qrcode-dialog pre {
   color: #000 !important;
   overflow: auto !important;
-  max-width: 560px !important;
+  max-width: 720px !important;
   max-height: 560px !important;
   text-align: left !important;
   padding: 10px 16px !important;
