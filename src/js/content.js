@@ -5,103 +5,92 @@
 
 import '../css/content.css';
 
-if (top === window) {
-  class Popup {
-    constructor(content) {
-      this.destroyed = false;
+class Popup {
+  static current = null;
 
-      this.dialog = document.createElement('dialog');
+  constructor(content) {
+    this.destroyed = false;
 
-      this.dialog.classList.add('x-qrcode-dialog');
-      this.dialog.classList.add('x-qrcode-dialog-open');
+    this.mask = document.createElement('div');
+    this.dialog = document.createElement('dialog');
 
-      this.content(content);
+    this.mask.classList.add('x-qrcode-dialog-mask');
+    this.dialog.classList.add('x-qrcode-dialog-mask-open');
+    this.dialog.classList.add('x-qrcode-dialog');
+    this.dialog.classList.add('x-qrcode-dialog-open');
 
-      document.body.appendChild(this.dialog);
-    }
+    this.content(content);
 
-    content(content) {
-      if (!this.destroyed) {
-        this.dialog.innerHTML = content;
-      }
-    }
+    const handleMaskClick = () => {
+      this.mask.removeEventListener('click', handleMaskClick, false);
 
-    show() {
-      if (!this.destroyed) {
-        this.dialog.show();
-      }
-    }
+      this.close();
+    };
 
-    close() {
-      if (!this.destroyed) {
-        const handleAnimationEnd = () => {
-          this.dialog.close();
-          this.dialog.removeEventListener('animationend', handleAnimationEnd, false);
+    this.mask.addEventListener('click', handleMaskClick, false);
 
-          document.body.removeChild(this.dialog);
-        };
+    document.body.appendChild(this.mask);
+    document.body.appendChild(this.dialog);
+  }
 
-        this.dialog.addEventListener('animationend', handleAnimationEnd, false);
-
-        this.dialog.classList.remove('x-qrcode-dialog-open');
-        this.dialog.classList.add('x-qrcode-dialog-close');
-
-        this.destroyed = true;
-      }
+  content(content) {
+    if (!this.destroyed) {
+      this.dialog.innerHTML = content;
     }
   }
 
-  let currentPopup = null;
+  show() {
+    if (!this.destroyed) {
+      this.dialog.show();
 
-  const openPopup = popup => {
-    currentPopup && currentPopup.close();
-
-    popup.show();
-
-    currentPopup = popup;
-  };
-
-  chrome.extension.onRequest.addListener(response => {
-    const popup = new Popup();
-
-    if (response.ok) {
-      switch (response.action) {
-        case 'QRDecode':
-          popup.content(`<pre>${response.data}</pre>`);
-          break;
-        case 'QREncodeLink':
-        case 'QREncodeSelection':
-          popup.content(`<img src="${response.src}" alt="QRCode" />`);
-      }
-    } else {
-      popup.content(`<pre class="error">${response.message}</pre>`);
+      Popup.current = this;
     }
+  }
 
-    openPopup(popup);
-  });
+  close() {
+    if (!this.destroyed) {
+      const handleAnimationEnd = () => {
+        this.dialog.close();
+        this.dialog.removeEventListener('animationend', handleAnimationEnd, false);
 
-  const handleClick = ({ target }) => {
-    if (currentPopup && !currentPopup.destroyed) {
-      if (target !== currentPopup.dialog && !currentPopup.dialog.contains(target)) {
-        currentPopup.close();
+        document.body.removeChild(this.dialog);
+      };
+
+      this.dialog.addEventListener('animationend', handleAnimationEnd, false);
+
+      this.dialog.classList.remove('x-qrcode-dialog-open');
+      this.dialog.classList.add('x-qrcode-dialog-close');
+
+      document.body.removeChild(this.mask);
+
+      this.destroyed = true;
+
+      if (Popup.current === this) {
+        Popup.current = null;
       }
     }
-  };
-
-  const handleMessage = ({ data }) => {
-    if (data.source === 'x-qrcode-detector' && data.action === 'ClosePopup') {
-      if (currentPopup && !currentPopup.destroyed) {
-        currentPopup.close();
-      }
-    }
-  };
-
-  document.addEventListener('click', handleClick, false);
-  window.addEventListener('message', handleMessage, false);
-} else {
-  const handleClick = () => {
-    top.postMessage({ source: 'x-qrcode-detector', action: 'ClosePopup' }, '*');
-  };
-
-  document.addEventListener('click', handleClick, false);
+  }
 }
+
+chrome.extension.onRequest.addListener(response => {
+  const popup = new Popup();
+
+  if (response.ok) {
+    switch (response.action) {
+      case 'QRDecode':
+        popup.content(`<pre>${response.data}</pre>`);
+        break;
+      case 'QREncodeLink':
+      case 'QREncodeSelection':
+        popup.content(`<img src="${response.src}" alt="QRCode" />`);
+    }
+  } else {
+    popup.content(`<pre class="error">${response.message}</pre>`);
+  }
+
+  if (Popup.current) {
+    Popup.current.close();
+  }
+
+  popup.show();
+});
