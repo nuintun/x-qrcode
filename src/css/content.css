@@ -98,6 +98,7 @@
   padding: 0 !important;
   border: none !important;
   display: block !important;
+  background: #fff !important;
 }
 
 .x-qrcode-dialog > img {
