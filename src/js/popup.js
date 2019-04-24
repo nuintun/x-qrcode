@@ -4,7 +4,6 @@
  */
 
 import '../css/popup.css';
-import { escapeHTML } from './utils';
 
 const stage = document.getElementById('stage');
 
@@ -18,7 +17,7 @@ chrome.tabs.getSelected(tab => {
       if (response.ok) {
         stage.innerHTML = `<img src="${response.src}" alt="QRCode" />`;
       } else {
-        stage.innerHTML = `<pre class="error">${escapeHTML(response.message)}</pre>`;
+        stage.innerHTML = `<pre class="error">${response.message}</pre>`;
       }
     }
   );

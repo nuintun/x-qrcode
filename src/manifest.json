@@ -20,6 +20,7 @@
   "permissions": ["tabs", "contextMenus", "<all_urls>"],
   "content_scripts": [
     {
+      "all_frames": true,
       "matches": ["<all_urls>"],
       "js": ["js/content.js"],
       "css": ["css/content.css"],

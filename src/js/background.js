@@ -3,6 +3,7 @@
  * @author nuintun
  */
 
+import { escapeHTML } from './utils';
 import { Encoder, Decoder, ErrorCorrectLevel } from '@nuintun/qrcode';
 
 function encode(data) {
@@ -25,9 +26,16 @@ function encode(data) {
 function decode(src) {
   const qrcode = new Decoder();
 
-  return qrcode.scan(src);
+  return qrcode.scan(src).then(qrcode => {
+    const data = escapeHTML(qrcode.data);
+
+    qrcode.data = data;
+
+    return qrcode;
+  });
 }
 
+// 页面 popup 服务逻辑
 chrome.extension.onRequest.addListener((request, sender, response) => {
   switch (request.action) {
     case 'GetQRCode':
@@ -99,8 +107,28 @@ chrome.contextMenus.removeAll(() => {
     title: '编码当前文本',
     contexts: ['selection'],
     onclick(data, tab) {
-      chrome.tabs.sendRequest(tab.id, {
-        action: 'GetSelectionText'
+      const script = {
+        runAt: 'document_end',
+        frameId: data.frameId,
+        code: 'window.getSelection().toString();'
+      };
+
+      chrome.tabs.executeScript(tab.id, script, selection => {
+        encode(selection[0])
+          .then(image => {
+            chrome.tabs.sendRequest(tab.id, {
+              ok: true,
+              src: image,
+              action: data.menuItemId
+            });
+          })
+          .catch(error => {
+            chrome.tabs.sendRequest(tab.id, {
+              ok: false,
+              message: error,
+              action: data.menuItemId
+            });
+          });
       });
     }
   });
