@@ -100,7 +100,7 @@ if (top === window) {
   window.addEventListener('message', handleMessage, false);
 } else {
   const handleClick = () => {
-    top.postMessage({ source: 'x-qrcode-detector', action: 'ClosePopup' });
+    top.postMessage({ source: 'x-qrcode-detector', action: 'ClosePopup' }, '*');
   };
 
   document.addEventListener('click', handleClick, false);
