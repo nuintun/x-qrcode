@@ -53,7 +53,9 @@
   position: fixed !important;
   overflow: hidden !important;
   border-radius: 3px !important;
+  width: fit-content !important;
   background: #fff !important;
+  height: fit-content !important;
   z-index: 2147483647 !important;
   animation-duration: 0.2s !important;
   animation-fill-mode: both !important;
@@ -72,8 +74,8 @@
   z-index: 2147483646 !important;
   animation-duration: 0.2s !important;
   animation-fill-mode: both !important;
-  animation-timing-function: linear !important;
   background: rgba(0, 0, 0, 0.1) !important;
+  animation-timing-function: linear !important;
 }
 
 .x-qrcode-dialog-open {
@@ -98,7 +100,9 @@
   padding: 0 !important;
   border: none !important;
   display: block !important;
+  width: fit-content !important;
   background: #fff !important;
+  height: fit-content !important;
 }
 
 .x-qrcode-dialog > img {
