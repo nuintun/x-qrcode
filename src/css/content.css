@@ -24,6 +24,26 @@
   }
 }
 
+@keyframes x-qrcode-fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes x-qrcode-fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .x-qrcode-dialog {
   top: 16% !important;
   left: 50% !important;
@@ -35,9 +55,10 @@
   border-radius: 3px !important;
   background: #fff !important;
   z-index: 2147483647 !important;
-  animation-duration: 0.36s !important;
+  animation-duration: 0.2s !important;
   animation-fill-mode: both !important;
   transform-origin: -25% center !important;
+  animation-timing-function: linear !important;
   transform: translate3d(-50%, 0, 0) !important;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
 }
@@ -49,6 +70,9 @@
   height: 100vh !important;
   position: fixed !important;
   z-index: 2147483646 !important;
+  animation-duration: 0.2s !important;
+  animation-fill-mode: both !important;
+  animation-timing-function: linear !important;
   background: rgba(0, 0, 0, 0.1) !important;
 }
 
@@ -58,6 +82,14 @@
 
 .x-qrcode-dialog-close {
   animation-name: x-qrcode-zoomOut !important;
+}
+
+.x-qrcode-dialog-mask-open {
+  animation-name: x-qrcode-fadeIn !important;
+}
+
+.x-qrcode-dialog-mask-close {
+  animation-name: x-qrcode-fadeOut !important;
 }
 
 .x-qrcode-dialog > pre,

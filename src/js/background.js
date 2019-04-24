@@ -55,6 +55,19 @@ chrome.extension.onRequest.addListener((request, sender, response) => {
   }
 });
 
+const getSelectionText = `
+  function getSelectionText(){
+    var selection = window.getSelection();
+    var selectionText = selection.toString();
+
+    selection.removeAllRanges();
+
+    return selectionText;
+  }
+
+  getSelectionText();
+`;
+
 chrome.contextMenus.removeAll(() => {
   chrome.contextMenus.create({
     id: 'QRDecode',
@@ -110,7 +123,7 @@ chrome.contextMenus.removeAll(() => {
       const script = {
         runAt: 'document_end',
         frameId: data.frameId,
-        code: 'window.getSelection().toString();'
+        code: getSelectionText
       };
 
       chrome.tabs.executeScript(tab.id, script, selection => {

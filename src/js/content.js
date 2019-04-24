@@ -15,7 +15,7 @@ class Popup {
     this.dialog = document.createElement('dialog');
 
     this.mask.classList.add('x-qrcode-dialog-mask');
-    this.dialog.classList.add('x-qrcode-dialog-mask-open');
+    this.mask.classList.add('x-qrcode-dialog-mask-open');
     this.dialog.classList.add('x-qrcode-dialog');
     this.dialog.classList.add('x-qrcode-dialog-open');
 
@@ -49,19 +49,27 @@ class Popup {
 
   close() {
     if (!this.destroyed) {
-      const handleAnimationEnd = () => {
+      const handleMaskAnimationEnd = () => {
+        this.mask.removeEventListener('animationend', handleMaskAnimationEnd, false);
+
+        document.body.removeChild(this.mask);
+      };
+
+      this.mask.addEventListener('animationend', handleMaskAnimationEnd, false);
+
+      const handleDialogAnimationEnd = () => {
         this.dialog.close();
-        this.dialog.removeEventListener('animationend', handleAnimationEnd, false);
+        this.dialog.removeEventListener('animationend', handleDialogAnimationEnd, false);
 
         document.body.removeChild(this.dialog);
       };
 
-      this.dialog.addEventListener('animationend', handleAnimationEnd, false);
+      this.dialog.addEventListener('animationend', handleDialogAnimationEnd, false);
 
+      this.mask.classList.remove('x-qrcode-dialog-mask-open');
+      this.mask.classList.add('x-qrcode-dialog-mask-close');
       this.dialog.classList.remove('x-qrcode-dialog-open');
       this.dialog.classList.add('x-qrcode-dialog-close');
-
-      document.body.removeChild(this.mask);
 
       this.destroyed = true;
 
