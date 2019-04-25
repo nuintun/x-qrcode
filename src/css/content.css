@@ -121,6 +121,7 @@
   overflow-y: scroll !important;
   word-break: break-all !important;
   white-space: pre-wrap !important;
+  overflow-wrap: break-word !important;
   font: normal 14px/1.5 "Microsoft YaHei", Arial, serif !important;
 }
 
