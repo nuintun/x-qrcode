@@ -119,7 +119,7 @@
   padding: 10px 16px !important;
   overflow-x: hidden !important;
   overflow-y: scroll !important;
-  word-break: break-all !important;
+  word-break: normal !important;
   white-space: pre-wrap !important;
   overflow-wrap: break-word !important;
   font: normal 14px/1.5 "Microsoft YaHei", Arial, serif !important;
