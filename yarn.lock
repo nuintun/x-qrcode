@@ -678,10 +678,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@nuintun/qrcode@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-0.5.1.tgz#2b73640dc5ea5790d51441163312f5142a2277ee"
-  integrity sha512-2bOFRMrHbWDzvSUqbx4wtGqmdRIYB7f9s9koxgAyUhi1e+D+lEGG8oS+LLX0GZYuFwWLrSG+CRuWSJdupDFtag==
+"@nuintun/qrcode@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-0.5.2.tgz#b28bd514c8e0ad5cc0f4ff7dda631c4c4c1fba53"
+  integrity sha512-XJO6LQLiDiWZ8sH/UwjWqpIJYZYlkT7dx37B9vFd9QxZ3WprmCwnKHOQk4pMbmHM55Rr/+kPN6RP+xYlZgn0FQ==
   dependencies:
     tslib "^1.9.3"
 
@@ -1915,9 +1915,9 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     stream-shift "^1.0.0"
 
 electron-to-chromium@^1.3.124:
-  version "1.3.126"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.126.tgz#39363f76e55cf2bc06cd919cb76c808b3acaed30"
-  integrity sha512-anr0OeQkZvOGzsz1ZM7BliJjHKfEsodQWoncklQWryDCSXMdVtt/fXlQBKfXXmbMVDhpiydwL3jaonbWuk/F6g==
+  version "1.3.127"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.127.tgz#9b34d3d63ee0f3747967205b953b25fe7feb0e10"
+  integrity sha512-1o25iFRf/dbgauTWalEzmD1EmRN3a2CzP/K7UVpYLEBduk96LF0FyUdCcf4Ry2mAWJ1VxyblFjC93q6qlLwA2A==
 
 elliptic@^6.0.0:
   version "6.4.1"
