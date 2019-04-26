@@ -86,7 +86,7 @@ chrome.extension.onRequest.addListener(response => {
   if (response.ok) {
     switch (response.action) {
       case 'QRDecode':
-        popup.content(`<pre>${response.data}</pre>`);
+        popup.content(`<pre>${response.text}</pre>`);
         break;
       case 'QREncodeLink':
       case 'QREncodeSelection':

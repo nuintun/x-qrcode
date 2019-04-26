@@ -4,14 +4,14 @@
  */
 
 import { escapeHTML } from './utils';
-import { Encoder, Decoder, ErrorCorrectLevel } from '@nuintun/qrcode';
+import { Encoder, Decoder, ErrorCorrectionLevel } from '@nuintun/qrcode';
 
 function encode(data) {
   return new Promise((resolve, reject) => {
     const qrcode = new Encoder();
 
     qrcode.write(data);
-    qrcode.setErrorCorrectLevel(ErrorCorrectLevel.M);
+    qrcode.setErrorCorrectionLevel(ErrorCorrectionLevel.M);
 
     try {
       qrcode.make();
@@ -27,9 +27,9 @@ function decode(src) {
   const qrcode = new Decoder();
 
   return qrcode.scan(src).then(qrcode => {
-    const data = escapeHTML(qrcode.data);
+    const data = escapeHTML(qrcode.text);
 
-    qrcode.data = data;
+    qrcode.text = data;
 
     return qrcode;
   });
@@ -78,7 +78,7 @@ chrome.contextMenus.removeAll(() => {
         .then(qrcode => {
           chrome.tabs.sendRequest(tab.id, {
             ok: true,
-            data: qrcode.data,
+            text: qrcode.text,
             action: data.menuItemId
           });
         })
