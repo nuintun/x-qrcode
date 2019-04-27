@@ -76,7 +76,7 @@ chrome.contextMenus.removeAll(() => {
         .then(qrcode => {
           chrome.tabs.sendRequest(tab.id, {
             ok: true,
-            text: qrcode.text,
+            text: qrcode.data,
             action: data.menuItemId
           });
         })
