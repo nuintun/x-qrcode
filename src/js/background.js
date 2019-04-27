@@ -27,9 +27,7 @@ function decode(src) {
   const qrcode = new Decoder();
 
   return qrcode.scan(src).then(qrcode => {
-    const data = escapeHTML(qrcode.text);
-
-    qrcode.text = data;
+    qrcode.data = escapeHTML(qrcode.data);
 
     return qrcode;
   });
