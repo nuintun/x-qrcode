@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/nuintun/x-qrcode#readme",
   "dependencies": {
-    "@nuintun/qrcode": "^0.13.1"
+    "@nuintun/qrcode": "^0.13.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
