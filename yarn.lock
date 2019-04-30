@@ -678,10 +678,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@nuintun/qrcode@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-0.15.0.tgz#fd986d2521cfea72fa39889dc482e0523cefb858"
-  integrity sha512-Zv+gN2VSV/KDu3RHfloAKNX0+vOShfmFsUqaCx7j92qVJFq8qeH4+GlcjN3hHPx9aSG07Zf+eoojRGPOKNTcGw==
+"@nuintun/qrcode@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-0.16.0.tgz#506f7a8148517cb8ad2da902f9686b75294cfec3"
+  integrity sha512-mAduYOWeoZ0PGmDLhbUVqhE6n5MGbKPEiw9uHpKyvixdlj86WZX6KE0oPjg4I0+gwtbOYpiuEZ7rKh6F5hNJtg==
   dependencies:
     tslib "^1.9.3"
 
@@ -2230,9 +2230,9 @@ fs.realpath@^1.0.0:
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
 fsevents@^1.2.7:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.8.tgz#57ea5320f762cd4696e5e8e87120eccc8b11cacf"
-  integrity sha512-tPvHgPGB7m40CZ68xqFGkKuzN+RnpGmSV+hgeKxhRpbxdqKXUFJGC3yonBOLzQBcJyGpdZFDfCsdOC2KFsXzeA==
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.9.tgz#3f5ed66583ccd6f400b5a00db6f7e861363e388f"
+  integrity sha512-oeyj2H3EjjonWcFjD5NvZNE9Rqe4UW+nQBU2HNeKw0koVLEFIhtyETyAakeAM3de7Z/SW5kcA+fZUait9EApnw==
   dependencies:
     nan "^2.12.1"
     node-pre-gyp "^0.12.0"
