@@ -83,8 +83,8 @@ const getSelectionText = `
 chrome.contextMenus.removeAll(() => {
   chrome.contextMenus.create({
     id: 'QRDecode',
-    title: '解码当前图片',
     contexts: ['image'],
+    title: chrome.i18n.getMessage('decodeSelectImage'),
     onclick(data, tab) {
       decode(data.srcUrl)
         .then(qrcode => {
@@ -106,8 +106,8 @@ chrome.contextMenus.removeAll(() => {
 
   chrome.contextMenus.create({
     id: 'QREncodeLink',
-    title: '编码当前链接',
     contexts: ['link'],
+    title: chrome.i18n.getMessage('encodeSelectLink'),
     onclick(data, tab) {
       encode(data.linkUrl)
         .then(image => {
@@ -129,8 +129,8 @@ chrome.contextMenus.removeAll(() => {
 
   chrome.contextMenus.create({
     id: 'QREncodeSelection',
-    title: '编码当前文本',
     contexts: ['selection'],
+    title: chrome.i18n.getMessage('encodeSelectionText'),
     onclick(data, tab) {
       const script = {
         runAt: 'document_end',

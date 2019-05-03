@@ -1,8 +1,9 @@
 {
-  "name": "全能二维码",
+  "name": "__MSG_appName__",
   "version": "0.1.0",
   "manifest_version": 2,
-  "description": "将当前标签的链接地址转换成二维码，并支持二维码编码和解码。",
+  "default_locale": "en",
+  "description": "__MSG_appDesc__",
   "icons": {
     "16": "images/qrcode-16.png",
     "32": "images/qrcode-32.png",
@@ -14,7 +15,7 @@
   },
   "browser_action": {
     "default_icon": "images/qrcode-16.png",
-    "default_title": "全能二维码",
+    "default_title": "__MSG_appName__",
     "default_popup": "popup.html"
   },
   "homepage_url": "https://github.com/nuintun/x-qrcode",

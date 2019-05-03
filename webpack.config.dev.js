@@ -40,6 +40,7 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: 'css/[name].css' }),
     new CopyWebpackPlugin([
       { from: './src/images', to: path.resolve('x-qrcode/images') },
+      { from: './src/_locales', to: path.resolve('x-qrcode/_locales') },
       { from: './src/popup.html', to: path.resolve('x-qrcode/popup.html') },
       { from: './src/manifest.json', to: path.resolve('x-qrcode/manifest.json') }
     ]),
