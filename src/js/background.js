@@ -15,6 +15,7 @@ function chooseMode(data) {
   } else if (TEST_ALPHANUMERIC.test(data)) {
     return QRAlphanumeric;
   }
+
   return QRByte;
 }
 
