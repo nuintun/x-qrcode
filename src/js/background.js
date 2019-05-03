@@ -4,13 +4,26 @@
  */
 
 import { escapeHTML } from './utils';
-import { Encoder, Decoder, ErrorCorrectionLevel } from '@nuintun/qrcode';
+import { Encoder, Decoder, QRByte, QRNumeric, QRAlphanumeric, ErrorCorrectionLevel } from '@nuintun/qrcode';
+
+const TEST_NUMERIC = /^\d+$/;
+const TEST_ALPHANUMERIC = /^[0-9A-Z$%*+-./: ]+$/;
+
+function chooseMode(data) {
+  if (TEST_NUMERIC.test(data)) {
+    return QRNumeric;
+  } else if (TEST_ALPHANUMERIC.test(data)) {
+    return QRAlphanumeric;
+  }
+  return QRByte;
+}
 
 function encode(data) {
   return new Promise((resolve, reject) => {
     const qrcode = new Encoder();
+    const Mode = chooseMode(data);
 
-    qrcode.write(data);
+    qrcode.write(new Mode(data));
     qrcode.setErrorCorrectionLevel(ErrorCorrectionLevel.M);
 
     try {
