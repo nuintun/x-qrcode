@@ -4,15 +4,16 @@
   "manifest_version": 2,
   "description": "将当前标签的链接地址转换成二维码，并支持二维码编码和解码。",
   "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
+    "16": "images/qrcode-16.png",
+    "32": "images/qrcode-32.png",
+    "48": "images/qrcode-48.png",
+    "128": "images/qrcode-128.png"
   },
   "background": {
     "scripts": ["js/background.js"]
   },
   "browser_action": {
-    "default_icon": "images/icon19.png",
+    "default_icon": "images/qrcode-16.png",
     "default_title": "全能二维码",
     "default_popup": "popup.html"
   },
