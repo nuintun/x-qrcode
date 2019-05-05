@@ -50,6 +50,7 @@
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
+  display: block !important;
   position: fixed !important;
   overflow: hidden !important;
   border-radius: 3px !important;
@@ -70,6 +71,7 @@
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+  display: block !important;
   position: fixed !important;
   z-index: 2147483646 !important;
   animation-duration: 0.2s !important;
@@ -106,6 +108,7 @@
 }
 
 .x-qrcode-dialog > img {
+  display: block !important;
   max-width: 370px !important;
   max-height: 370px !important;
 }
@@ -113,6 +116,7 @@
 .x-qrcode-dialog > pre {
   margin: 0 !important;
   color: #000 !important;
+  display: block !important;
   text-align: left !important;
   max-width: 720px !important;
   max-height: 560px !important;
