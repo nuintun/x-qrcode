@@ -678,10 +678,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@nuintun/qrcode@^0.18.3":
-  version "0.18.3"
-  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-0.18.3.tgz#fb0c55771b724f3d3ae74c84b55aa81854dd9372"
-  integrity sha512-OWyPGG86utdPlnHTu0lGHHLouqzCKqz6AIO3ph5voFI+RQuIJNEsSDChMda7gnZDSfl192b7L8XZjICASqZhXQ==
+"@nuintun/qrcode@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-0.19.0.tgz#4273ff149f6761e8edb2d7aea4ad5b35ebbaadae"
+  integrity sha512-v6X/g8RjRec4/q/ud1ZE1xZcskh53Zz8qepXB05EhbVDHv95gBopy1CLewB3NoIWb6vsgyg4OP3CN5EsunpOmw==
   dependencies:
     tslib "^1.9.3"
 
