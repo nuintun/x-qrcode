@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/nuintun/x-qrcode#readme",
   "dependencies": {
-    "@nuintun/qrcode": "^0.30.0"
+    "@nuintun/qrcode": "^0.30.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -32,7 +32,7 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/runtime": "^7.4.4",
     "autoprefixer": "^9.5.1",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.0.6",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "clean-webpack-plugin": "^2.0.2",
     "copy-webpack-plugin": "^5.0.3",
