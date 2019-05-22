@@ -42,7 +42,7 @@
     "postcss": "^7.0.16",
     "postcss-loader": "^3.0.0",
     "url-loader": "^1.1.2",
-    "webpack": "^4.32.0",
+    "webpack": "^4.32.1",
     "webpack-cli": "^3.3.2"
   }
 }
