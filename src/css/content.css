@@ -45,11 +45,12 @@
 }
 
 .x-qrcode-dialog {
-  top: 16% !important;
-  left: 50% !important;
-  margin: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
   padding: 0 !important;
   border: none !important;
+  bottom: auto !important;
   display: block !important;
   position: fixed !important;
   overflow: hidden !important;
@@ -58,11 +59,11 @@
   background: #fff !important;
   height: fit-content !important;
   z-index: 2147483647 !important;
+  margin: 16vh auto auto !important;
+  transform-origin: center !important;
   animation-duration: 0.2s !important;
   animation-fill-mode: both !important;
-  transform-origin: -25% center !important;
   animation-timing-function: linear !important;
-  transform: translate3d(-50%, 0, 0) !important;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
 }
 

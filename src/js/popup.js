@@ -7,8 +7,8 @@ import '../css/popup.css';
 
 const stage = document.getElementById('stage');
 
-chrome.tabs.getSelected(tab => {
-  chrome.extension.sendRequest(
+chrome.tabs.query({ active: true }, ([tab]) => {
+  chrome.runtime.sendMessage(
     {
       data: tab.url,
       action: 'GetQRCode'

@@ -19,6 +19,14 @@ class Popup {
     this.dialog.classList.add('x-qrcode-dialog');
     this.dialog.classList.add('x-qrcode-dialog-open');
 
+    if (!this.dialog.show) {
+      this.dialog.show = () => (this.dialog.style.display = 'block');
+    }
+
+    if (!this.dialog.close) {
+      this.dialog.close = () => (this.dialog.style.display = 'none');
+    }
+
     this.content(content);
 
     const handleMaskClick = () => {
@@ -80,7 +88,7 @@ class Popup {
   }
 }
 
-chrome.extension.onRequest.addListener(response => {
+chrome.runtime.onMessage.addListener(response => {
   const popup = new Popup();
 
   if (response.ok) {

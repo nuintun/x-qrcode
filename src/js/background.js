@@ -51,7 +51,7 @@ function decode(src) {
 }
 
 // 页面 popup 服务逻辑
-chrome.extension.onRequest.addListener((request, sender, response) => {
+chrome.runtime.onMessage.addListener((request, sender, response) => {
   switch (request.action) {
     case 'GetQRCode':
       encode(request.data)
@@ -68,6 +68,8 @@ chrome.extension.onRequest.addListener((request, sender, response) => {
           });
         });
   }
+
+  return true;
 });
 
 const getSelectionText = `
@@ -91,14 +93,14 @@ chrome.contextMenus.removeAll(() => {
     onclick(data, tab) {
       decode(data.srcUrl)
         .then(qrcode => {
-          chrome.tabs.sendRequest(tab.id, {
+          chrome.tabs.sendMessage(tab.id, {
             ok: true,
             data: qrcode.data,
             action: data.menuItemId
           });
         })
         .catch(error => {
-          chrome.tabs.sendRequest(tab.id, {
+          chrome.tabs.sendMessage(tab.id, {
             ok: false,
             message: error,
             action: data.menuItemId
@@ -114,14 +116,14 @@ chrome.contextMenus.removeAll(() => {
     onclick(data, tab) {
       encode(data.linkUrl)
         .then(image => {
-          chrome.tabs.sendRequest(tab.id, {
+          chrome.tabs.sendMessage(tab.id, {
             ok: true,
             src: image,
             action: data.menuItemId
           });
         })
         .catch(error => {
-          chrome.tabs.sendRequest(tab.id, {
+          chrome.tabs.sendMessage(tab.id, {
             ok: false,
             message: error,
             action: data.menuItemId
@@ -144,14 +146,14 @@ chrome.contextMenus.removeAll(() => {
       chrome.tabs.executeScript(tab.id, script, selection => {
         encode(selection[0])
           .then(image => {
-            chrome.tabs.sendRequest(tab.id, {
+            chrome.tabs.sendMessage(tab.id, {
               ok: true,
               src: image,
               action: data.menuItemId
             });
           })
           .catch(error => {
-            chrome.tabs.sendRequest(tab.id, {
+            chrome.tabs.sendMessage(tab.id, {
               ok: false,
               message: error,
               action: data.menuItemId

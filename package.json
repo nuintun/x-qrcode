@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A powerfull chrome extension for qrcode encoding and decoding.",
   "scripts": {
+    "start": "webpack --config=webpack.config.dev.js",
     "build": "webpack --config=webpack.config.prod.js",
-    "start": "webpack --config=webpack.config.dev.js --watch --progress"
+    "watch": "webpack --config=webpack.config.dev.js --watch --progress"
   },
   "repository": {
     "type": "git",

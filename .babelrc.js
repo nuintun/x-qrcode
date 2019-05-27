@@ -14,7 +14,7 @@ module.exports = {
       {
         loose: true,
         modules: false,
-        targets: { browsers: ['Chrome >= 66'] }
+        targets: { browsers: ['Chrome >= 66', 'firefox >= 60'] }
       }
     ]
   ],

@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     autoprefixer({
       flexbox: 'no-2009',
-      browsers: ['Chrome >= 66']
+      browsers: ['Chrome >= 66', 'firefox >= 60']
     })
   ]
 };
