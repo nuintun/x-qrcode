@@ -38,7 +38,7 @@
     "clean-webpack-plugin": "^2.0.2",
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
-    "mini-css-extract-plugin": "^0.6.0",
+    "mini-css-extract-plugin": "^0.7.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "postcss": "^7.0.16",
     "postcss-loader": "^3.0.0",
