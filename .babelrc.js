@@ -7,17 +7,10 @@
 
 'use strict';
 
+const browsers = require('./package.json').browserslist;
+
 module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        loose: true,
-        modules: false,
-        targets: { browsers: ['Chrome >= 66', 'firefox >= 60'] }
-      }
-    ]
-  ],
+  presets: [['@babel/preset-env', { loose: true, modules: false, targets: { browsers } }]],
   plugins: [
     '@babel/plugin-syntax-dynamic-import',
     ['@babel/plugin-proposal-decorators', { legacy: true }],

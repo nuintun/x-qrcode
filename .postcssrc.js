@@ -13,10 +13,5 @@ const sourceMap = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   sourceMap,
-  plugins: [
-    autoprefixer({
-      flexbox: 'no-2009',
-      browsers: ['Chrome >= 66', 'firefox >= 60']
-    })
-  ]
+  plugins: [autoprefixer({ flexbox: 'no-2009' })]
 };
