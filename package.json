@@ -25,7 +25,7 @@
     "firefox >= 60"
   ],
   "dependencies": {
-    "@nuintun/qrcode": "^1.0.2"
+    "@nuintun/qrcode": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

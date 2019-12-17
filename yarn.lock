@@ -703,10 +703,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@nuintun/qrcode@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-1.0.2.tgz#e8314dafe52aafaf94dafcaf75251216f2206d17"
-  integrity sha512-LUnbvtKVjGsgeX88ha3EIvLSpv1WM1+sRL9Gw+cG/nioWLA71fEbmBd81KLbSphFTzq92vUw+IVKBdjkbE+Tiw==
+"@nuintun/qrcode@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-1.0.3.tgz#58f4ea1674a253a0b84e4482f53d1d04b1ae9021"
+  integrity sha512-RJbHtevIhD0F/VVo1Vk1YZ/o/Ar7vq/EZB8luf6n9vItYnqzTdrNAZoXGAJTP4zwoeI6JwQe4WeowUwHFQys9A==
   dependencies:
     tslib "^1.10.0"
 
