@@ -64,7 +64,7 @@ chrome.runtime.onMessage.addListener((request, sender, response) => {
         .catch(error => {
           response({
             ok: false,
-            message: error
+            message: error.message
           });
         });
   }
@@ -102,7 +102,7 @@ chrome.contextMenus.removeAll(() => {
         .catch(error => {
           chrome.tabs.sendMessage(tab.id, {
             ok: false,
-            message: error,
+            message: error.message,
             action: data.menuItemId
           });
         });
@@ -125,7 +125,7 @@ chrome.contextMenus.removeAll(() => {
         .catch(error => {
           chrome.tabs.sendMessage(tab.id, {
             ok: false,
-            message: error,
+            message: error.message,
             action: data.menuItemId
           });
         });
@@ -155,7 +155,7 @@ chrome.contextMenus.removeAll(() => {
           .catch(error => {
             chrome.tabs.sendMessage(tab.id, {
               ok: false,
-              message: error,
+              message: error.message,
               action: data.menuItemId
             });
           });
