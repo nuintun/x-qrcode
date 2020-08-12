@@ -122,13 +122,13 @@
   margin: 0 !important;
   color: #000 !important;
   display: block !important;
+  overflow-y: auto !important;
   text-align: left !important;
   max-width: 960px !important;
   max-height: 560px !important;
   text-shadow: none !important;
   padding: 10px 16px !important;
   overflow-x: hidden !important;
-  overflow-y: scroll !important;
   word-break: normal !important;
   white-space: pre-wrap !important;
   overflow-wrap: break-word !important;
