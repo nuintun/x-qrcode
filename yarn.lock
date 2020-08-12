@@ -884,10 +884,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@nuintun/qrcode@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-3.0.0.tgz#cc9bed28bcd469157abfcc06972532d6b1ea4320"
-  integrity sha512-95bI+QFJmjsLpZeVj7OU71gZIusWKuNs+xc5GpJ1NGxaxRrJJsdA8Og0bD0nc/HrEFLJtnvzWhGGUocPNYV37g==
+"@nuintun/qrcode@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@nuintun/qrcode/-/qrcode-3.0.1.tgz#29c1f67552882c542d9638a132650a372e4b2d5b"
+  integrity sha512-0dY347xYgJvmBP0I75UHeVEx7JeDczahhEYaS03uh9bhCqa3FycdtLPxWulQh/r3OsX5lpi+z3mEXfAaQtAPwQ==
   dependencies:
     tslib "^2.0.1"
 
