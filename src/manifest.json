@@ -1,6 +1,6 @@
 {
   "name": "__MSG_appName__",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "manifest_version": 2,
   "default_locale": "en",
   "description": "__MSG_appDesc__",
@@ -11,7 +11,9 @@
     "128": "images/qrcode-128.png"
   },
   "background": {
-    "scripts": ["js/background.js"]
+    "scripts": [
+      "js/background.js"
+    ]
   },
   "browser_action": {
     "default_icon": "images/qrcode-16.png",
@@ -19,12 +21,22 @@
     "default_popup": "popup.html"
   },
   "homepage_url": "https://github.com/nuintun/x-qrcode",
-  "permissions": ["activeTab", "contextMenus", "<all_urls>"],
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "<all_urls>"
+  ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["js/content.js"],
-      "css": ["css/content.css"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content.js"
+      ],
+      "css": [
+        "css/content.css"
+      ],
       "run_at": "document_end"
     }
   ]
