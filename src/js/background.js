@@ -4,7 +4,7 @@
  */
 
 import { escapeHTML } from './utils';
-import { Encoder, Decoder, QRByte, QRKanji, QRNumeric, QRAlphanumeric, ErrorCorrectionLevel } from '@nuintun/qrcode';
+import { Decoder, Encoder, ErrorCorrectionLevel, QRAlphanumeric, QRByte, QRKanji, QRNumeric } from '@nuintun/qrcode';
 
 const TEST_NUMERIC = /^\d+$/;
 const TEST_ALPHANUMERIC = /^[0-9A-Z$%*+-./: ]+$/;
