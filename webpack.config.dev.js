@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,9 +15,13 @@ module.exports = {
   },
   output: {
     filename: 'js/[name].js',
-    path: path.resolve('x-qrcode')
+    hashFunction: 'xxhash64',
+    chunkFilename: `js/[name].js`,
+    path: path.resolve('x-qrcode'),
+    assetModuleFilename: `[path][name][ext]`
   },
   module: {
+    strictExportPresence: true,
     rules: [
       // The loader for js
       {
@@ -36,7 +41,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new CaseSensitivePathsPlugin(),
+    new webpack.ProgressPlugin({ percentBy: 'entries' }),
     new MiniCssExtractPlugin({ filename: 'css/[name].css' }),
     new CopyWebpackPlugin({
       patterns: [
@@ -45,37 +52,22 @@ module.exports = {
         { from: './src/popup.html', to: path.resolve('x-qrcode/popup.html') },
         { from: './src/manifest.json', to: path.resolve('x-qrcode/manifest.json') }
       ]
-    }),
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false, cleanOnceBeforeBuildPatterns: [path.resolve('x-qrcode')] })
+    })
   ],
-  node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty',
-    repl: 'empty',
-    dgram: 'empty',
-    module: 'empty',
-    cluster: 'empty',
-    readline: 'empty',
-    child_process: 'empty'
-  },
   stats: {
-    cached: false,
-    cachedAssets: false,
-    children: false,
+    colors: true,
     chunks: false,
-    chunkModules: false,
-    chunkOrigins: false,
+    children: false,
     entrypoints: false,
-    modules: false,
-    moduleTrace: false,
-    publicPath: false,
-    reasons: false,
-    source: false,
-    timings: false
+    runtimeModules: false,
+    dependentModules: false
   },
   performance: {
     hints: false
+  },
+  optimization: {
+    removeEmptyChunks: true,
+    mergeDuplicateChunks: true,
+    removeAvailableModules: true
   }
 };

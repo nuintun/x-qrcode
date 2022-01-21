@@ -84,18 +84,22 @@
 }
 
 .x-qrcode-dialog-open {
+  will-change: opacity, transform !important;
   animation-name: x-qrcode-zoomIn !important;
 }
 
 .x-qrcode-dialog-close {
+  will-change: opacity, transform !important;
   animation-name: x-qrcode-zoomOut !important;
 }
 
 .x-qrcode-dialog-mask-open {
+  will-change: opacity !important;
   animation-name: x-qrcode-fadeIn !important;
 }
 
 .x-qrcode-dialog-mask-close {
+  will-change: opacity !important;
   animation-name: x-qrcode-fadeOut !important;
 }
 

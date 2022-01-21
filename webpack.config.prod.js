@@ -1,5 +1,7 @@
+const webpack = require('webpack');
 const configure = require('./webpack.config.dev');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const mode = 'production';
 
@@ -7,8 +9,10 @@ process.env.NODE_ENV = mode;
 process.env.BABEL_ENV = mode;
 
 configure.mode = mode;
-configure.devtool = 'none';
+configure.devtool = false;
 
-configure.plugins.push(new OptimizeCSSAssetsPlugin({ cssProcessorOptions: { reduceIdents: false } }));
+configure.plugins.push(new webpack.optimize.AggressiveMergingPlugin());
+
+configure.optimization.minimizer = [new CssMinimizerPlugin(), new TerserPlugin()];
 
 module.exports = configure;
