@@ -1,5 +1,3 @@
 # Ignore files
 *.min.*
-package.json
-tsconfig.json
-.vscode/**/*.json
+/wwwroot/

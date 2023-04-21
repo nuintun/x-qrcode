@@ -1,27 +1,42 @@
 {
-  "[javascriptreact]": {
+  "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascript]": {
+  "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[yaml]": {
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[markdown]": {
+  "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  "[sass]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "todo-tree.filtering.excludeGlobs": [
     "**/*.map",
@@ -44,25 +59,25 @@
   ],
   "todo-tree.highlights.customHighlight": {
     "BUG": {
-      "borderRadius": 0,
+      "borderRadius": "0",
       "fontStyle": "italic",
       "type": "text-and-comment"
     },
     "HACK": {
-      "borderRadius": 0,
+      "borderRadius": "0",
       "fontStyle": "italic",
       "type": "text-and-comment"
     },
     "FIXME": {
-      "borderRadius": 0,
+      "borderRadius": "0",
       "fontStyle": "italic",
       "type": "text-and-comment"
     },
     "TODO": {
-      "borderRadius": 0,
+      "borderRadius": "0",
       "fontStyle": "italic",
       "type": "text-and-comment"
-    },
+    }
   },
   "editor.formatOnSave": true,
   "todo-tree.highlights.useColourScheme": true,
