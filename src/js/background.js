@@ -51,7 +51,7 @@ function decode(src) {
 }
 
 // 页面 popup 服务逻辑
-chrome.runtime.onMessage.addListener((request, sender, response) => {
+chrome.runtime.onMessage.addListener((request, _sender, response) => {
   switch (request.action) {
     case 'GetQRCode':
       encode(request.data)
