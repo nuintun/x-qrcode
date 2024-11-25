@@ -4,8 +4,6 @@
   "watch": [
     ".swcrc.js",
     "tools/**/*",
-    ".postcssrc.js",
-    "app.config.js",
     "svgo.config.js",
     ".browserslistrc"
   ]

@@ -17,17 +17,14 @@ import resolveConfigure from './rspack.config.base.js';
   const configure = await resolveConfigure(mode);
 
   configure.devtool = 'eval-cheap-module-source-map';
-  configure.watchOptions = { aggregateTimeout: 256 };
 
   const compiler = rspack(configure);
 
-  compiler.run((error, stats) => {
-    compiler.close(() => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log(stats.toString(compiler.options.stats));
-      }
-    });
+  compiler.watch({ aggregateTimeout: 256 }, (error, stats) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(stats.toString(compiler.options.stats));
+    }
   });
 })();
