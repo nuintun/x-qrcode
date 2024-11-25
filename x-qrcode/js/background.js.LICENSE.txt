@@ -1,0 +1,51 @@
+/**
+ * @module BitMatrix
+ * @author nuintun
+ * @author Cosmo Wolfe
+ * @license https://raw.githubusercontent.com/cozmo/jsQR/master/LICENSE
+ */
+
+/**
+ * @module GenericGF
+ * @author nuintun
+ * @author Cosmo Wolfe
+ * @license https://raw.githubusercontent.com/cozmo/jsQR/master/LICENSE
+ */
+
+/**
+ * @module QRCode
+ * @author nuintun
+ * @author Cosmo Wolfe
+ * @license https://raw.githubusercontent.com/cozmo/jsQR/master/LICENSE
+ */
+
+/**
+ * @module QRCode
+ * @package @nuintun/qrcode
+ * @license MIT
+ * @version 3.3.1
+ * @author nuintun <nuintun@qq.com>
+ * @description A pure JavaScript QRCode encode and decode library.
+ * @see https://github.com/nuintun/qrcode#readme
+ */
+
+/**
+ * @module Version
+ * @author nuintun
+ * @author Cosmo Wolfe
+ * @license https://raw.githubusercontent.com/cozmo/jsQR/master/LICENSE
+ */
+
+/**
+ * @module extractor
+ * @author nuintun
+ * @author Cosmo Wolfe
+ * @license https://raw.githubusercontent.com/cozmo/jsQR/master/LICENSE
+ */
+
+/**
+ * @module index
+ * @author nuintun
+ * @author Cosmo Wolfe
+ * @license https://raw.githubusercontent.com/cozmo/jsQR/master/LICENSE
+ */

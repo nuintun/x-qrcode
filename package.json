@@ -2,11 +2,12 @@
   "name": "x-qrcode",
   "version": "1.0.0",
   "description": "A powerfull chrome extension for qrcode encoding and decoding.",
+  "type": "module",
   "scripts": {
-    "format": "prettier --write .",
-    "start": "webpack --config=webpack.config.dev.js",
-    "build": "webpack --config=webpack.config.prod.js",
-    "watch": "webpack --config=webpack.config.dev.js --watch --progress"
+    "lint": "tsc --noEmit",
+    "prod": "node tools/bin/rspack.config.prod.js",
+    "dev": "nodemon tools/bin/rspack.config.dev.js",
+    "format": "prettier --write . --ignore-path .prettierignore"
   },
   "repository": {
     "type": "git",
@@ -21,35 +22,22 @@
     "url": "https://github.com/nuintun/x-qrcode/issues"
   },
   "homepage": "https://github.com/nuintun/x-qrcode#readme",
-  "browserslist": [
-    "Chrome >= 66",
-    "firefox >= 60"
-  ],
   "dependencies": {
-    "@nuintun/qrcode": "^3.3.1"
+    "@nuintun/qrcode": "^4.1.6",
+    "@swc/helpers": "^0.5.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-decorators": "^7.21.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
-    "@babel/runtime": "^7.21.0",
-    "autoprefixer": "^10.4.14",
-    "babel-loader": "^9.1.2",
-    "case-sensitive-paths-webpack-plugin": "^2.4.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.7.3",
-    "css-minimizer-webpack-plugin": "5.0.0",
-    "mini-css-extract-plugin": "^2.7.5",
-    "postcss": "^8.4.23",
-    "postcss-loader": "^7.2.4",
-    "prettier": "^2.8.7",
-    "terser-webpack-plugin": "^5.3.7",
-    "webpack": "^5.80.0",
-    "webpack-cli": "^5.0.1"
+    "@nuintun/svgo-loader": "^0.2.16",
+    "@rspack/core": "^1.1.3",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
+    "sass-embedded": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "svgc-loader": "^0.2.16",
+    "typescript": "^5.7.2"
   }
 }

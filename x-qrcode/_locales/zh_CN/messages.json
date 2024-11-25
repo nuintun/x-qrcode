@@ -1,0 +1,17 @@
+{
+  "appName": {
+    "message": "全能二维码"
+  },
+  "appDesc": {
+    "message": "将当前标签的链接地址转换成二维码，并支持二维码编码和解码。"
+  },
+  "decodeSelectImage": {
+    "message": "解码当前图片"
+  },
+  "encodeSelectLink": {
+    "message": "编码当前链接"
+  },
+  "encodeSelectionText": {
+    "message": "编码当前文本"
+  }
+}

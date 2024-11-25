@@ -1,7 +1,7 @@
 {
   "name": "__MSG_appName__",
   "version": "0.3.3",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "icons": {
@@ -11,9 +11,11 @@
     "128": "images/qrcode-128.png"
   },
   "background": {
-    "service_worker": "js/background.js"
+    "scripts": [
+      "js/background.js"
+    ]
   },
-  "action": {
+  "browser_action": {
     "default_icon": "images/qrcode-16.png",
     "default_title": "__MSG_appName__",
     "default_popup": "popup.html"
@@ -22,10 +24,6 @@
   "permissions": [
     "activeTab",
     "contextMenus",
-    "scripting",
-    "storage"
-  ],
-  "host_permissions": [
     "<all_urls>"
   ],
   "content_scripts": [
