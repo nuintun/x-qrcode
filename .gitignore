@@ -130,5 +130,4 @@ dist
 .pnp.*
 
 # Build dist
-/wwwroot/
-*.module.scss.d.ts
+/x-qrcode/

@@ -1,1 +1,12 @@
-(()=>{"use strict";class s{constructor(s){this.destroyed=!1,this.mask=document.createElement("div"),this.dialog=document.createElement("dialog"),this.mask.classList.add("x-qrcode-dialog-mask"),this.mask.classList.add("x-qrcode-dialog-mask-open"),this.dialog.classList.add("x-qrcode-dialog"),this.dialog.classList.add("x-qrcode-dialog-open"),this.dialog.show||(this.dialog.show=()=>this.dialog.style.display="block"),this.dialog.close||(this.dialog.close=()=>this.dialog.style.display="none"),this.content(s);const e=()=>{this.mask.removeEventListener("click",e,!1),this.close()};this.mask.addEventListener("click",e,!1),document.body.appendChild(this.mask),document.body.appendChild(this.dialog)}content(s){this.destroyed||(this.dialog.innerHTML=s)}show(){this.destroyed||(this.dialog.show(),s.current=this)}close(){if(!this.destroyed){const e=()=>{this.mask.removeEventListener("animationend",e,!1),document.body.removeChild(this.mask)};this.mask.addEventListener("animationend",e,!1);const t=()=>{this.dialog.close(),this.dialog.removeEventListener("animationend",t,!1),document.body.removeChild(this.dialog)};this.dialog.addEventListener("animationend",t,!1),this.mask.classList.remove("x-qrcode-dialog-mask-open"),this.mask.classList.add("x-qrcode-dialog-mask-close"),this.dialog.classList.remove("x-qrcode-dialog-open"),this.dialog.classList.add("x-qrcode-dialog-close"),this.destroyed=!0,s.current===this&&(s.current=null)}}}s.current=null,chrome.runtime.onMessage.addListener((e=>{const t=new s;if(e.ok)switch(e.action){case"QRDecode":t.content(`<pre>${e.data}</pre>`);break;case"QREncodeLink":case"QREncodeSelection":t.content(`<img src="${e.src}" alt="QRCode" />`)}else t.content(`<pre class="error">${e.message}</pre>`);s.current&&s.current.close(),t.show()}))})();
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["content"], {
+"./js/content.tsx": (function () {
+eval("console.log('content');\n\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnVpbHRpbjpzd2MtbG9hZGVyPz9ydWxlU2V0WzFdLnJ1bGVzWzBdLm9uZU9mWzBdLnVzZVswXSFEOlxcV09SS1NQQUNFXFxHSVRIVUJcXHgtcXJjb2RlXFxzcmNcXGpzXFxjb250ZW50LnRzeCIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2pzL2NvbnRlbnQudHN4P2RkMTkiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc29sZS5sb2coJ2NvbnRlbnQnKTtcbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSJ9");
+
+}),
+
+},function(__webpack_require__) {
+var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId) }
+var __webpack_exports__ = (__webpack_exec__("./js/content.tsx"));
+
+}
+]);

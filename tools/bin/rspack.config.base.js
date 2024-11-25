@@ -47,8 +47,8 @@ const appConfig = {
   name: 'x-qrcode',
   publicPath: 'auto',
   context: path.resolve('src'),
-  outputPath: path.resolve('wwwroot'),
-  entryHTML: path.resolve('wwwroot/popup.html'),
+  outputPath: path.resolve('x-qrcode'),
+  entryHTML: path.resolve('x-qrcode/popup.html'),
   entry: {
     background: path.resolve('src/js/background.tsx'),
     content: path.resolve('./src/js/content.tsx'),
@@ -137,6 +137,7 @@ export default async mode => {
       new rspack.ProgressPlugin(progress),
       new rspack.CopyRspackPlugin({
         patterns: [
+          { from: '_locales', to: '_locales' },
           { from: 'images/qrcode-*.png', to: 'images' },
           { from: 'manifest.json', to: 'manifest.json' }
         ]
