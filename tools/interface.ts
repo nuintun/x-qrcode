@@ -40,7 +40,6 @@ export interface SvgoConfig extends Omit<SvgoOptions, 'configFile'> {
  */
 export interface AppConfig extends Pick<Configuration, 'context' | 'externals'> {
   name: string;
-  entryHTML: string;
   outputPath: string;
   publicPath?: string;
   env?: Env | EnvFunction;

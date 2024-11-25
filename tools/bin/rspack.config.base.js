@@ -43,16 +43,15 @@ async function resolveEnvironment(mode, env) {
  * @type {import('../interface').AppConfig}
  */
 const appConfig = {
-  ports: 8000,
-  name: 'x-qrcode',
+  name: 'QRCode',
   publicPath: 'auto',
   context: path.resolve('src'),
   outputPath: path.resolve('x-qrcode'),
-  entryHTML: path.resolve('x-qrcode/popup.html'),
   entry: {
-    background: path.resolve('src/js/background.tsx'),
+    popup: path.resolve('./src/js/popup.tsx'),
     content: path.resolve('./src/js/content.tsx'),
-    popup: path.resolve('./src/js/popup.tsx')
+    options: path.resolve('./src/js/options.tsx'),
+    background: path.resolve('src/js/background.ts')
   },
   alias: { '/js': js, '/css': css, '/images': images },
   meta: { viewport: 'width=device-width,initial-scale=1.0' }
@@ -71,13 +70,22 @@ export default async mode => {
     progressChars: '█▒'
   };
 
-  const html = {
+  const popup = {
     chunks: ['popup'],
     meta: appConfig.meta,
     title: appConfig.name,
     minify: !isDevelopment,
-    filename: appConfig.entryHTML,
-    template: resolve('tools/lib/template.ejs')
+    template: resolve('tools/lib/template.ejs'),
+    filename: path.resolve('x-qrcode/popup.html')
+  };
+
+  const options = {
+    chunks: ['options'],
+    meta: appConfig.meta,
+    title: appConfig.name,
+    minify: !isDevelopment,
+    template: resolve('tools/lib/template.ejs'),
+    filename: path.resolve('x-qrcode/options.html')
   };
 
   const env = await resolveEnvironment(mode, appConfig.env);
@@ -133,8 +141,9 @@ export default async mode => {
     },
     plugins: [
       new rspack.DefinePlugin(env),
-      new rspack.HtmlRspackPlugin(html),
       new rspack.ProgressPlugin(progress),
+      new rspack.HtmlRspackPlugin(popup),
+      new rspack.HtmlRspackPlugin(options),
       new rspack.CopyRspackPlugin({
         patterns: [
           { from: '_locales', to: '_locales' },

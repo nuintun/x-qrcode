@@ -10,13 +10,14 @@
     "48": "images/qrcode-48.png",
     "128": "images/qrcode-128.png"
   },
+  "options_page": "options.html",
   "background": {
     "service_worker": "js/background.js"
   },
   "action": {
-    "default_icon": "images/qrcode-16.png",
+    "default_popup": "popup.html",
     "default_title": "__MSG_appName__",
-    "default_popup": "popup.html"
+    "default_icon": "images/qrcode-16.png"
   },
   "homepage_url": "https://github.com/nuintun/x-qrcode",
   "permissions": [
