@@ -1,30 +1,84 @@
+import { ConfigProvider, Image } from 'antd';
 import { selectCaptureArea } from './utils/capturer';
-
-let capturing = false;
-
-const capture = (event: KeyboardEvent) => {
-  if (!capturing && event.altKey && event.ctrlKey && /^a$/i.test(event.key)) {
-    capturing = true;
-
-    event.preventDefault();
-
-    selectCaptureArea()
-      .then(
-        rect => {
-          chrome.runtime.sendMessage({ type: 'capture', rect });
-        },
-        error => {
-          console.error(error);
-        }
-      )
-      .finally(() => {
-        capturing = false;
-      });
-  }
-};
-
-window.addEventListener('keyup', capture, true);
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function App() {
-  return null;
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [url, setURL] = useState<string | null>(null);
+
+  const onCancel = useCallback(() => {
+    setURL(null);
+  }, []);
+
+  const getContainer = useCallback(() => {
+    return rootRef.current!;
+  }, []);
+
+  useEffect(() => {
+    let capturing = false;
+
+    const selectArea = async () => {
+      capturing = true;
+
+      try {
+        chrome.runtime.sendMessage({
+          type: 'selectedArea',
+          rect: await selectCaptureArea()
+        });
+      } catch (error) {
+        if (__DEV__) {
+          console.error(error);
+        }
+      }
+
+      capturing = false;
+    };
+
+    const onMessage = async (message: any) => {
+      switch (message.type) {
+        case 'capture':
+          selectArea();
+          break;
+        case 'capturedArea':
+          setURL(message.url);
+          break;
+      }
+    };
+
+    const onCapture = async (event: KeyboardEvent) => {
+      if (!capturing && event.altKey && event.ctrlKey && /^a$/i.test(event.key)) {
+        event.preventDefault();
+
+        selectArea();
+      }
+    };
+
+    chrome.runtime.onMessage.addListener(onMessage);
+
+    window.addEventListener('keyup', onCapture, true);
+
+    return () => {
+      chrome.runtime.onMessage.removeListener(onMessage);
+      window.removeEventListener('keyup', onCapture, true);
+    };
+  }, []);
+
+  return (
+    <ConfigProvider getPopupContainer={getContainer} getTargetContainer={getContainer}>
+      <div ref={rootRef} style={{ position: 'fixed', zIndex: 2147483647 }}>
+        <Image
+          width={0}
+          src={url ?? undefined}
+          preview={{
+            visible: !!url,
+            onVisibleChange(visible) {
+              if (!visible) {
+                setURL(null);
+              }
+            }
+          }}
+        />
+      </div>
+    </ConfigProvider>
+  );
 }

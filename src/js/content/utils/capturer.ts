@@ -10,7 +10,9 @@ interface KeyboardEventHandler {
   (event: KeyboardEvent): void;
 }
 
-const COMPONENT_NAME = 'x-qrcode-capturer';
+const COMPONENT_NAME = 'view-capturer';
+
+let promise: Promise<DOMRect> | null = null;
 
 class AbortError extends Error {
   public override readonly name = 'AbortError';
@@ -19,8 +21,6 @@ class AbortError extends Error {
     super(message);
   }
 }
-
-let promise: Promise<DOMRectReadOnly> | null = null;
 
 const crosshair = chrome.runtime.getURL('images/crosshair.cur');
 
@@ -99,7 +99,9 @@ export function selectCaptureArea(): Promise<DOMRect> {
 
           cleanup();
 
-          reject(new AbortError('aborted with escape'));
+          requestAnimationFrame(() => {
+            reject(new AbortError('aborted capture with escape'));
+          });
         }
       };
 
@@ -155,7 +157,9 @@ export function selectCaptureArea(): Promise<DOMRect> {
 
           cleanup();
 
-          resolve(rect);
+          requestAnimationFrame(() => {
+            resolve(rect);
+          });
         }
       };
 

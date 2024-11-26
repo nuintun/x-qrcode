@@ -99,6 +99,7 @@ export default async mode => {
       hashFunction: 'xxhash64',
       path: appConfig.outputPath,
       chunkFilename: 'js/[name].js',
+      cssFilename: 'css/[name].css',
       publicPath: appConfig.publicPath,
       assetModuleFilename: '[path][name][ext]'
     },
