@@ -16,7 +16,7 @@ import resolveConfigure from './rspack.config.base.js';
 (async () => {
   const configure = await resolveConfigure(mode);
 
-  configure.devtool = 'eval-cheap-module-source-map';
+  configure.devtool = 'inline-source-map';
 
   const compiler = rspack(configure);
 

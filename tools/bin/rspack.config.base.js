@@ -58,9 +58,9 @@ const appConfig = {
 };
 
 /**
- * @function webpackrc
+ * @function rspackrc
  * @param {string} mode
- * @return {Promise<import('webpack').Configuration>}
+ * @return {Promise<import('@rspack/core').Configuration>}
  */
 export default async mode => {
   const isDevelopment = mode !== 'production';
@@ -97,12 +97,12 @@ export default async mode => {
     context: appConfig.context,
     output: {
       clean: true,
+      filename: 'js/[name].js',
       hashFunction: 'xxhash64',
       path: appConfig.outputPath,
+      chunkFilename: 'js/[name].js',
       publicPath: appConfig.publicPath,
-      filename: `js/[${isDevelopment ? 'name' : 'contenthash'}].js`,
-      chunkFilename: `js/[${isDevelopment ? 'name' : 'contenthash'}].js`,
-      assetModuleFilename: `[path][${isDevelopment ? 'name' : 'contenthash'}][ext]`
+      assetModuleFilename: '[path][name][ext]'
     },
     experiments: {
       css: true
@@ -146,17 +146,15 @@ export default async mode => {
       new rspack.HtmlRspackPlugin(options),
       new rspack.CopyRspackPlugin({
         patterns: [
+          { from: 'images/qrcode-*.png' },
           { from: '_locales', to: '_locales' },
-          { from: 'images/qrcode-*.png', to: 'images' },
           { from: 'manifest.json', to: 'manifest.json' }
         ]
       })
     ],
     optimization: {
-      splitChunks: {
-        chunks: 'all'
-      },
-      runtimeChunk: 'single',
+      splitChunks: false,
+      runtimeChunk: false,
       removeEmptyChunks: true,
       mergeDuplicateChunks: true,
       removeAvailableModules: true
