@@ -85,7 +85,7 @@ export default async mode => {
         },
         {
           type: 'asset/resource',
-          test: /\.(png|gif|bmp|ico|jpe?g|webp|woff2?|ttf|eot)$/i
+          test: /\.(cur|png|gif|bmp|ico|jpe?g|webp|woff2?|ttf|eot)$/i
         }
       ]
     }

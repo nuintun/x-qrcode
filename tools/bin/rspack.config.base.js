@@ -8,9 +8,7 @@ import rspack from '@rspack/core';
 import { resolve } from 'node:path';
 import resolveRules from '../lib/rules.js';
 
-const js = path.resolve('src/js');
-const css = path.resolve('src/css');
-const images = path.resolve('src/images');
+const root = path.resolve('src');
 
 /**
  * @function resolveEnvironment
@@ -44,16 +42,16 @@ async function resolveEnvironment(mode, env) {
  */
 const appConfig = {
   name: 'QRCode',
-  publicPath: 'auto',
+  publicPath: '',
+  alias: { '/': root },
   context: path.resolve('src'),
   outputPath: path.resolve('x-qrcode'),
   entry: {
-    popup: path.resolve('./src/js/popup.tsx'),
-    content: path.resolve('./src/js/content.tsx'),
-    options: path.resolve('./src/js/options.tsx'),
-    background: path.resolve('src/js/background.ts')
+    popup: path.resolve('./src/js/popup/index.tsx'),
+    content: path.resolve('./src/js/content/index.tsx'),
+    options: path.resolve('./src/js/options/index.tsx'),
+    background: path.resolve('src/js/background/index.ts')
   },
-  alias: { '/js': js, '/css': css, '/images': images },
   meta: { viewport: 'width=device-width,initial-scale=1.0' }
 };
 
@@ -146,7 +144,7 @@ export default async mode => {
       new rspack.HtmlRspackPlugin(options),
       new rspack.CopyRspackPlugin({
         patterns: [
-          { from: 'images/qrcode-*.png' },
+          { from: 'images', to: 'images' },
           { from: '_locales', to: '_locales' },
           { from: 'manifest.json', to: 'manifest.json' }
         ]

@@ -5,10 +5,10 @@
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "icons": {
-    "16": "images/qrcode-16.png",
-    "32": "images/qrcode-32.png",
-    "48": "images/qrcode-48.png",
-    "128": "images/qrcode-128.png"
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
   },
   "options_page": "options.html",
   "background": {
@@ -17,7 +17,7 @@
   "action": {
     "default_popup": "popup.html",
     "default_title": "__MSG_appName__",
-    "default_icon": "images/qrcode-16.png"
+    "default_icon": "images/icon-16.png"
   },
   "homepage_url": "https://github.com/nuintun/x-qrcode",
   "permissions": [
@@ -38,6 +38,16 @@
         "js/content.js"
       ],
       "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }

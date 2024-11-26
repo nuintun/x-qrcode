@@ -5,6 +5,12 @@
 /// <reference types="react" />
 /// <reference types="@rspack/core/module" />
 
+declare module '*.cur' {
+  const content: string;
+
+  export = content;
+}
+
 declare module '*.png' {
   const content: string;
 

@@ -7,21 +7,19 @@ import targets from './tools/lib/targets.js';
 
 /**
  * @function swcrc
- * @param {string} mode
  * @return {Promise<import('./tools/interface').SwcConfig>}
  */
-export default async mode => {
+export default async () => {
   return {
     jsc: {
-      externalHelpers: true,
+      externalHelpers: false,
       parser: {
         tsx: true,
         syntax: 'typescript'
       },
       transform: {
         react: {
-          runtime: 'automatic',
-          refresh: mode !== 'production'
+          runtime: 'automatic'
         }
       }
     },

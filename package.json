@@ -25,6 +25,8 @@
   "dependencies": {
     "@nuintun/qrcode": "^4.1.6",
     "@swc/helpers": "^0.5.15",
+    "antd": "^5.22.2",
+    "chardet": "^2.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
