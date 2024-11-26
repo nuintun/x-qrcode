@@ -10,7 +10,7 @@ interface KeyboardEventHandler {
   (event: KeyboardEvent): void;
 }
 
-const COMPONENT_NAME = 'view-capturer';
+const COMPONENT_NAME = 'x-qrcode-capturer';
 
 class AbortError extends Error {
   public override readonly name = 'AbortError';

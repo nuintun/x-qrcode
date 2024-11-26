@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@ant-design/cssinjs':
+        specifier: ^1.22.0
+        version: 1.22.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nuintun/qrcode':
         specifier: ^4.1.6
         version: 4.1.6
@@ -34,8 +37,8 @@ importers:
         specifier: ^1.1.3
         version: 1.1.3(@swc/helpers@0.5.15)
       '@types/chrome':
-        specifier: ^0.0.285
-        version: 0.0.285
+        specifier: ^0.0.286
+        version: 0.0.286
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -279,8 +282,8 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  '@types/chrome@0.0.285':
-    resolution: {integrity: sha512-hjHIibIQ+2Ixdcg37031hmsgUvqSaP30TecRq4WKIsW8YbEMBTvnSk6e9dHf6uCv8aYod6iptcy62RSH8TjNkA==}
+  '@types/chrome@0.0.286':
+    resolution: {integrity: sha512-Valy/wWWAwfnxLL1zPM3KJEUM3xbO3O67sNT4SjHUSn39QwIhnXBfIQuJNchJfmb+5qKV+zv9O6fy6nq8cO+aQ==}
 
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
@@ -1485,7 +1488,7 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
-  '@types/chrome@0.0.285':
+  '@types/chrome@0.0.286':
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
