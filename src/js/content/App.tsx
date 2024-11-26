@@ -3,12 +3,8 @@ import { selectCaptureArea } from './utils/capturer';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function App() {
+  const [url, setURL] = useState<string>();
   const rootRef = useRef<HTMLDivElement>(null);
-  const [url, setURL] = useState<string | null>(null);
-
-  const onCancel = useCallback(() => {
-    setURL(null);
-  }, []);
 
   const getContainer = useCallback(() => {
     return rootRef.current!;
@@ -68,12 +64,12 @@ export default function App() {
       <div ref={rootRef} style={{ position: 'fixed', zIndex: 2147483647 }}>
         <Image
           width={0}
-          src={url ?? undefined}
+          src={url}
           preview={{
             visible: !!url,
             onVisibleChange(visible) {
               if (!visible) {
-                setURL(null);
+                setURL(undefined);
               }
             }
           }}
