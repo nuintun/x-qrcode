@@ -182,14 +182,16 @@ export function selectCaptureArea(): Promise<DOMRectReadOnly> {
         stage.remove();
 
         requestAnimationFrame(() => {
-          top = 0;
-          left = 0;
-          width = 0;
-          height = 0;
-          promise = null;
-          capturing = false;
+          requestAnimationFrame(() => {
+            top = 0;
+            left = 0;
+            width = 0;
+            height = 0;
+            promise = null;
+            capturing = false;
 
-          callback();
+            callback();
+          });
         });
       };
 
