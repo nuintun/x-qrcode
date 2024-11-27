@@ -72,8 +72,9 @@ export default function App() {
     <ConfigProvider getPopupContainer={getContainer} getTargetContainer={getContainer}>
       <div ref={rootRef} style={{ position: 'fixed', zIndex: 2147483647 }}>
         <Image
-          width={0}
+          key={url}
           src={url}
+          width={0}
           preview={{
             visible: !!url,
             onVisibleChange(visible) {
