@@ -112,36 +112,38 @@ contextMenus.onClicked.addListener(async (info, tab) => {
   }
 });
 
+async function resolveMessage(message: any): Promise<any> {
+  switch (message.type) {
+    case 'selectedArea':
+      const { x, y, width, height } = message.rect;
+      const canvas = new OffscreenCanvas(width, height);
+      const context = canvas.getContext('2d');
+
+      if (context != null) {
+        const screenshot = dataURLToBlob(
+          await tabs.captureVisibleTab({
+            format: 'png'
+          })
+        );
+
+        const bitmap = await createImageBitmap(screenshot, x, y, width, height);
+
+        context.drawImage(bitmap, 0, 0);
+
+        const blob = await canvas.convertToBlob();
+
+        return await blobToDataURL(blob);
+      }
+      break;
+  }
+}
+
 runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  const execute = async () => {
-    switch (message.type) {
-      case 'selectedArea':
-        const { x, y, width, height } = message.rect;
-        const canvas = new OffscreenCanvas(width, height);
-        const context = canvas.getContext('2d');
+  resolveMessage(message)
+    .then(sendResponse)
+    .catch((error: Error) => {
+      console.error(error);
+    });
 
-        if (context != null) {
-          const screenshot = dataURLToBlob(
-            await tabs.captureVisibleTab({
-              format: 'png'
-            })
-          );
-
-          const bitmap = await createImageBitmap(screenshot, x, y, width, height);
-
-          context.drawImage(bitmap, 0, 0);
-
-          const blob = await canvas.convertToBlob();
-
-          sendResponse(await blobToDataURL(blob));
-        } else {
-          sendResponse();
-        }
-        break;
-    }
-
-    execute();
-
-    return true;
-  };
+  return true;
 });
