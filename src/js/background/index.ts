@@ -1,3 +1,5 @@
+const { contextMenus, runtime, tabs } = chrome;
+
 type DataURL = [mime: string, encoding: string, data: string];
 
 function parseDataURL(url: string): DataURL {
@@ -45,27 +47,27 @@ function blobToDataURL(blob: Blob): Promise<string> {
   });
 }
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
+runtime.onInstalled.addListener(() => {
+  contextMenus.create({
     contexts: ['all'],
     id: 'decodeSelectArea',
     title: '解码所选截图区域(Ctrl+Alt+A)'
   });
 });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === 'decodeSelectArea') {
     const tabId = tab?.id;
 
     if (tabId != null) {
-      chrome.tabs.sendMessage(tabId, {
+      tabs.sendMessage(tabId, {
         type: 'capture'
       });
     }
   }
 });
 
-chrome.runtime.onMessage.addListener(async (message, { tab }) => {
+runtime.onMessage.addListener(async (message, { tab }) => {
   if (tab) {
     const { id, windowId } = tab;
 
@@ -78,19 +80,18 @@ chrome.runtime.onMessage.addListener(async (message, { tab }) => {
 
           if (context != null) {
             const screenshot = dataURLToBlob(
-              await chrome.tabs.captureVisibleTab(windowId, {
-                quality: 100,
-                format: 'jpeg'
+              await tabs.captureVisibleTab(windowId, {
+                format: 'png'
               })
             );
 
             const bitmap = await createImageBitmap(screenshot, x, y, width, height);
 
-            context.drawImage(bitmap, 0, 0, width, height);
+            context.drawImage(bitmap, 0, 0);
 
             const blob = await canvas.convertToBlob();
 
-            await chrome.tabs.sendMessage(id, {
+            await tabs.sendMessage(id, {
               type: 'capturedArea',
               url: await blobToDataURL(blob)
             });

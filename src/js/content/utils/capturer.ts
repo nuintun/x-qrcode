@@ -2,6 +2,8 @@
  * @module cropper
  */
 
+const { runtime } = chrome;
+
 interface Cleanup {
   (callback: () => void): void;
 }
@@ -16,8 +18,6 @@ interface KeyboardEventHandler {
 
 const COMPONENT_NAME = 'view-capturer';
 
-let promise: Promise<DOMRect> | null = null;
-
 class AbortError extends Error {
   public override readonly name = 'AbortError';
 
@@ -26,7 +26,7 @@ class AbortError extends Error {
   }
 }
 
-const CROSSHAIR = chrome.runtime.getURL('images/crosshair.cur');
+let promise: Promise<DOMRectReadOnly> | null = null;
 
 const CSS = `
 .${COMPONENT_NAME}-backdrop,
@@ -40,7 +40,7 @@ const CSS = `
   overflow: hidden;
   z-index: 2147483647;
   box-sizing: border-box;
-  cursor: url(${CROSSHAIR}) 16 16, crosshair;
+  cursor: url(${runtime.getURL('images/crosshair.cur')}) 16 16, crosshair;
 }
 
 .${COMPONENT_NAME}-backdrop {
@@ -76,9 +76,13 @@ const CSS = `
 }
 `;
 
-export function selectCaptureArea(): Promise<DOMRect> {
+export function selectCaptureArea(): Promise<DOMRectReadOnly> {
   if (promise === null) {
-    promise = new Promise<DOMRect>((resolve, reject) => {
+    promise = new Promise<DOMRectReadOnly>((resolve, reject) => {
+      let top = 0;
+      let left = 0;
+      let width = 0;
+      let height = 0;
       let startX = 0;
       let startY = 0;
       let capturing = false;
@@ -138,10 +142,10 @@ export function selectCaptureArea(): Promise<DOMRect> {
           const clientX = Math.max(0, Math.min(clientWidth, event.clientX));
           const clientY = Math.max(0, Math.min(clientHeight, event.clientY));
 
-          const top = Math.min(startY, clientY);
-          const left = Math.min(startX, clientX);
-          const width = Math.abs(clientX - startX);
-          const height = Math.abs(clientY - startY);
+          top = Math.min(startY, clientY);
+          left = Math.min(startX, clientX);
+          width = Math.abs(clientX - startX);
+          height = Math.abs(clientY - startY);
 
           style.top = `${top}px`;
           style.left = `${left}px`;
@@ -154,7 +158,13 @@ export function selectCaptureArea(): Promise<DOMRect> {
         if (event.button === 0) {
           event.preventDefault();
 
-          const rect = selection.getBoundingClientRect();
+          const { devicePixelRatio } = window;
+          const rect = new DOMRectReadOnly(
+            left * devicePixelRatio,
+            top * devicePixelRatio,
+            width * devicePixelRatio,
+            height * devicePixelRatio
+          );
 
           cleanup(() => {
             resolve(rect);
@@ -172,6 +182,10 @@ export function selectCaptureArea(): Promise<DOMRect> {
         stage.remove();
 
         requestAnimationFrame(() => {
+          top = 0;
+          left = 0;
+          width = 0;
+          height = 0;
           promise = null;
           capturing = false;
 

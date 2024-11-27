@@ -17,10 +17,14 @@ export default function App() {
       capturing = true;
 
       try {
-        chrome.runtime.sendMessage({
-          type: 'selectedArea',
-          rect: await selectCaptureArea()
-        });
+        const rect = await selectCaptureArea();
+
+        if (rect.width > 0 && rect.height > 0) {
+          chrome.runtime.sendMessage({
+            type: 'selectedArea',
+            rect
+          });
+        }
       } catch (error) {
         if (__DEV__) {
           console.error(error);
