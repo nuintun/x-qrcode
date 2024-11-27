@@ -13,6 +13,8 @@ export default function App() {
   useEffect(() => {
     let capturing = false;
 
+    const { runtime } = chrome;
+
     const selectArea = async () => {
       capturing = true;
 
@@ -20,7 +22,7 @@ export default function App() {
         const rect = await selectCaptureArea();
 
         if (rect.width > 0 && rect.height > 0) {
-          chrome.runtime.sendMessage({
+          runtime.sendMessage({
             type: 'selectedArea',
             rect
           });
@@ -53,12 +55,13 @@ export default function App() {
       }
     };
 
-    chrome.runtime.onMessage.addListener(onMessage);
+    runtime.onMessage.addListener(onMessage);
 
     window.addEventListener('keyup', onCapture, true);
 
     return () => {
-      chrome.runtime.onMessage.removeListener(onMessage);
+      runtime.onMessage.removeListener(onMessage);
+
       window.removeEventListener('keyup', onCapture, true);
     };
   }, []);
