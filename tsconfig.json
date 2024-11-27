@@ -16,6 +16,11 @@
     "noImplicitOverride": true,
     "noUnusedParameters": true,
     "forceConsistentCasingInFileNames": true,
+    "lib": [
+      "DOM",
+      "ESNext",
+      "WebWorker"
+    ],
     "paths": {
       "/*": [
         "src/*"

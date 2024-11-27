@@ -22,10 +22,12 @@ export default function App() {
         const rect = await selectCaptureArea();
 
         if (rect.width > 0 && rect.height > 0) {
-          runtime.sendMessage({
+          const url = await runtime.sendMessage({
             type: 'selectedArea',
             rect
           });
+
+          setURL(url);
         }
       } catch (error) {
         if (__DEV__) {
@@ -36,7 +38,7 @@ export default function App() {
       capturing = false;
     };
 
-    const onMessage = async (message: any) => {
+    const onMessage = (message: any) => {
       switch (message.type) {
         case 'capture':
           selectArea();

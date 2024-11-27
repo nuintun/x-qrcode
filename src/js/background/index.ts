@@ -2,6 +2,18 @@ const { contextMenus, runtime, tabs } = chrome;
 
 type DataURL = [mime: string, encoding: string, data: string];
 
+function getSelectionText(): string | void {
+  const selection = window.getSelection();
+
+  if (selection !== null) {
+    const selectionText = selection.toString();
+
+    selection.removeAllRanges();
+
+    return selectionText;
+  }
+}
+
 function parseDataURL(url: string): DataURL {
   const match = url.match(/^data:(.+?)(?:;(.+?))?,(.*)$/i) || [];
   const [, mime = 'text/plain', encoding = 'none', data = ''] = match;
@@ -53,25 +65,58 @@ runtime.onInstalled.addListener(() => {
     id: 'decodeSelectArea',
     title: '解码所选截图区域(Ctrl+Alt+A)'
   });
+
+  chrome.contextMenus.create({
+    contexts: ['selection'],
+    id: 'encodeSelectionText',
+    title: chrome.i18n.getMessage('encodeSelectionText')
+  });
 });
 
-contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === 'decodeSelectArea') {
-    const tabId = tab?.id;
+contextMenus.onClicked.addListener(async (info, tab) => {
+  const tabId = tab?.id;
 
-    if (tabId != null) {
-      tabs.sendMessage(tabId, {
-        type: 'capture'
-      });
+  if (tabId != null) {
+    switch (info.menuItemId) {
+      case 'encodeSelectionText':
+        const { frameId } = info;
+        const frameIds = frameId ? [frameId] : undefined;
+
+        const selections = await chrome.scripting.executeScript({
+          target: {
+            tabId,
+            frameIds
+          },
+          func: getSelectionText,
+          injectImmediately: true
+        });
+
+        const text = selections.reduce((text, { result }) => {
+          if (result) {
+            text += result;
+          }
+
+          return text;
+        }, '');
+
+        console.log(text);
+        break;
+      case 'decodeSelectArea':
+        if (tabId != null) {
+          tabs.sendMessage(tabId, {
+            type: 'capture'
+          });
+        }
+        break;
     }
   }
 });
 
-runtime.onMessage.addListener(async (message, { tab }) => {
+runtime.onMessage.addListener((message, { tab }, sendResponse) => {
   if (tab) {
-    const { id, windowId } = tab;
+    const execute = async () => {
+      const { windowId } = tab;
 
-    if (id != null && windowId != null) {
       switch (message.type) {
         case 'selectedArea':
           const { x, y, width, height } = message.rect;
@@ -91,12 +136,16 @@ runtime.onMessage.addListener(async (message, { tab }) => {
 
             const blob = await canvas.convertToBlob();
 
-            await tabs.sendMessage(id, {
-              type: 'capturedArea',
-              url: await blobToDataURL(blob)
-            });
+            sendResponse(await blobToDataURL(blob));
+          } else {
+            sendResponse();
           }
+          break;
       }
-    }
+    };
+
+    execute();
+
+    return true;
   }
 });

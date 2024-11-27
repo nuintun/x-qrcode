@@ -37,7 +37,8 @@
       "js": [
         "js/content.js"
       ],
-      "run_at": "document_end"
+      "run_at": "document_end",
+      "match_origin_as_fallback": true
     }
   ],
   "web_accessible_resources": [

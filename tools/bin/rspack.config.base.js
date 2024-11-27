@@ -101,6 +101,7 @@ export default async mode => {
       chunkFilename: 'js/[name].js',
       cssFilename: 'css/[name].css',
       publicPath: appConfig.publicPath,
+      cssChunkFilename: 'css/[name].css',
       assetModuleFilename: '[path][name][ext]'
     },
     experiments: {
