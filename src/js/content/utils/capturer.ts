@@ -2,6 +2,10 @@
  * @module cropper
  */
 
+interface Cleanup {
+  (callback: () => void): void;
+}
+
 interface MouseEventHandler {
   (event: MouseEvent): void;
 }
@@ -22,7 +26,7 @@ class AbortError extends Error {
   }
 }
 
-const crosshair = chrome.runtime.getURL('images/crosshair.cur');
+const CROSSHAIR = chrome.runtime.getURL('images/crosshair.cur');
 
 const CSS = `
 .${COMPONENT_NAME}-backdrop,
@@ -34,21 +38,20 @@ const CSS = `
   border: none;
   position: fixed;
   overflow: hidden;
+  z-index: 2147483647;
   box-sizing: border-box;
-  cursor: url(${crosshair}) 16 16, crosshair;
+  cursor: url(${CROSSHAIR}) 16 16, crosshair;
 }
 
 .${COMPONENT_NAME}-backdrop {
   right: 0;
   bottom: 0;
-  z-index: 2147483646;
   background: transparent;
 }
 
 .${COMPONENT_NAME}-selection {
   width: 0;
   height: 0;
-  z-index: 2147483647;
   will-change: background-position;
   animation: marching-ants 1s linear infinite;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
@@ -97,9 +100,7 @@ export function selectCaptureArea(): Promise<DOMRect> {
         if (!capturing && event.key === 'Escape') {
           event.preventDefault();
 
-          cleanup();
-
-          requestAnimationFrame(() => {
+          cleanup(() => {
             reject(new AbortError('aborted capture with escape'));
           });
         }
@@ -155,18 +156,13 @@ export function selectCaptureArea(): Promise<DOMRect> {
 
           const rect = selection.getBoundingClientRect();
 
-          cleanup();
-
-          requestAnimationFrame(() => {
+          cleanup(() => {
             resolve(rect);
           });
         }
       };
 
-      const cleanup = () => {
-        promise = null;
-        capturing = false;
-
+      const cleanup: Cleanup = callback => {
         window.removeEventListener('keyup', escape, true);
         window.removeEventListener('contextmenu', contextmenu, true);
         window.removeEventListener('mousedown', mousedown, true);
@@ -174,6 +170,13 @@ export function selectCaptureArea(): Promise<DOMRect> {
         window.removeEventListener('mouseup', mouseup, true);
 
         stage.remove();
+
+        requestAnimationFrame(() => {
+          promise = null;
+          capturing = false;
+
+          callback();
+        });
       };
 
       window.addEventListener('keyup', escape, true);
