@@ -23,7 +23,12 @@ export default function App() {
         const rect = await selectCaptureArea();
 
         if (rect.width > 0 && rect.height > 0) {
-          const url = await runtime.sendMessage({
+          interface Message {
+            type: 'selectedArea';
+            rect: DOMRectReadOnly;
+          }
+
+          const url = await runtime.sendMessage<Message, string | undefined>({
             type: 'selectedArea',
             rect
           });
