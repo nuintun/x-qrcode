@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 export default function App() {
   const [url, setURL] = useState<string>();
   const rootRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
   const getContainer = useCallback(() => {
     return rootRef.current!;
@@ -28,6 +29,7 @@ export default function App() {
           });
 
           setURL(url);
+          setVisible(true);
         }
       } catch (error) {
         if (__DEV__) {
@@ -45,6 +47,7 @@ export default function App() {
           break;
         case 'capturedArea':
           setURL(message.url);
+          setVisible(true);
           break;
       }
     };
@@ -76,10 +79,10 @@ export default function App() {
           src={url}
           width={0}
           preview={{
-            visible: !!url,
+            visible: visible,
             onVisibleChange(visible) {
               if (!visible) {
-                setURL(undefined);
+                setVisible(false);
               }
             }
           }}
