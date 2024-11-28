@@ -15,6 +15,10 @@
     "message": "Encode select link",
     "description": "The context menu title for encode select link."
   },
+  "decodeSelectCaptureArea": {
+    "message": "Decode select capture area",
+    "description": "The context menu title for decode select capture area."
+  },
   "encodeSelectionText": {
     "message": "Encode selection text",
     "description": "The context menu title for encode selection text."

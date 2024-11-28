@@ -30,12 +30,13 @@ import resolveConfigure from './rspack.config.base.js';
   ];
 
   const compiler = rspack(configure);
+  const logger = compiler.getInfrastructureLogger(configure.name);
 
   compiler.run((error, stats) => {
     if (error) {
-      console.error(error);
+      logger.error(error);
     } else {
-      console.log(stats.toString(compiler.options.stats));
+      logger.info(stats.toString(compiler.options.stats));
     }
   });
 })();

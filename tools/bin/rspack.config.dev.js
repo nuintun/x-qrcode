@@ -19,12 +19,13 @@ import resolveConfigure from './rspack.config.base.js';
   configure.devtool = 'inline-source-map';
 
   const compiler = rspack(configure);
+  const logger = compiler.getInfrastructureLogger(configure.name);
 
   compiler.watch({ aggregateTimeout: 256 }, (error, stats) => {
     if (error) {
-      console.error(error);
+      logger.error(error);
     } else {
-      console.log(stats.toString(compiler.options.stats));
+      logger.info(stats.toString(compiler.options.stats));
     }
   });
 })();

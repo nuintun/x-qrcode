@@ -1,9 +1,14 @@
-const { contextMenus, runtime, tabs } = chrome;
+const { commands, contextMenus, i18n, runtime, tabs } = chrome;
+
+const enum MenuIds {
+  ENCODE_SELECTION_TEXT = 'encode-selection-text',
+  DECODE_SELECT_CAPTURE_AREA = 'decode-select-capture-area'
+}
 
 type DataURL = [mime: string, encoding: string, data: string];
 
 function getSelectionText(): string | void {
-  const selection = window.getSelection();
+  const selection = document.getSelection();
 
   if (selection !== null) {
     const selectionText = selection.toString();
@@ -60,17 +65,31 @@ function blobToDataURL(blob: Blob): Promise<string> {
 }
 
 runtime.onInstalled.addListener(() => {
-  contextMenus.create({
-    contexts: ['all'],
-    id: 'decodeSelectArea',
-    title: '解码所选截图区域(Ctrl+Alt+A)'
-  });
-
   chrome.contextMenus.create({
     contexts: ['selection'],
-    id: 'encodeSelectionText',
-    title: chrome.i18n.getMessage('encodeSelectionText')
+    id: MenuIds.ENCODE_SELECTION_TEXT,
+    title: i18n.getMessage('encodeSelectionText')
   });
+
+  contextMenus.create({
+    contexts: ['page', 'action'],
+    id: MenuIds.DECODE_SELECT_CAPTURE_AREA,
+    title: i18n.getMessage('decodeSelectCaptureArea')
+  });
+});
+
+commands.onCommand.addListener((command, tab) => {
+  const tabId = tab?.id;
+
+  switch (command) {
+    case MenuIds.DECODE_SELECT_CAPTURE_AREA:
+      if (tabId != null) {
+        tabs.sendMessage(tabId, {
+          type: 'capture'
+        });
+      }
+      break;
+  }
 });
 
 contextMenus.onClicked.addListener(async (info, tab) => {
@@ -78,7 +97,7 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 
   if (tabId != null) {
     switch (info.menuItemId) {
-      case 'encodeSelectionText':
+      case MenuIds.ENCODE_SELECTION_TEXT:
         const { frameId } = info;
         const frameIds = frameId ? [frameId] : undefined;
 
@@ -101,7 +120,7 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 
         console.log(text);
         break;
-      case 'decodeSelectArea':
+      case MenuIds.DECODE_SELECT_CAPTURE_AREA:
         if (tabId != null) {
           tabs.sendMessage(tabId, {
             type: 'capture'

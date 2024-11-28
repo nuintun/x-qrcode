@@ -16,39 +16,41 @@ export default function App() {
 
     const { runtime } = chrome;
 
-    const selectArea = async () => {
-      capturing = true;
+    const capture = async () => {
+      if (!capturing) {
+        capturing = true;
 
-      try {
-        const rect = await selectCaptureArea();
+        try {
+          const rect = await selectCaptureArea();
 
-        if (rect.width > 0 && rect.height > 0) {
-          interface Message {
-            type: 'selectedArea';
-            rect: DOMRectReadOnly;
+          if (rect.width > 0 && rect.height > 0) {
+            interface Message {
+              type: 'selectedArea';
+              rect: DOMRectReadOnly;
+            }
+
+            const url = await runtime.sendMessage<Message, string | undefined>({
+              type: 'selectedArea',
+              rect
+            });
+
+            setURL(url);
+            setVisible(true);
           }
-
-          const url = await runtime.sendMessage<Message, string | undefined>({
-            type: 'selectedArea',
-            rect
-          });
-
-          setURL(url);
-          setVisible(true);
+        } catch (error) {
+          if (__DEV__) {
+            console.error(error);
+          }
         }
-      } catch (error) {
-        if (__DEV__) {
-          console.error(error);
-        }
+
+        capturing = false;
       }
-
-      capturing = false;
     };
 
     const onMessage = (message: any) => {
       switch (message.type) {
         case 'capture':
-          selectArea();
+          capture();
           break;
         case 'capturedArea':
           setURL(message.url);
@@ -57,22 +59,10 @@ export default function App() {
       }
     };
 
-    const onCapture = async (event: KeyboardEvent) => {
-      if (!capturing && event.altKey && event.ctrlKey && /^a$/i.test(event.key)) {
-        event.preventDefault();
-
-        selectArea();
-      }
-    };
-
     runtime.onMessage.addListener(onMessage);
-
-    window.addEventListener('keyup', onCapture, true);
 
     return () => {
       runtime.onMessage.removeListener(onMessage);
-
-      window.removeEventListener('keyup', onCapture, true);
     };
   }, []);
 
