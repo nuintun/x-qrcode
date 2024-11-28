@@ -5,9 +5,9 @@
 import { decode } from '/js/common/decode';
 import { encode } from '/js/common/encode';
 import { ActionType } from '/js/common/action';
+import { bitmapToDataURL } from '/js/common/url';
 import { getImageBitmap } from '/js/common/image';
 import { getSelectionText } from '/js/common/selection';
-import { bitmapToDataURL } from '../common/url';
 
 const { commands, contextMenus, i18n, runtime, tabs } = chrome;
 
@@ -46,7 +46,7 @@ commands.onCommand.addListener((command, tab) => {
     case ActionType.DECODE_SELECT_CAPTURE_AREA:
       if (tabId != null) {
         tabs.sendMessage(tabId, {
-          type: 'capture'
+          type: ActionType.DECODE_SELECT_CAPTURE_AREA
         });
       }
       break;
@@ -61,13 +61,31 @@ contextMenus.onClicked.addListener(async (info, tab) => {
   if (tabId != null) {
     switch (info.menuItemId) {
       case ActionType.ENCODE_SELECT_LINK:
-        console.log(info);
+        const { linkUrl } = info;
+
+        if (linkUrl) {
+          tabs.sendMessage(tabId, {
+            action: ActionType.ENCODE_SELECT_LINK,
+            payload: encode(linkUrl, {
+              level: 'H',
+              fnc1: 'None',
+              mode: 'Auto',
+              quietZone: 8,
+              moduleSize: 2,
+              aimIndicator: 0,
+              version: 'Auto',
+              charset: 'UTF_8',
+              background: '#ffffff',
+              foreground: '#000000'
+            })
+          });
+        }
         break;
       case ActionType.DECODE_SELECT_IMAGE:
-        const { srcUrl: image } = info;
+        const { srcUrl } = info;
 
-        if (image) {
-          const bitmap = await getImageBitmap(image);
+        if (srcUrl) {
+          const bitmap = await getImageBitmap(srcUrl);
 
           const decoded = await decode(bitmap, {
             invert: false,
@@ -80,18 +98,18 @@ contextMenus.onClicked.addListener(async (info, tab) => {
             const { payload: items } = decoded;
 
             tabs.sendMessage(tabId, {
-              type: ActionType.DECODE_SELECT_IMAGE,
+              action: ActionType.DECODE_SELECT_IMAGE,
               payload: {
                 ...decoded,
                 payload: {
-                  image,
-                  items
+                  items,
+                  image: srcUrl
                 }
               }
             });
           } else {
             tabs.sendMessage(tabId, {
-              type: ActionType.DECODE_SELECT_IMAGE,
+              action: ActionType.DECODE_SELECT_IMAGE,
               payload: decoded
             });
           }
@@ -118,11 +136,25 @@ contextMenus.onClicked.addListener(async (info, tab) => {
           return text;
         }, '');
 
-        console.log(text);
+        tabs.sendMessage(tabId, {
+          action: ActionType.ENCODE_SELECTION_TEXT,
+          payload: encode(text, {
+            level: 'H',
+            fnc1: 'None',
+            mode: 'Auto',
+            quietZone: 8,
+            moduleSize: 2,
+            aimIndicator: 0,
+            version: 'Auto',
+            charset: 'UTF_8',
+            background: '#ffffff',
+            foreground: '#000000'
+          })
+        });
         break;
       case ActionType.DECODE_SELECT_CAPTURE_AREA:
         tabs.sendMessage(tabId, {
-          type: 'capture'
+          action: ActionType.DECODE_SELECT_CAPTURE_AREA
         });
         break;
       default:
@@ -132,7 +164,7 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 });
 
 async function resolveMessage(message: any): Promise<any> {
-  switch (message.type) {
+  switch (message.action) {
     case ActionType.DECODE_SELECT_CAPTURE_AREA:
       const url = await tabs.captureVisibleTab({
         format: 'png'

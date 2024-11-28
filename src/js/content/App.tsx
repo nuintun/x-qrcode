@@ -59,16 +59,16 @@ export default function App() {
     };
 
     const onMessage = (message: any) => {
-      switch (message.type) {
-        case 'capture':
-          capture();
-          break;
-        case 'capturedArea':
-          setURL(message.url);
-          setVisible(true);
+      switch (message.action) {
+        case ActionType.ENCODE_SELECT_LINK:
+        case ActionType.ENCODE_SELECTION_TEXT:
+          console.log(message);
           break;
         case ActionType.DECODE_SELECT_IMAGE:
           console.log(message);
+          break;
+        case ActionType.DECODE_SELECT_CAPTURE_AREA:
+          capture();
           break;
         default:
           break;

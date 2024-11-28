@@ -44,14 +44,14 @@ export default function App() {
       const { url: content = '' } = tab;
 
       interface Message {
-        type: string;
+        action: string;
         payload: Options & {
           content: string;
         };
       }
 
       const message = await runtime.sendMessage<Message, EncodeResult>({
-        type: ActionType.ENCODE_TAB_LINK,
+        action: ActionType.ENCODE_TAB_LINK,
         payload: {
           content,
           level: 'H',
