@@ -5,11 +5,6 @@
 import { blobToDataURL } from './url';
 import { DecodedItem, Pattern, Point } from './decode';
 
-export interface Options {
-  image: ImageBitmap;
-  items: LocateItem[];
-}
-
 export interface LocateOk {
   type: 'ok';
   payload: string;
@@ -68,15 +63,14 @@ function drawLine(context: Context2D, points: Point[], strokeStyle: string, clos
   context.restore();
 }
 
-export function locate(options: Options): Promise<LocateResult> {
-  const { image, items } = options;
+export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<LocateResult> {
   const { width, height } = image;
   const canvas = new OffscreenCanvas(width, height);
   const context = canvas.getContext('2d')!;
 
   context.drawImage(image, 0, 0);
 
-  for (const { timing, corners, finder, alignment } of items) {
+  for (const { timing, corners, finder, alignment } of locations) {
     drawLine(context, corners, '#00ff00', true);
     drawLine(context, [finder[2], finder[0], finder[1]], '#ff0000');
     drawLine(context, [timing[2], timing[0], timing[1]], '#00ff00');

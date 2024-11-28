@@ -17,7 +17,6 @@ export interface EncodedError {
 export type EncodeResult = EncodedOk | EncodedError;
 
 export interface Options {
-  content: string;
   quietZone: number;
   background: string;
   foreground: string;
@@ -45,7 +44,7 @@ function getHints({ fnc1, aimIndicator }: Options): EncoderOptions['hints'] {
   }
 }
 
-function chooseBestMode({ mode, content, charset }: Options): Byte | Hanzi | Kanji | Numeric | Alphanumeric {
+function chooseBestMode(content: string, { mode, charset }: Options): Byte | Hanzi | Kanji | Numeric | Alphanumeric {
   switch (mode) {
     case 'Auto':
       const NUMERIC_RE = /^\d+$/;
@@ -91,7 +90,7 @@ function chooseBestMode({ mode, content, charset }: Options): Byte | Hanzi | Kan
   }
 }
 
-export function encode(options: Options): EncodeResult {
+export function encode(content: string, options: Options): EncodeResult {
   const { level, version } = options;
   const encoder = new Encoder({
     level,
@@ -100,7 +99,7 @@ export function encode(options: Options): EncodeResult {
   });
 
   try {
-    const qrcode = encoder.encode(chooseBestMode(options));
+    const qrcode = encoder.encode(chooseBestMode(content, options));
     const { moduleSize, quietZone, background, foreground } = options;
 
     return {

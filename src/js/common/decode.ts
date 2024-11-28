@@ -13,7 +13,6 @@ import {
   Point as IPoint
 } from '@nuintun/qrcode';
 import chardet from 'chardet';
-import { bitmapToDataURL } from './url';
 
 export interface Point {
   x: number;
@@ -27,10 +26,7 @@ export interface Options {
 
 export interface DecodedOk {
   type: 'ok';
-  payload: {
-    image: string;
-    items: DecodedItem[];
-  };
+  payload: DecodedItem[];
 }
 
 export interface DecodedError {
@@ -87,7 +83,7 @@ function decodeText(bytes: Uint8Array, charset: Charset): string {
   }
 }
 
-export async function decode(image: ImageBitmap, options: Options): Promise<DecodeResult> {
+export function decode(image: ImageBitmap, options: Options): DecodeResult {
   const { width, height } = image;
   const { invert, strict } = options;
   const canvas = new OffscreenCanvas(width, height);
@@ -163,10 +159,7 @@ export async function decode(image: ImageBitmap, options: Options): Promise<Deco
   if (success.length > 0) {
     return {
       type: 'ok',
-      payload: {
-        items: success,
-        image: await bitmapToDataURL(image)
-      }
+      payload: success
     };
   }
 

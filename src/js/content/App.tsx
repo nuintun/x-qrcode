@@ -29,13 +29,12 @@ export default function App() {
           const rect = await selectCaptureArea();
 
           if (rect.width > 0 && rect.height > 0) {
-            const message = await runtime.sendMessage<
-              {
-                type: string;
-                rect: DOMRectReadOnly;
-              },
-              any
-            >({
+            interface Message {
+              type: string;
+              rect: DOMRectReadOnly;
+            }
+
+            const message = await runtime.sendMessage<Message, any>({
               type: ActionType.DECODE_SELECT_CAPTURE_AREA,
               rect
             });
@@ -45,6 +44,8 @@ export default function App() {
               setURL(message.payload.image);
 
               console.log(message.payload.items);
+            } else {
+              console.log(message.message);
             }
           }
         } catch (error) {
@@ -65,6 +66,11 @@ export default function App() {
         case 'capturedArea':
           setURL(message.url);
           setVisible(true);
+          break;
+        case ActionType.DECODE_SELECT_IMAGE:
+          console.log(message);
+          break;
+        default:
           break;
       }
     };

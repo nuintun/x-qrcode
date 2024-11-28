@@ -2,13 +2,12 @@
  * @module background
  */
 
+import { decode } from '/js/common/decode';
 import { encode } from '/js/common/encode';
 import { ActionType } from '/js/common/action';
-import { blobToDataURL } from '/js/common/url';
 import { getImageBitmap } from '/js/common/image';
 import { getSelectionText } from '/js/common/selection';
-import { decode } from '../common/decode';
-import { locate } from '../common/locate';
+import { bitmapToDataURL } from '../common/url';
 
 const { commands, contextMenus, i18n, runtime, tabs } = chrome;
 
@@ -65,12 +64,37 @@ contextMenus.onClicked.addListener(async (info, tab) => {
         console.log(info);
         break;
       case ActionType.DECODE_SELECT_IMAGE:
-        const { srcUrl } = info;
+        const { srcUrl: image } = info;
 
-        if (srcUrl) {
-          const bitmap = await getImageBitmap(srcUrl);
+        if (image) {
+          const bitmap = await getImageBitmap(image);
 
-          console.log(bitmap, bitmap.width, bitmap.height);
+          const decoded = await decode(bitmap, {
+            invert: false,
+            strict: false
+          });
+
+          bitmap.close();
+
+          if (decoded.type === 'ok') {
+            const { payload: items } = decoded;
+
+            tabs.sendMessage(tabId, {
+              type: ActionType.DECODE_SELECT_IMAGE,
+              payload: {
+                ...decoded,
+                payload: {
+                  image,
+                  items
+                }
+              }
+            });
+          } else {
+            tabs.sendMessage(tabId, {
+              type: ActionType.DECODE_SELECT_IMAGE,
+              payload: decoded
+            });
+          }
         }
         break;
       case ActionType.ENCODE_SELECTION_TEXT:
@@ -97,11 +121,9 @@ contextMenus.onClicked.addListener(async (info, tab) => {
         console.log(text);
         break;
       case ActionType.DECODE_SELECT_CAPTURE_AREA:
-        if (tabId != null) {
-          tabs.sendMessage(tabId, {
-            type: 'capture'
-          });
-        }
+        tabs.sendMessage(tabId, {
+          type: 'capture'
+        });
         break;
       default:
         break;
@@ -125,11 +147,28 @@ async function resolveMessage(message: any): Promise<any> {
         strict: false
       });
 
+      if (decoded.type === 'ok') {
+        const { payload: items } = decoded;
+        const image = await bitmapToDataURL(bitmap);
+
+        bitmap.close();
+
+        return {
+          ...decoded,
+          payload: {
+            image,
+            items
+          }
+        };
+      }
+
       bitmap.close();
 
       return decoded;
     case ActionType.ENCODE_TAB_LINK:
-      return encode(message.payload);
+      const { payload } = message;
+
+      return encode(payload.content, payload);
     default:
       break;
   }

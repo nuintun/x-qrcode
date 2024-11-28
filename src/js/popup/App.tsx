@@ -5,7 +5,7 @@
 import { Alert, Spin } from 'antd';
 import { ActionType } from '/js/common/action';
 import { memo, useEffect, useState } from 'react';
-import { Options, EncodeResult } from '/js/common/encode';
+import { EncodeResult, Options } from '/js/common/encode';
 
 interface ResultProps {
   value?: EncodeResult;
@@ -43,7 +43,14 @@ export default function App() {
 
       const { url: content = '' } = tab;
 
-      const message = await runtime.sendMessage<{ type: string; payload: Options }, EncodeResult>({
+      interface Message {
+        type: string;
+        payload: Options & {
+          content: string;
+        };
+      }
+
+      const message = await runtime.sendMessage<Message, EncodeResult>({
         type: ActionType.ENCODE_TAB_LINK,
         payload: {
           content,
