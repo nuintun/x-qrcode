@@ -1,5 +1,10 @@
+/**
+ * @module App
+ */
+
 import { ConfigProvider, Image } from 'antd';
-import { selectCaptureArea } from './utils/capturer';
+import { ActionType } from '/js/common/action';
+import { selectCaptureArea } from '/js/common/capturer';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function App() {
@@ -24,18 +29,23 @@ export default function App() {
           const rect = await selectCaptureArea();
 
           if (rect.width > 0 && rect.height > 0) {
-            interface Message {
-              type: 'selectedArea';
-              rect: DOMRectReadOnly;
-            }
-
-            const url = await runtime.sendMessage<Message, string | undefined>({
-              type: 'selectedArea',
+            const message = await runtime.sendMessage<
+              {
+                type: string;
+                rect: DOMRectReadOnly;
+              },
+              any
+            >({
+              type: ActionType.DECODE_SELECT_CAPTURE_AREA,
               rect
             });
 
-            setURL(url);
-            setVisible(true);
+            if (message?.type === 'ok') {
+              setVisible(true);
+              setURL(message.payload.image);
+
+              console.log(message.payload.items);
+            }
           }
         } catch (error) {
           if (__DEV__) {

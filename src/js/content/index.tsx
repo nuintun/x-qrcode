@@ -1,3 +1,7 @@
+/**
+ * @module index
+ */
+
 import App from './App';
 import { createRoot } from 'react-dom/client';
 import { StyleProvider } from '@ant-design/cssinjs';

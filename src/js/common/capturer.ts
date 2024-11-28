@@ -1,5 +1,5 @@
 /**
- * @module cropper
+ * @module capturer
  */
 
 const { runtime } = chrome;

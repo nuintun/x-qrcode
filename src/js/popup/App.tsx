@@ -1,9 +1,14 @@
+/**
+ * @module App
+ */
+
 import { Alert, Spin } from 'antd';
+import { ActionType } from '/js/common/action';
 import { memo, useEffect, useState } from 'react';
-import { EncodeMessage, EncodeResultMessage } from '/js/workers/encode';
+import { Options, EncodeResult } from '/js/common/encode';
 
 interface ResultProps {
-  value?: EncodeResultMessage;
+  value?: EncodeResult;
 }
 
 const Result = memo(function Result({ value }: ResultProps) {
@@ -23,17 +28,14 @@ const Result = memo(function Result({ value }: ResultProps) {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [state, setState] = useState<EncodeResultMessage>();
+  const [state, setState] = useState<EncodeResult>();
 
   useEffect(() => {
-    const worker = new Worker(new URL('/js/workers/encode.ts', import.meta.url));
+    const { runtime } = chrome;
 
-    worker.addEventListener('message', ({ data }: MessageEvent<EncodeResultMessage>) => {
-      setState(data);
-      setLoading(false);
-    });
+    const encode = async () => {
+      setLoading(true);
 
-    const execute = async () => {
       const [tab] = await chrome.tabs.query({
         active: true,
         currentWindow: true
@@ -41,22 +43,28 @@ export default function App() {
 
       const { url: content = '' } = tab;
 
-      worker.postMessage({
-        content,
-        level: 'H',
-        fnc1: 'None',
-        mode: 'Auto',
-        quietZone: 8,
-        moduleSize: 2,
-        aimIndicator: 0,
-        version: 'Auto',
-        charset: 'UTF_8',
-        background: '#ffffff',
-        foreground: '#000000'
-      } satisfies EncodeMessage);
+      const message = await runtime.sendMessage<{ type: string; payload: Options }, EncodeResult>({
+        type: ActionType.ENCODE_TAB_LINK,
+        payload: {
+          content,
+          level: 'H',
+          fnc1: 'None',
+          mode: 'Auto',
+          quietZone: 8,
+          moduleSize: 2,
+          aimIndicator: 0,
+          version: 'Auto',
+          charset: 'UTF_8',
+          background: '#ffffff',
+          foreground: '#000000'
+        }
+      });
+
+      setState(message);
+      setLoading(false);
     };
 
-    execute();
+    encode();
 
     const contextmenu = (event: MouseEvent) => {
       event.preventDefault();
@@ -65,8 +73,6 @@ export default function App() {
     document.addEventListener('contextmenu', contextmenu, true);
 
     return () => {
-      worker.terminate();
-
       document.removeEventListener('contextmenu', contextmenu, true);
     };
   }, []);
