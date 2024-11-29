@@ -30,12 +30,12 @@ export default function App() {
 
           if (rect.width > 0 && rect.height > 0) {
             interface Message {
-              type: string;
+              action: string;
               rect: DOMRectReadOnly;
             }
 
             const message = await runtime.sendMessage<Message, any>({
-              type: ActionType.DECODE_SELECT_CAPTURE_AREA,
+              action: ActionType.DECODE_SELECT_CAPTURE_AREA,
               rect
             });
 
@@ -45,7 +45,7 @@ export default function App() {
 
               console.log(message.payload.items);
             } else {
-              console.log(message.message);
+              console.log(message?.message);
             }
           }
         } catch (error) {

@@ -1,20 +1,23 @@
 {
-  "appName": {
+  "app_name": {
     "message": "全能二维码"
   },
-  "appDesc": {
+  "app_desc": {
     "message": "将当前标签的链接地址转换成二维码，并支持二维码编码和解码。"
   },
-  "decodeSelectImage": {
+  "decode_select_image": {
     "message": "解码所选图片"
   },
-  "encodeSelectLink": {
+  "encode_select_link": {
     "message": "编码所选链接"
   },
-  "decodeSelectCaptureArea": {
+  "decode_select_capture_area": {
     "message": "解码所选捕获区域"
   },
-  "encodeSelectionText": {
+  "encode_selection_text": {
     "message": "编码所选文本"
+  },
+  "open_advanced_toolbox": {
+    "message": "高级工具箱"
   }
 }

@@ -20,8 +20,8 @@ export interface Point {
 }
 
 export interface Options {
-  strict: boolean;
-  invert: boolean;
+  strict?: boolean;
+  invert?: boolean;
 }
 
 export interface DecodedOk {
@@ -83,7 +83,7 @@ function decodeText(bytes: Uint8Array, charset: Charset): string {
   }
 }
 
-export function decode(image: ImageBitmap, options: Options): DecodeResult {
+export function decode(image: ImageBitmap, options: Options = {}): DecodeResult {
   const { width, height } = image;
   const { invert, strict } = options;
   const canvas = new OffscreenCanvas(width, height);

@@ -1,26 +1,30 @@
 {
-  "appName": {
+  "app_name": {
     "message": "X QRCode",
     "description": "The title of the application, displayed in the web store."
   },
-  "appDesc": {
+  "app_desc": {
     "message": "A powerfull chrome extension for qrcode encoding and decoding.",
     "description": "The description of the application, displayed in the web store."
   },
-  "decodeSelectImage": {
+  "decode_select_image": {
     "message": "Decode select image",
     "description": "The context menu title for decode select image."
   },
-  "encodeSelectLink": {
+  "encode_select_link": {
     "message": "Encode select link",
     "description": "The context menu title for encode select link."
   },
-  "decodeSelectCaptureArea": {
+  "decode_select_capture_area": {
     "message": "Decode select capture area",
     "description": "The context menu title for decode select capture area."
   },
-  "encodeSelectionText": {
+  "encode_selection_text": {
     "message": "Encode selection text",
     "description": "The context menu title for encode selection text."
+  },
+  "open_advanced_toolbox": {
+    "message": "Advanced toolbox",
+    "description": "The context menu title for open advanced toolbox."
   }
 }

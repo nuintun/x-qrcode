@@ -17,34 +17,22 @@ export interface EncodedError {
 export type EncodeResult = EncodedOk | EncodedError;
 
 export interface Options {
-  quietZone: number;
-  background: string;
-  foreground: string;
-  moduleSize: number;
-  aimIndicator: number;
-  version: 'Auto' | number;
-  fnc1: 'None' | 'GS1' | 'AIM';
-  level: 'L' | 'M' | 'Q' | 'H';
-  charset: keyof typeof Charset;
-  mode: 'Auto' | 'Numeric' | 'Alphanumeric' | 'Byte' | 'Kanji' | 'Hanzi';
+  quietZone?: number;
+  background?: string;
+  foreground?: string;
+  moduleSize?: number;
+  aimIndicator?: number;
+  version?: 'Auto' | number;
+  fnc1?: 'None' | 'GS1' | 'AIM';
+  level?: 'L' | 'M' | 'Q' | 'H';
+  charset?: keyof typeof Charset;
+  mode?: 'Auto' | 'Numeric' | 'Alphanumeric' | 'Byte' | 'Kanji' | 'Hanzi';
 }
 
-function hex2rgb(hex: string): [R: number, G: number, B: number] {
-  const value = parseInt(hex.slice(1, 7), 16);
-
-  return [(value >> 16) & 0xff, (value >> 8) & 0xff, value & 0xff];
-}
-
-function getHints({ fnc1, aimIndicator }: Options): EncoderOptions['hints'] {
-  switch (fnc1) {
-    case 'GS1':
-      return { fnc1: ['GS1'] };
-    case 'AIM':
-      return { fnc1: ['AIM', +aimIndicator] };
-  }
-}
-
-function chooseBestMode(content: string, { mode, charset }: Options): Byte | Hanzi | Kanji | Numeric | Alphanumeric {
+function chooseBestMode(
+  content: string,
+  { mode = 'Auto', charset = 'UTF_8' }: Options
+): Byte | Hanzi | Kanji | Numeric | Alphanumeric {
   switch (mode) {
     case 'Auto':
       const NUMERIC_RE = /^\d+$/;
@@ -90,6 +78,21 @@ function chooseBestMode(content: string, { mode, charset }: Options): Byte | Han
   }
 }
 
+function hex2rgb(hex: string): [R: number, G: number, B: number] {
+  const value = parseInt(hex.slice(1, 7), 16);
+
+  return [(value >> 16) & 0xff, (value >> 8) & 0xff, value & 0xff];
+}
+
+function getHints({ fnc1 = 'None', aimIndicator = 0 }: Options): EncoderOptions['hints'] {
+  switch (fnc1) {
+    case 'GS1':
+      return { fnc1: ['GS1'] };
+    case 'AIM':
+      return { fnc1: ['AIM', +aimIndicator] };
+  }
+}
+
 export function encode(content: string, options: Options): EncodeResult {
   const { level, version } = options;
   const encoder = new Encoder({
@@ -106,8 +109,8 @@ export function encode(content: string, options: Options): EncodeResult {
       type: 'ok',
       payload: qrcode.toDataURL(moduleSize, {
         margin: quietZone,
-        background: hex2rgb(background),
-        foreground: hex2rgb(foreground)
+        background: hex2rgb(background ?? '#ffffff'),
+        foreground: hex2rgb(foreground ?? '#000000')
       })
     };
   } catch (error) {

@@ -7,51 +7,65 @@ import { encode } from '/js/common/encode';
 import { ActionType } from '/js/common/action';
 import { bitmapToDataURL } from '/js/common/url';
 import { getImageBitmap } from '/js/common/image';
-import { getSelectionText } from '/js/common/selection';
+import { getSelectionsText } from '/js/common/selection';
 
 const { commands, contextMenus, i18n, runtime, tabs } = chrome;
 
 runtime.onInstalled.addListener(() => {
-  contextMenus.removeAll(() => {
-    contextMenus.create({
-      contexts: ['link'],
-      id: ActionType.ENCODE_SELECT_LINK,
-      title: i18n.getMessage('encodeSelectLink')
-    });
+  const { runtime } = chrome;
+  const manifest = runtime.getManifest();
+  const matches = manifest.host_permissions;
 
-    contextMenus.create({
-      contexts: ['image'],
-      id: ActionType.DECODE_SELECT_IMAGE,
-      title: i18n.getMessage('decodeSelectImage')
-    });
+  contextMenus.create({
+    contexts: ['link'],
+    documentUrlPatterns: matches,
+    id: ActionType.ENCODE_SELECT_LINK,
+    title: i18n.getMessage(ActionType.ENCODE_SELECT_LINK)
+  });
 
-    contextMenus.create({
-      contexts: ['selection'],
-      id: ActionType.ENCODE_SELECTION_TEXT,
-      title: i18n.getMessage('encodeSelectionText')
-    });
+  contextMenus.create({
+    contexts: ['image'],
+    documentUrlPatterns: matches,
+    id: ActionType.DECODE_SELECT_IMAGE,
+    title: i18n.getMessage(ActionType.DECODE_SELECT_IMAGE)
+  });
 
-    contextMenus.create({
-      contexts: ['page', 'action'],
-      id: ActionType.DECODE_SELECT_CAPTURE_AREA,
-      title: i18n.getMessage('decodeSelectCaptureArea')
-    });
+  contextMenus.create({
+    contexts: ['selection'],
+    documentUrlPatterns: matches,
+    id: ActionType.ENCODE_SELECTION_TEXT,
+    title: i18n.getMessage(ActionType.ENCODE_SELECTION_TEXT)
+  });
+
+  contextMenus.create({
+    contexts: ['page'],
+    documentUrlPatterns: matches,
+    id: ActionType.DECODE_SELECT_CAPTURE_AREA,
+    title: i18n.getMessage(ActionType.DECODE_SELECT_CAPTURE_AREA)
+  });
+
+  contextMenus.create({
+    contexts: ['action'],
+    id: ActionType.OPEN_ADVANCED_TOOLBOX,
+    title: i18n.getMessage(ActionType.OPEN_ADVANCED_TOOLBOX)
   });
 });
 
 commands.onCommand.addListener((command, tab) => {
   const tabId = tab?.id;
 
-  switch (command) {
-    case ActionType.DECODE_SELECT_CAPTURE_AREA:
-      if (tabId != null) {
+  if (tabId != null) {
+    console.log(command);
+
+    switch (command) {
+      case ActionType.DECODE_SELECT_CAPTURE_AREA:
         tabs.sendMessage(tabId, {
-          type: ActionType.DECODE_SELECT_CAPTURE_AREA
+          action: ActionType.DECODE_SELECT_CAPTURE_AREA
         });
-      }
-      break;
-    default:
-      break;
+        break;
+      default:
+        break;
+    }
   }
 });
 
@@ -60,6 +74,11 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 
   if (tabId != null) {
     switch (info.menuItemId) {
+      case ActionType.OPEN_ADVANCED_TOOLBOX:
+        tabs.create({
+          url: 'https://nuintun.github.io/qrcode/packages/examples/app/index.html'
+        });
+        break;
       case ActionType.ENCODE_SELECT_LINK:
         const { linkUrl } = info;
 
@@ -80,6 +99,27 @@ contextMenus.onClicked.addListener(async (info, tab) => {
             })
           });
         }
+        break;
+      case ActionType.ENCODE_SELECTION_TEXT:
+        const content = await getSelectionsText(tabId);
+
+        console.log(content);
+
+        tabs.sendMessage(tabId, {
+          action: ActionType.ENCODE_SELECTION_TEXT,
+          payload: encode(content, {
+            level: 'H',
+            fnc1: 'None',
+            mode: 'Auto',
+            quietZone: 8,
+            moduleSize: 2,
+            aimIndicator: 0,
+            version: 'Auto',
+            charset: 'UTF_8',
+            background: '#ffffff',
+            foreground: '#000000'
+          })
+        });
         break;
       case ActionType.DECODE_SELECT_IMAGE:
         const { srcUrl } = info;
@@ -114,43 +154,6 @@ contextMenus.onClicked.addListener(async (info, tab) => {
             });
           }
         }
-        break;
-      case ActionType.ENCODE_SELECTION_TEXT:
-        const { frameId } = info;
-        const frameIds = frameId ? [frameId] : undefined;
-
-        const selections = await chrome.scripting.executeScript({
-          target: {
-            tabId,
-            frameIds
-          },
-          func: getSelectionText,
-          injectImmediately: true
-        });
-
-        const text = selections.reduce((text, { result }) => {
-          if (result) {
-            text += result;
-          }
-
-          return text;
-        }, '');
-
-        tabs.sendMessage(tabId, {
-          action: ActionType.ENCODE_SELECTION_TEXT,
-          payload: encode(text, {
-            level: 'H',
-            fnc1: 'None',
-            mode: 'Auto',
-            quietZone: 8,
-            moduleSize: 2,
-            aimIndicator: 0,
-            version: 'Auto',
-            charset: 'UTF_8',
-            background: '#ffffff',
-            foreground: '#000000'
-          })
-        });
         break;
       case ActionType.DECODE_SELECT_CAPTURE_AREA:
         tabs.sendMessage(tabId, {
