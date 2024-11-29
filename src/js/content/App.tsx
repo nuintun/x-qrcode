@@ -76,22 +76,16 @@ export default function App() {
     };
   }, []);
 
+  const onVisibleChange = useCallback((visible: boolean) => {
+    if (!visible) {
+      setVisible(false);
+    }
+  }, []);
+
   return (
     <ConfigProvider getPopupContainer={getContainer} getTargetContainer={getContainer}>
       <div ref={rootRef} style={{ position: 'fixed', zIndex: 2147483647 }}>
-        <Image
-          key={url}
-          src={url}
-          width={0}
-          preview={{
-            visible: visible,
-            onVisibleChange(visible) {
-              if (!visible) {
-                setVisible(false);
-              }
-            }
-          }}
-        />
+        <Image key={url} src={url} width={0} preview={{ visible, onVisibleChange }} />
       </div>
     </ConfigProvider>
   );
