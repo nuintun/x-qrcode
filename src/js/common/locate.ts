@@ -5,8 +5,6 @@
 import { blobToDataURL } from './url';
 import { DecodedItem, Pattern, Point } from './decode';
 
-export type LocateResult = [error: Error] | [error: null, image: string];
-
 export type Context2D = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 
 export type LocateItem = Pick<DecodedItem, 'timing' | 'finder' | 'corners' | 'alignment'>;
@@ -53,7 +51,7 @@ function drawLine(context: Context2D, points: Point[], strokeStyle: string, clos
   context.restore();
 }
 
-export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<LocateResult> {
+export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<string | null> {
   const { width, height } = image;
   const canvas = new OffscreenCanvas(width, height);
   const context = canvas.getContext('2d')!;
@@ -75,13 +73,7 @@ export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<Loc
   }
 
   return canvas.convertToBlob().then(
-    blob => {
-      return blobToDataURL(blob).then(url => {
-        return [null, url];
-      });
-    },
-    (error: Error) => {
-      return [error];
-    }
+    blob => blobToDataURL(blob),
+    () => null
   );
 }

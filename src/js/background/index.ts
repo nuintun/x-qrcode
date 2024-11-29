@@ -99,8 +99,6 @@ contextMenus.onClicked.addListener(async (info, tab) => {
       case ActionType.ENCODE_SELECTION_TEXT:
         const content = await getSelectionsText(tabId);
 
-        console.log(content);
-
         tabs.sendMessage(tabId, {
           action: ActionType.ENCODE_SELECTION_TEXT,
           payload: encode(content, {
