@@ -5,17 +5,7 @@
 import { blobToDataURL } from './url';
 import { DecodedItem, Pattern, Point } from './decode';
 
-export interface LocateOk {
-  type: 'ok';
-  payload: string;
-}
-
-export interface LocateError {
-  type: 'error';
-  message: string;
-}
-
-export type LocateResult = LocateOk | LocateError;
+export type LocateResult = [error: Error] | [error: null, image: string];
 
 export type Context2D = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 
@@ -87,17 +77,11 @@ export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<Loc
   return canvas.convertToBlob().then(
     blob => {
       return blobToDataURL(blob).then(url => {
-        return {
-          type: 'ok',
-          payload: url
-        };
+        return [null, url];
       });
     },
-    () => {
-      return {
-        type: 'error',
-        message: '生成位置定位图失败'
-      };
+    (error: Error) => {
+      return [error];
     }
   );
 }

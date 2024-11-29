@@ -2,18 +2,22 @@
  * @module App
  */
 
-import { ConfigProvider, Image } from 'antd';
 import { ActionType } from '/js/common/action';
 import { selectCaptureArea } from '/js/common/capturer';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { App as AntdApp, ConfigProvider, Image } from 'antd';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
-export default function App() {
+const { useApp } = AntdApp;
+
+const Page = memo(function Page() {
+  const { message } = useApp();
   const [url, setURL] = useState<string>();
-  const rootRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
-  const getContainer = useCallback(() => {
-    return rootRef.current!;
+  const onVisibleChange = useCallback((visible: boolean) => {
+    if (!visible) {
+      setVisible(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -28,24 +32,30 @@ export default function App() {
         const rect = await selectCaptureArea();
 
         if (rect !== null) {
+          const unloading = message.loading('解码中...');
+
           interface Message {
             action: string;
             rect: DOMRectReadOnly;
           }
 
-          const message = await runtime.sendMessage<Message, any>({
+          const response = await runtime.sendMessage<Message, any>({
             action: ActionType.DECODE_SELECT_CAPTURE_AREA,
             rect
           });
 
-          if (message?.type === 'ok') {
-            setVisible(true);
-            setURL(message.payload.image);
+          if (response) {
+            if (response.type === 'ok') {
+              setVisible(true);
+              setURL(response.payload.image);
 
-            console.log(message.payload.items);
-          } else {
-            console.log(message?.message);
+              console.log(response.payload.decoded);
+            } else {
+              message.error(response.message);
+            }
           }
+
+          unloading();
         }
 
         capturing = false;
@@ -76,17 +86,20 @@ export default function App() {
     };
   }, []);
 
-  const onVisibleChange = useCallback((visible: boolean) => {
-    if (!visible) {
-      setVisible(false);
-    }
-  }, []);
+  return <Image key={url} src={url} width={0} preview={{ visible, onVisibleChange }} />;
+});
+
+export default memo(function App() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const getContainer = useCallback(() => rootRef.current!, []);
 
   return (
-    <ConfigProvider getPopupContainer={getContainer} getTargetContainer={getContainer}>
-      <div ref={rootRef} style={{ position: 'fixed', zIndex: 2147483647 }}>
-        <Image key={url} src={url} width={0} preview={{ visible, onVisibleChange }} />
-      </div>
-    </ConfigProvider>
+    <div ref={rootRef} style={{ position: 'fixed', zIndex: 2147483647 }}>
+      <ConfigProvider getPopupContainer={getContainer} getTargetContainer={getContainer}>
+        <AntdApp component={false} message={{ maxCount: 3 }}>
+          <Page />
+        </AntdApp>
+      </ConfigProvider>
+    </div>
   );
-}
+});

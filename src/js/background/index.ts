@@ -4,6 +4,7 @@
 
 import { decode } from '/js/common/decode';
 import { encode } from '/js/common/encode';
+import { locate } from '/js/common/locate';
 import { ActionType } from '/js/common/action';
 import { bitmapToDataURL } from '/js/common/url';
 import { getImageBitmap } from '/js/common/image';
@@ -121,30 +122,29 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 
         if (srcUrl) {
           const bitmap = await getImageBitmap(srcUrl);
-
           const decoded = await decode(bitmap);
 
-          bitmap.close();
-
-          if (decoded.type === 'ok') {
-            const { payload: items } = decoded;
+          if (decoded !== null) {
+            const located = await locate(bitmap, decoded);
+            const image = located ?? srcUrl;
 
             tabs.sendMessage(tabId, {
+              type: 'ok',
               action: ActionType.DECODE_SELECT_IMAGE,
               payload: {
-                ...decoded,
-                payload: {
-                  items,
-                  image: srcUrl
-                }
+                image,
+                decoded
               }
             });
           } else {
             tabs.sendMessage(tabId, {
-              action: ActionType.DECODE_SELECT_IMAGE,
-              payload: decoded
+              type: 'error',
+              message: '未识别到二维码',
+              action: ActionType.DECODE_SELECT_IMAGE
             });
           }
+
+          bitmap.close();
         }
         break;
       case ActionType.DECODE_SELECT_CAPTURE_AREA:
@@ -166,38 +166,49 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 async function resolveMessage(message: any): Promise<any> {
   switch (message.action) {
     case ActionType.DECODE_SELECT_CAPTURE_AREA:
-      const url = await tabs.captureVisibleTab({
+      const { x, y, width, height } = message.rect;
+      const screenshot = await tabs.captureVisibleTab({
         format: 'png'
       });
-
-      const { x, y, width, height } = message.rect;
-
-      const bitmap = await getImageBitmap(url, x, y, width, height);
-
+      const bitmap = await getImageBitmap(screenshot, x, y, width, height);
       const decoded = await decode(bitmap);
 
-      if (decoded.type === 'ok') {
-        const { payload: items } = decoded;
-        const image = await bitmapToDataURL(bitmap);
+      if (decoded !== null) {
+        const located = await locate(bitmap, decoded);
+        const image = located ?? (await bitmapToDataURL(bitmap));
 
         bitmap.close();
 
         return {
-          ...decoded,
+          type: 'ok',
           payload: {
             image,
-            items
+            decoded
           }
         };
       }
 
       bitmap.close();
 
-      return decoded;
+      return {
+        type: 'error',
+        message: '未识别到二维码'
+      };
     case ActionType.ENCODE_TAB_LINK:
       const { payload } = message;
+      const [error, url] = encode(payload.content, payload);
 
-      return encode(payload.content, payload);
+      if (error !== null) {
+        return {
+          type: 'error',
+          message: error.message
+        };
+      }
+
+      return {
+        type: 'ok',
+        payload: url
+      };
     default:
       break;
   }

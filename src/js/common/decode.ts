@@ -20,21 +20,11 @@ export interface Point {
   y: number;
 }
 
-export interface DecodedOk {
-  type: 'ok';
-  payload: DecodedItem[];
-}
-
-export interface DecodedError {
-  type: 'error';
-  message: string;
-}
-
 export interface Pattern extends Point {
   moduleSize: number;
 }
 
-export type DecodeResult = DecodedOk | DecodedError;
+export type DecodeResult = DecodedItem[] | null;
 
 export interface DecodedItem extends Omit<Decoded, 'codewords'> {
   alignment: Pattern | null;
@@ -138,17 +128,7 @@ function decodeBitMatrix(matrix: BitMatrix, strict?: boolean): DecodeResult {
     current = detected.next(succeed);
   }
 
-  if (success.length > 0) {
-    return {
-      type: 'ok',
-      payload: success
-    };
-  }
-
-  return {
-    type: 'error',
-    message: '未发现二维码'
-  };
+  return success.length > 0 ? success : null;
 }
 
 export function decode(image: ImageBitmap, strict?: boolean): DecodeResult {
@@ -163,7 +143,7 @@ export function decode(image: ImageBitmap, strict?: boolean): DecodeResult {
 
   const decoded = decodeBitMatrix(binarized, strict);
 
-  if (decoded.type === 'ok') {
+  if (decoded !== null) {
     return decoded;
   }
 

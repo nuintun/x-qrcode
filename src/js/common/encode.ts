@@ -4,17 +4,7 @@
 
 import { Alphanumeric, Byte, Charset, Encoder, EncoderOptions, Hanzi, Kanji, Numeric } from '@nuintun/qrcode';
 
-export interface EncodedOk {
-  type: 'ok';
-  payload: string;
-}
-
-export interface EncodedError {
-  type: 'error';
-  message: string;
-}
-
-export type EncodeResult = EncodedOk | EncodedError;
+export type EncodeResult = [error: Error] | [error: null, image: string];
 
 export interface Options {
   quietZone?: number;
@@ -93,7 +83,7 @@ function getHints({ fnc1 = 'None', aimIndicator = 0 }: Options): EncoderOptions[
   }
 }
 
-export function encode(content: string, options: Options): EncodeResult {
+export function encode(content: string, options: Options = {}): EncodeResult {
   const { level, version } = options;
   const encoder = new Encoder({
     level,
@@ -105,18 +95,15 @@ export function encode(content: string, options: Options): EncodeResult {
     const qrcode = encoder.encode(chooseBestMode(content, options));
     const { moduleSize, quietZone, background, foreground } = options;
 
-    return {
-      type: 'ok',
-      payload: qrcode.toDataURL(moduleSize, {
+    return [
+      null,
+      qrcode.toDataURL(moduleSize, {
         margin: quietZone,
         background: hex2rgb(background ?? '#ffffff'),
         foreground: hex2rgb(foreground ?? '#000000')
       })
-    };
+    ];
   } catch (error) {
-    return {
-      type: 'error',
-      message: (error as Error).message
-    };
+    return [error as Error];
   }
 }
