@@ -18,15 +18,7 @@ interface KeyboardEventHandler {
 
 const COMPONENT_NAME = 'view-capturer';
 
-class AbortError extends Error {
-  public override readonly name = 'AbortError';
-
-  constructor(message: string = 'Aborted') {
-    super(message);
-  }
-}
-
-let promise: Promise<DOMRectReadOnly> | null = null;
+let promise: Promise<DOMRectReadOnly | null> | null = null;
 
 const CSS = `
 .${COMPONENT_NAME}-backdrop,
@@ -76,9 +68,9 @@ const CSS = `
 }
 `;
 
-export function selectCaptureArea(): Promise<DOMRectReadOnly> {
+export function selectCaptureArea(): Promise<DOMRectReadOnly | null> {
   if (promise === null) {
-    promise = new Promise<DOMRectReadOnly>((resolve, reject) => {
+    promise = new Promise<DOMRectReadOnly | null>(resolve => {
       let top = 0;
       let left = 0;
       let width = 0;
@@ -105,7 +97,7 @@ export function selectCaptureArea(): Promise<DOMRectReadOnly> {
           event.preventDefault();
 
           cleanup(() => {
-            reject(new AbortError('aborted capture with escape'));
+            resolve(null);
           });
         }
       };
@@ -158,17 +150,23 @@ export function selectCaptureArea(): Promise<DOMRectReadOnly> {
         if (event.button === 0) {
           event.preventDefault();
 
-          const { devicePixelRatio } = window;
-          const rect = new DOMRectReadOnly(
-            left * devicePixelRatio,
-            top * devicePixelRatio,
-            width * devicePixelRatio,
-            height * devicePixelRatio
-          );
+          if (width > 0 && height > 0) {
+            const { devicePixelRatio } = window;
+            const rect = new DOMRectReadOnly(
+              left * devicePixelRatio,
+              top * devicePixelRatio,
+              width * devicePixelRatio,
+              height * devicePixelRatio
+            );
 
-          cleanup(() => {
-            resolve(rect);
-          });
+            cleanup(() => {
+              resolve(rect);
+            });
+          } else {
+            cleanup(() => {
+              resolve(null);
+            });
+          }
         }
       };
 

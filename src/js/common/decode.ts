@@ -4,6 +4,7 @@
 
 import {
   binarize,
+  BitMatrix,
   Charset,
   Decoded,
   Decoder,
@@ -17,11 +18,6 @@ import chardet from 'chardet';
 export interface Point {
   x: number;
   y: number;
-}
-
-export interface Options {
-  strict?: boolean;
-  invert?: boolean;
 }
 
 export interface DecodedOk {
@@ -83,21 +79,7 @@ function decodeText(bytes: Uint8Array, charset: Charset): string {
   }
 }
 
-export function decode(image: ImageBitmap, options: Options = {}): DecodeResult {
-  const { width, height } = image;
-  const { invert, strict } = options;
-  const canvas = new OffscreenCanvas(width, height);
-  const context = canvas.getContext('2d')!;
-
-  context.drawImage(image, 0, 0);
-
-  const luminances = grayscale(context.getImageData(0, 0, width, height));
-  const binarized = binarize(luminances, width, height);
-
-  if (invert) {
-    binarized.flip();
-  }
-
+function decodeBitMatrix(matrix: BitMatrix, strict?: boolean): DecodeResult {
   const detector = new Detector({
     strict
   });
@@ -108,7 +90,7 @@ export function decode(image: ImageBitmap, options: Options = {}): DecodeResult 
 
   const success: DecodedItem[] = [];
 
-  const detected = detector.detect(binarized);
+  const detected = detector.detect(matrix);
 
   let current = detected.next();
 
@@ -167,4 +149,25 @@ export function decode(image: ImageBitmap, options: Options = {}): DecodeResult 
     type: 'error',
     message: '未发现二维码'
   };
+}
+
+export function decode(image: ImageBitmap, strict?: boolean): DecodeResult {
+  const { width, height } = image;
+  const canvas = new OffscreenCanvas(width, height);
+  const context = canvas.getContext('2d')!;
+
+  context.drawImage(image, 0, 0);
+
+  const luminances = grayscale(context.getImageData(0, 0, width, height));
+  const binarized = binarize(luminances, width, height);
+
+  const decoded = decodeBitMatrix(binarized, strict);
+
+  if (decoded.type === 'ok') {
+    return decoded;
+  }
+
+  binarized.flip();
+
+  return decodeBitMatrix(binarized, strict);
 }

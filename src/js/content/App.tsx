@@ -25,32 +25,26 @@ export default function App() {
       if (!capturing) {
         capturing = true;
 
-        try {
-          const rect = await selectCaptureArea();
+        const rect = await selectCaptureArea();
 
-          if (rect.width > 0 && rect.height > 0) {
-            interface Message {
-              action: string;
-              rect: DOMRectReadOnly;
-            }
-
-            const message = await runtime.sendMessage<Message, any>({
-              action: ActionType.DECODE_SELECT_CAPTURE_AREA,
-              rect
-            });
-
-            if (message?.type === 'ok') {
-              setVisible(true);
-              setURL(message.payload.image);
-
-              console.log(message.payload.items);
-            } else {
-              console.log(message?.message);
-            }
+        if (rect !== null) {
+          interface Message {
+            action: string;
+            rect: DOMRectReadOnly;
           }
-        } catch (error) {
-          if (__DEV__) {
-            console.error(error);
+
+          const message = await runtime.sendMessage<Message, any>({
+            action: ActionType.DECODE_SELECT_CAPTURE_AREA,
+            rect
+          });
+
+          if (message?.type === 'ok') {
+            setVisible(true);
+            setURL(message.payload.image);
+
+            console.log(message.payload.items);
+          } else {
+            console.log(message?.message);
           }
         }
 

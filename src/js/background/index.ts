@@ -74,11 +74,6 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 
   if (tabId != null) {
     switch (info.menuItemId) {
-      case ActionType.OPEN_ADVANCED_TOOLBOX:
-        tabs.create({
-          url: 'https://nuintun.github.io/qrcode/packages/examples/app/index.html'
-        });
-        break;
       case ActionType.ENCODE_SELECT_LINK:
         const { linkUrl } = info;
 
@@ -127,10 +122,7 @@ contextMenus.onClicked.addListener(async (info, tab) => {
         if (srcUrl) {
           const bitmap = await getImageBitmap(srcUrl);
 
-          const decoded = await decode(bitmap, {
-            invert: false,
-            strict: false
-          });
+          const decoded = await decode(bitmap);
 
           bitmap.close();
 
@@ -160,6 +152,11 @@ contextMenus.onClicked.addListener(async (info, tab) => {
           action: ActionType.DECODE_SELECT_CAPTURE_AREA
         });
         break;
+      case ActionType.OPEN_ADVANCED_TOOLBOX:
+        tabs.create({
+          url: 'https://nuintun.github.io/qrcode/packages/examples/app/index.html'
+        });
+        break;
       default:
         break;
     }
@@ -177,10 +174,7 @@ async function resolveMessage(message: any): Promise<any> {
 
       const bitmap = await getImageBitmap(url, x, y, width, height);
 
-      const decoded = await decode(bitmap, {
-        invert: false,
-        strict: false
-      });
+      const decoded = await decode(bitmap);
 
       if (decoded.type === 'ok') {
         const { payload: items } = decoded;
