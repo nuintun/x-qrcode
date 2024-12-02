@@ -56,10 +56,7 @@
       "js": [
         "js/content.js"
       ],
-      "run_at": "document_end",
-      "exclude_matches": [
-        "https://chrome.google.com/webstore/*/*"
-      ]
+      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [
@@ -70,9 +67,6 @@
       ],
       "resources": [
         "images/crosshair.cur"
-      ],
-      "exclude_matches": [
-        "https://chrome.google.com/webstore/*/*"
       ]
     }
   ],
