@@ -1,30 +1,38 @@
 {
   "app_name": {
-    "message": "X QRCode",
+    "message": "X QR Code",
     "description": "The title of the application, displayed in the web store."
   },
   "app_desc": {
     "message": "A powerfull chrome extension for qrcode encoding and decoding.",
     "description": "The description of the application, displayed in the web store."
   },
-  "decode_select_image": {
-    "message": "Decode select image",
-    "description": "The context menu title for decode select image."
+  "open_advanced_toolbox": {
+    "message": "Advanced toolbox",
+    "description": "The context menu title for open advanced toolbox."
+  },
+  "encode_error": {
+    "message": "The data exceeds the maximum capacity limit of the QR code",
+    "description": "The error message for encode error."
   },
   "encode_select_link": {
     "message": "Encode select link",
     "description": "The context menu title for encode select link."
   },
-  "decode_select_capture_area": {
-    "message": "Decode select capture area",
-    "description": "The context menu title for decode select capture area."
-  },
   "encode_selection_text": {
     "message": "Encode selection text",
     "description": "The context menu title for encode selection text."
   },
-  "open_advanced_toolbox": {
-    "message": "Advanced toolbox",
-    "description": "The context menu title for open advanced toolbox."
+  "decode_error": {
+    "message": "No QR code detected",
+    "description": "The error message for decode error."
+  },
+  "decode_select_image": {
+    "message": "Decode select image",
+    "description": "The context menu title for decode select image."
+  },
+  "decode_select_capture_area": {
+    "message": "Decode select capture area",
+    "description": "The context menu title for decode select capture area."
   }
 }

@@ -137,8 +137,8 @@ contextMenus.onClicked.addListener(async (info, tab) => {
           } else {
             tabs.sendMessage(tabId, {
               type: 'error',
-              message: '未识别到二维码',
-              action: ActionType.DECODE_SELECT_IMAGE
+              action: ActionType.DECODE_SELECT_IMAGE,
+              message: i18n.getMessage('decode_error')
             });
           }
 
@@ -190,7 +190,7 @@ async function resolveMessage(message: any): Promise<any> {
 
       return {
         type: 'error',
-        message: '未识别到二维码'
+        message: i18n.getMessage('decode_error')
       };
     case ActionType.ENCODE_TAB_LINK:
       const { payload } = message;
@@ -199,7 +199,7 @@ async function resolveMessage(message: any): Promise<any> {
       if (error !== null) {
         return {
           type: 'error',
-          message: error.message
+          message: i18n.getMessage('encode_error')
         };
       }
 

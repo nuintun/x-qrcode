@@ -2,13 +2,23 @@
  * @module App
  */
 
-import { Alert, Spin } from 'antd';
+import { Alert, ConfigProvider, Spin } from 'antd';
+import { Options } from '/js/common/encode';
 import { ActionType } from '/js/common/action';
 import { memo, useEffect, useState } from 'react';
-import { EncodeResult, Options } from '/js/common/encode';
+
+interface EncodeOk {
+  type: 'ok';
+  payload: string;
+}
+
+interface EncodeError {
+  type: 'error';
+  message: string;
+}
 
 interface ResultProps {
-  value?: EncodeResult;
+  value?: EncodeOk | EncodeError;
 }
 
 const Result = memo(function Result({ value }: ResultProps) {
@@ -17,7 +27,7 @@ const Result = memo(function Result({ value }: ResultProps) {
       case 'ok':
         return <img src={value.payload} style={{ display: 'block' }} />;
       case 'error':
-        return <Alert type="error" message={value.message} showIcon />;
+        return <Alert type="error" message={value.message} showIcon style={{ whiteSpace: 'nowrap' }} />;
       default:
         return <Alert type="error" message="发生未知错误" showIcon />;
     }
@@ -28,7 +38,7 @@ const Result = memo(function Result({ value }: ResultProps) {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [state, setState] = useState<EncodeResult>();
+  const [state, setState] = useState<EncodeOk | EncodeError>();
 
   useEffect(() => {
     const { runtime } = chrome;
@@ -50,7 +60,7 @@ export default function App() {
         };
       }
 
-      const message = await runtime.sendMessage<Message, EncodeResult>({
+      const message = await runtime.sendMessage<Message, EncodeOk | EncodeError>({
         action: ActionType.ENCODE_TAB_LINK,
         payload: {
           content,
@@ -85,8 +95,18 @@ export default function App() {
   }, []);
 
   return (
-    <Spin spinning={loading} delay={120} style={{ minHeight: 37 }}>
-      <Result value={state} />
-    </Spin>
+    <ConfigProvider
+      theme={{
+        token: {
+          borderRadius: 0
+        }
+      }}
+    >
+      <Spin size="small" delay={100} spinning={loading}>
+        <div style={{ minWidth: '100vw', minHeight: '100vh' }}>
+          <Result value={state} />
+        </div>
+      </Spin>
+    </ConfigProvider>
   );
 }
