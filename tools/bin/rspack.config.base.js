@@ -45,7 +45,7 @@ const appConfig = {
   publicPath: '',
   alias: { '/': root },
   context: path.resolve('src'),
-  outputPath: path.resolve('x-qrcode'),
+  outputPath: path.resolve('extension'),
   entry: {
     popup: path.resolve('./src/js/popup/index.tsx'),
     content: path.resolve('./src/js/content/index.tsx'),
@@ -74,7 +74,7 @@ export default async mode => {
     title: appConfig.name,
     minify: !isDevelopment,
     template: resolve('tools/lib/template.ejs'),
-    filename: path.resolve('x-qrcode/popup.html')
+    filename: path.resolve('extension/popup.html')
   };
 
   const options = {
@@ -83,7 +83,7 @@ export default async mode => {
     title: appConfig.name,
     minify: !isDevelopment,
     template: resolve('tools/lib/template.ejs'),
-    filename: path.resolve('x-qrcode/options.html')
+    filename: path.resolve('extension/options.html')
   };
 
   const env = await resolveEnvironment(mode, appConfig.env);
