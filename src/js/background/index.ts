@@ -8,6 +8,7 @@ import { locate } from '/js/common/locate';
 import { ActionType } from '/js/common/action';
 import { bitmapToDataURL } from '/js/common/url';
 import { getImageBitmap } from '/js/common/image';
+import { sendResponse } from '/js/common/message';
 import { getSelectionsText } from '/js/common/selection';
 
 const { commands, contextMenus, i18n, runtime, tabs } = chrome;
@@ -56,11 +57,9 @@ commands.onCommand.addListener((command, tab) => {
   const tabId = tab?.id;
 
   if (tabId != null) {
-    console.log(command);
-
     switch (command) {
       case ActionType.DECODE_SELECT_CAPTURE_AREA:
-        tabs.sendMessage(tabId, {
+        sendResponse(tabId, {
           action: ActionType.DECODE_SELECT_CAPTURE_AREA
         });
         break;
@@ -79,29 +78,16 @@ contextMenus.onClicked.addListener(async (info, tab) => {
         const { linkUrl } = info;
 
         if (linkUrl) {
-          tabs.sendMessage(tabId, {
-            action: ActionType.ENCODE_SELECT_LINK,
-            payload: encode(linkUrl, {
-              level: 'H',
-              fnc1: 'None',
-              mode: 'Auto',
-              quietZone: 8,
-              moduleSize: 2,
-              aimIndicator: 0,
-              version: 'Auto',
-              charset: 'UTF_8',
-              background: '#ffffff',
-              foreground: '#000000'
-            })
+          sendResponse(tabId, {
+            payload: encode(linkUrl),
+            action: ActionType.ENCODE_SELECT_LINK
           });
         }
         break;
       case ActionType.ENCODE_SELECTION_TEXT:
-        const content = await getSelectionsText(tabId);
-
-        tabs.sendMessage(tabId, {
+        sendResponse(tabId, {
           action: ActionType.ENCODE_SELECTION_TEXT,
-          payload: encode(content)
+          payload: encode(await getSelectionsText(tabId))
         });
         break;
       case ActionType.DECODE_SELECT_IMAGE:
@@ -115,16 +101,16 @@ contextMenus.onClicked.addListener(async (info, tab) => {
             const located = await locate(bitmap, decoded);
             const image = located ?? srcUrl;
 
-            tabs.sendMessage(tabId, {
+            sendResponse(tabId, {
               type: 'ok',
-              action: ActionType.DECODE_SELECT_IMAGE,
               payload: {
                 image,
                 decoded
-              }
+              },
+              action: ActionType.DECODE_SELECT_IMAGE
             });
           } else {
-            tabs.sendMessage(tabId, {
+            sendResponse(tabId, {
               type: 'error',
               action: ActionType.DECODE_SELECT_IMAGE,
               message: i18n.getMessage('decode_error')
@@ -135,7 +121,7 @@ contextMenus.onClicked.addListener(async (info, tab) => {
         }
         break;
       case ActionType.DECODE_SELECT_CAPTURE_AREA:
-        tabs.sendMessage(tabId, {
+        sendResponse(tabId, {
           action: ActionType.DECODE_SELECT_CAPTURE_AREA
         });
         break;

@@ -3,6 +3,7 @@
  */
 
 import { ActionType } from '/js/common/action';
+import { sendRequest } from '/js/common/message';
 import { selectCaptureArea } from '/js/common/capturer';
 import { App as AntdApp, ConfigProvider, Image } from 'antd';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
@@ -39,9 +40,9 @@ const Page = memo(function Page() {
             rect: DOMRectReadOnly;
           }
 
-          const response = await runtime.sendMessage<Message, any>({
-            action: ActionType.DECODE_SELECT_CAPTURE_AREA,
-            rect
+          const response = await sendRequest<Message, any>({
+            rect,
+            action: ActionType.DECODE_SELECT_CAPTURE_AREA
           });
 
           if (response) {

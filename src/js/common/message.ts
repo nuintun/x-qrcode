@@ -3,8 +3,7 @@
  */
 
 import { ActionType } from './action';
-import { DecodedError, DecodedOk } from './decode';
-import { EncodedError, EncodedOk } from './encode';
+import { DecodedItem } from './decode';
 
 type EncodeAction =
   // Encode tab link
@@ -20,26 +19,59 @@ type DecodeAction =
   // Decode select capture area
   | ActionType.DECODE_SELECT_CAPTURE_AREA;
 
-export interface EncodeTextOk extends EncodedOk {
+export interface EncodeTextOk {
+  type: 'ok';
+  payload: string;
   action: EncodeAction;
 }
 
-export interface DecodeImageOk extends DecodedOk {
+export interface DecodeImageOk {
+  type: 'ok';
   action: DecodeAction;
+  payload: {
+    image: string;
+    decoded: DecodedItem[];
+  };
 }
 
-export interface EncodeTextError extends EncodedError {
+export interface EncodeTextError {
+  type: 'error';
+  message: string;
   action: EncodeAction;
 }
 
-export interface DecodeImageError extends DecodedError {
+export interface DecodeImageError {
+  type: 'error';
+  message: string;
   action: DecodeAction;
 }
 
-export function sendRequest<M, R>(message: M): Promise<R | null | undefined> {
-  return chrome.runtime.sendMessage<M, R | null>(message);
+export function sendRequest<M, R>(message: M): Promise<R | null> {
+  return chrome.runtime.sendMessage<M, R | null>(message).then(
+    response => {
+      return response ?? null;
+    },
+    error => {
+      if (__DEV__) {
+        console.error(error);
+      }
+
+      return null;
+    }
+  );
 }
 
-export function sendResponse<M, R>(tabId: number, message: M): Promise<R | null | undefined> {
-  return chrome.tabs.sendMessage(tabId, message);
+export function sendResponse<M, R>(tabId: number, message: M): Promise<R | null> {
+  return chrome.tabs.sendMessage(tabId, message).then(
+    response => {
+      return response ?? null;
+    },
+    error => {
+      if (__DEV__) {
+        console.error(error);
+      }
+
+      return null;
+    }
+  );
 }

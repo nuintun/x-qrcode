@@ -3,6 +3,7 @@
  */
 
 import { ActionType } from '/js/common/action';
+import { sendRequest } from '/js/common/message';
 import { memo, useEffect, useState } from 'react';
 import { Alert, ConfigProvider, Spin } from 'antd';
 
@@ -17,7 +18,7 @@ interface EncodeError {
 }
 
 interface ResultProps {
-  value?: EncodeOk | EncodeError;
+  value?: EncodeOk | EncodeError | null;
 }
 
 const Result = memo(function Result({ value }: ResultProps) {
@@ -37,11 +38,9 @@ const Result = memo(function Result({ value }: ResultProps) {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [state, setState] = useState<EncodeOk | EncodeError>();
+  const [state, setState] = useState<EncodeOk | EncodeError | null>();
 
   useEffect(() => {
-    const { runtime } = chrome;
-
     const encode = async () => {
       setLoading(true);
 
@@ -57,9 +56,9 @@ export default function App() {
         payload: string;
       }
 
-      const message = await runtime.sendMessage<Message, EncodeOk | EncodeError>({
-        action: ActionType.ENCODE_TAB_LINK,
-        payload: content
+      const message = await sendRequest<Message, EncodeOk | EncodeError>({
+        payload: content,
+        action: ActionType.ENCODE_TAB_LINK
       });
 
       setState(message);
