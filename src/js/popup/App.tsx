@@ -2,10 +2,9 @@
  * @module App
  */
 
-import { Alert, ConfigProvider, Spin } from 'antd';
-import { Options } from '/js/common/encode';
 import { ActionType } from '/js/common/action';
 import { memo, useEffect, useState } from 'react';
+import { Alert, ConfigProvider, Spin } from 'antd';
 
 interface EncodeOk {
   type: 'ok';
