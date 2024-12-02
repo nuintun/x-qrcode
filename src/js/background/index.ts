@@ -101,18 +101,7 @@ contextMenus.onClicked.addListener(async (info, tab) => {
 
         tabs.sendMessage(tabId, {
           action: ActionType.ENCODE_SELECTION_TEXT,
-          payload: encode(content, {
-            level: 'H',
-            fnc1: 'None',
-            mode: 'Auto',
-            quietZone: 8,
-            moduleSize: 2,
-            aimIndicator: 0,
-            version: 'Auto',
-            charset: 'UTF_8',
-            background: '#ffffff',
-            foreground: '#000000'
-          })
+          payload: encode(content)
         });
         break;
       case ActionType.DECODE_SELECT_IMAGE:
@@ -194,7 +183,7 @@ async function resolveMessage(message: any): Promise<any> {
       };
     case ActionType.ENCODE_TAB_LINK:
       const { payload } = message;
-      const [error, url] = encode(payload.content, payload);
+      const [error, url] = encode(payload);
 
       if (error !== null) {
         return {

@@ -55,26 +55,12 @@ export default function App() {
 
       interface Message {
         action: string;
-        payload: Options & {
-          content: string;
-        };
+        payload: string;
       }
 
       const message = await runtime.sendMessage<Message, EncodeOk | EncodeError>({
         action: ActionType.ENCODE_TAB_LINK,
-        payload: {
-          content,
-          level: 'H',
-          fnc1: 'None',
-          mode: 'Auto',
-          quietZone: 8,
-          moduleSize: 2,
-          aimIndicator: 0,
-          version: 'Auto',
-          charset: 'UTF_8',
-          background: '#ffffff',
-          foreground: '#000000'
-        }
+        payload: content
       });
 
       setState(message);
