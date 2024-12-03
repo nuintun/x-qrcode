@@ -87,7 +87,21 @@ const Page = memo(function Page() {
     };
   }, []);
 
-  return <Image key={url} src={url} width={0} preview={{ visible, onVisibleChange }} />;
+  if (url) {
+    return (
+      <Image
+        key={url}
+        src={url}
+        width={0}
+        preview={{
+          visible,
+          onVisibleChange
+        }}
+      />
+    );
+  }
+
+  return null;
 });
 
 export default memo(function App() {

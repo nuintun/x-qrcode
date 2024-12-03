@@ -58,7 +58,7 @@ export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<str
 
   context.drawImage(image, 0, 0);
 
-  for (const { timing, corners, finder, alignment } of locations) {
+  for (const { timing, finder, corners, alignment } of locations) {
     drawLine(context, corners, '#00ff00', true);
     drawLine(context, [finder[2], finder[0], finder[1]], '#ff0000');
     drawLine(context, [timing[2], timing[0], timing[1]], '#00ff00');
