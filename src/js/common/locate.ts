@@ -11,10 +11,11 @@ export type LocateItem = Pick<DecodedItem, 'center' | 'finder' | 'timing' | 'cor
 
 const { runtime } = chrome;
 const font = runtime.getURL('fonts/serials.woff2');
-
-const fontFace = new FontFace('x-qrcode-serials', `url(${font})`, {
+const fontFace = new FontFace(runtime.id, `url(${font})`, {
   display: 'block'
 });
+
+const fontFamily = JSON.stringify(fontFace.family);
 
 // @ts-expect-error
 globalThis.fonts.add(fontFace);
@@ -30,7 +31,7 @@ function drawIndex(context: Context2D, index: number, center: Point, maxWidth?: 
   context.shadowColor = 'rgba(255, 0, 0)';
   context.strokeStyle = 'rgba(255, 0, 0)';
   context.fillStyle = 'rgba(255, 255, 255)';
-  context.font = `bold italic 20px/1 ${fontFace.family}, monospace`;
+  context.font = `bold italic 20px/1 ${fontFamily}, monospace`;
 
   const serial = (index + 1).toString();
 
