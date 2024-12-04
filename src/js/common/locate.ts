@@ -11,6 +11,7 @@ export type LocateItem = Pick<DecodedItem, 'center' | 'finder' | 'timing' | 'cor
 
 const { runtime } = chrome;
 const font = runtime.getURL('fonts/serials.woff2');
+
 const fontFace = new FontFace(runtime.id, `url(${font})`, {
   display: 'block'
 });
