@@ -65,7 +65,16 @@ export default function App() {
       setLoading(false);
     };
 
-    encode();
+    encode().catch((error: Error) => {
+      if (__DEV__) {
+        setState({
+          type: 'error',
+          message: error.message
+        });
+      }
+
+      setLoading(false);
+    });
 
     const contextmenu = (event: MouseEvent) => {
       event.preventDefault();

@@ -11,7 +11,7 @@ import { getImageBitmap } from '/js/common/image';
 import { sendResponse } from '/js/common/message';
 import { getSelectionsText } from '/js/common/selection';
 
-type MenuEvent = chrome.contextMenus.OnClickData;
+type ContextMenuEvent = chrome.contextMenus.OnClickData;
 
 const { commands, contextMenus, i18n, runtime, tabs } = chrome;
 
@@ -73,7 +73,7 @@ commands.onCommand.addListener((command, tab) => {
   }
 });
 
-async function resolveMenuEvent(tabId: number, event: MenuEvent): Promise<void> {
+async function resolveContextMenuEvent(tabId: number, event: ContextMenuEvent): Promise<void> {
   switch (event.menuItemId) {
     case ActionType.ENCODE_SELECT_LINK:
       const { linkUrl } = event;
@@ -140,7 +140,7 @@ contextMenus.onClicked.addListener((event, tab) => {
   const tabId = tab?.id;
 
   if (tabId != null) {
-    resolveMenuEvent(tabId, event).catch((error: Error) => {
+    resolveContextMenuEvent(tabId, event).catch((error: Error) => {
       if (__DEV__) {
         console.error(error);
       }
@@ -148,10 +148,10 @@ contextMenus.onClicked.addListener((event, tab) => {
   }
 });
 
-async function resolveRuntimeMessage(message: any): Promise<any> {
-  switch (message.action) {
+async function resolveRequestMessage(request: any): Promise<any> {
+  switch (request.action) {
     case ActionType.DECODE_SELECT_CAPTURE_AREA:
-      const { x, y, width, height } = message.rect;
+      const { x, y, width, height } = request.rect;
       const screenshot = await tabs.captureVisibleTab({
         format: 'png'
       });
@@ -180,7 +180,7 @@ async function resolveRuntimeMessage(message: any): Promise<any> {
         message: i18n.getMessage('decode_error')
       };
     case ActionType.ENCODE_TAB_LINK:
-      const { payload } = message;
+      const { payload } = request;
       const [error, url] = encode(payload);
 
       if (error !== null) {
@@ -199,8 +199,8 @@ async function resolveRuntimeMessage(message: any): Promise<any> {
   }
 }
 
-runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  resolveRuntimeMessage(message)
+runtime.onMessage.addListener((request, _sender, sendResponse) => {
+  resolveRequestMessage(request)
     .then(sendResponse)
     .catch((error: Error) => {
       if (__DEV__) {

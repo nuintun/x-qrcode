@@ -63,17 +63,19 @@ const Page = memo(function Page() {
       }
     };
 
-    const onMessage = (message: any) => {
-      switch (message.action) {
+    const onMessage = (response: any) => {
+      switch (response.action) {
         case ActionType.ENCODE_SELECT_LINK:
         case ActionType.ENCODE_SELECTION_TEXT:
-          console.log(message);
+          console.log(response);
           break;
         case ActionType.DECODE_SELECT_IMAGE:
-          console.log(message);
+          console.log(response);
           break;
         case ActionType.DECODE_SELECT_CAPTURE_AREA:
-          capture();
+          capture().catch(error => {
+            message.error(error.message);
+          });
           break;
         default:
           break;
