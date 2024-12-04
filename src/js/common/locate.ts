@@ -2,7 +2,7 @@
  * @module locate
  */
 
-import { blobToDataURL } from './url';
+import { canvasToDataURL } from './url';
 import { DecodedItem, Pattern, Point } from './decode';
 
 export type Context2D = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
@@ -51,7 +51,7 @@ function drawLine(context: Context2D, points: Point[], strokeStyle: string, clos
   context.restore();
 }
 
-export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<string | null> {
+export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<string> {
   const { width, height } = image;
   const canvas = new OffscreenCanvas(width, height);
   const context = canvas.getContext('2d')!;
@@ -72,8 +72,5 @@ export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<str
     }
   }
 
-  return canvas.convertToBlob().then(
-    blob => blobToDataURL(blob),
-    () => null
-  );
+  return canvasToDataURL(canvas);
 }

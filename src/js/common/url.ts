@@ -25,7 +25,14 @@ export async function bitmapToDataURL(image: ImageBitmap): Promise<string> {
 
   context.drawImage(image, 0, 0);
 
-  const blob = await canvas.convertToBlob();
+  return canvasToDataURL(canvas);
+}
 
-  return await blobToDataURL(blob);
+export async function canvasToDataURL(canvas: OffscreenCanvas): Promise<string> {
+  const blob = await canvas.convertToBlob({
+    quality: 0.82,
+    type: 'image/webp'
+  });
+
+  return blobToDataURL(blob);
 }

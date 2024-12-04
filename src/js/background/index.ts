@@ -11,6 +11,8 @@ import { getImageBitmap } from '/js/common/image';
 import { sendResponse } from '/js/common/message';
 import { getSelectionsText } from '/js/common/selection';
 
+type MenuEvent = chrome.contextMenus.OnClickData;
+
 const { commands, contextMenus, i18n, runtime, tabs } = chrome;
 
 runtime.onInstalled.addListener(() => {
@@ -71,74 +73,82 @@ commands.onCommand.addListener((command, tab) => {
   }
 });
 
-contextMenus.onClicked.addListener(async (info, tab) => {
+async function resolveMenuEvent(tabId: number, event: MenuEvent): Promise<void> {
+  switch (event.menuItemId) {
+    case ActionType.ENCODE_SELECT_LINK:
+      const { linkUrl } = event;
+
+      if (linkUrl) {
+        sendResponse(tabId, {
+          payload: encode(linkUrl),
+          action: ActionType.ENCODE_SELECT_LINK
+        });
+      }
+      break;
+    case ActionType.ENCODE_SELECTION_TEXT:
+      sendResponse(tabId, {
+        action: ActionType.ENCODE_SELECTION_TEXT,
+        payload: encode(await getSelectionsText(tabId))
+      });
+      break;
+    case ActionType.DECODE_SELECT_IMAGE:
+      const { srcUrl } = event;
+
+      if (srcUrl) {
+        const bitmap = await getImageBitmap(srcUrl);
+        const decoded = await decode(bitmap);
+
+        if (decoded !== null) {
+          const located = await locate(bitmap, decoded);
+          const image = located ?? srcUrl;
+
+          sendResponse(tabId, {
+            type: 'ok',
+            payload: {
+              image,
+              decoded
+            },
+            action: ActionType.DECODE_SELECT_IMAGE
+          });
+        } else {
+          sendResponse(tabId, {
+            type: 'error',
+            action: ActionType.DECODE_SELECT_IMAGE,
+            message: i18n.getMessage('decode_error')
+          });
+        }
+
+        bitmap.close();
+      }
+      break;
+    case ActionType.DECODE_SELECT_CAPTURE_AREA:
+      sendResponse(tabId, {
+        action: ActionType.DECODE_SELECT_CAPTURE_AREA
+      });
+      break;
+    case ActionType.OPEN_ADVANCED_TOOLBOX:
+      tabs.create({
+        url: 'https://nuintun.github.io/qrcode/packages/examples/app/index.html'
+      });
+      break;
+    default:
+      break;
+  }
+}
+
+contextMenus.onClicked.addListener((event, tab) => {
   const tabId = tab?.id;
 
   if (tabId != null) {
-    switch (info.menuItemId) {
-      case ActionType.ENCODE_SELECT_LINK:
-        const { linkUrl } = info;
-
-        if (linkUrl) {
-          sendResponse(tabId, {
-            payload: encode(linkUrl),
-            action: ActionType.ENCODE_SELECT_LINK
-          });
-        }
-        break;
-      case ActionType.ENCODE_SELECTION_TEXT:
-        sendResponse(tabId, {
-          action: ActionType.ENCODE_SELECTION_TEXT,
-          payload: encode(await getSelectionsText(tabId))
-        });
-        break;
-      case ActionType.DECODE_SELECT_IMAGE:
-        const { srcUrl } = info;
-
-        if (srcUrl) {
-          const bitmap = await getImageBitmap(srcUrl);
-          const decoded = await decode(bitmap);
-
-          if (decoded !== null) {
-            const located = await locate(bitmap, decoded);
-            const image = located ?? srcUrl;
-
-            sendResponse(tabId, {
-              type: 'ok',
-              payload: {
-                image,
-                decoded
-              },
-              action: ActionType.DECODE_SELECT_IMAGE
-            });
-          } else {
-            sendResponse(tabId, {
-              type: 'error',
-              action: ActionType.DECODE_SELECT_IMAGE,
-              message: i18n.getMessage('decode_error')
-            });
-          }
-
-          bitmap.close();
-        }
-        break;
-      case ActionType.DECODE_SELECT_CAPTURE_AREA:
-        sendResponse(tabId, {
-          action: ActionType.DECODE_SELECT_CAPTURE_AREA
-        });
-        break;
-      case ActionType.OPEN_ADVANCED_TOOLBOX:
-        tabs.create({
-          url: 'https://nuintun.github.io/qrcode/packages/examples/app/index.html'
-        });
-        break;
-      default:
-        break;
-    }
+    resolveMenuEvent(tabId, event).catch((error: Error) => {
+      if (__DEV__) {
+        console.error(error);
+      }
+    });
   }
 });
 
-async function resolveMessage(message: any): Promise<any> {
+async function resolveRuntimeMessage(message: any): Promise<any> {
   switch (message.action) {
     case ActionType.DECODE_SELECT_CAPTURE_AREA:
       const { x, y, width, height } = message.rect;
@@ -190,10 +200,14 @@ async function resolveMessage(message: any): Promise<any> {
 }
 
 runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  resolveMessage(message)
+  resolveRuntimeMessage(message)
     .then(sendResponse)
     .catch((error: Error) => {
-      console.error(error);
+      if (__DEV__) {
+        console.error(error);
+      }
+
+      sendResponse();
     });
 
   return true;
