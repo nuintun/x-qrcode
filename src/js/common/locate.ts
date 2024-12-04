@@ -13,12 +13,14 @@ function drawIndex(context: Context2D, index: number, center: Point, maxWidth?: 
   context.save();
 
   context.lineWidth = 4;
+  context.shadowBlur = 2;
   context.lineCap = 'round';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
+  context.shadowColor = 'rgba(255, 0, 0)';
   context.strokeStyle = 'rgba(255, 0, 0)';
   context.fillStyle = 'rgba(255, 255, 255)';
-  context.font = '18px Helvetica, Arial, sans-serif';
+  context.font = `bold italic 20px/1 "Courier New", monospace`;
 
   const serial = (index + 1).toString();
 
@@ -72,12 +74,13 @@ function drawLine(context: Context2D, points: Point[], strokeStyle: string, clos
 
 export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<string> {
   const { width, height } = image;
+  const entries = locations.entries();
   const canvas = new OffscreenCanvas(width, height);
   const context = canvas.getContext('2d')!;
 
   context.drawImage(image, 0, 0);
 
-  for (const [index, { center, finder, timing, corners, alignment }] of locations.entries()) {
+  for (const [index, { center, finder, timing, corners, alignment }] of entries) {
     drawLine(context, corners, '#00ff00', true);
     drawLine(context, [finder[2], finder[0], finder[1]], '#ff0000');
     drawLine(context, [timing[2], timing[0], timing[1]], '#00ff00');
