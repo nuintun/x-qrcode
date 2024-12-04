@@ -14,42 +14,44 @@ import { getSelectionsText } from '/js/common/selection';
 const { commands, contextMenus, i18n, runtime, tabs } = chrome;
 
 runtime.onInstalled.addListener(() => {
-  const { runtime } = chrome;
-  const manifest = runtime.getManifest();
-  const matches = manifest.host_permissions;
+  contextMenus.removeAll(() => {
+    const { runtime } = chrome;
+    const manifest = runtime.getManifest();
+    const matches = manifest.host_permissions;
 
-  contextMenus.create({
-    contexts: ['link'],
-    documentUrlPatterns: matches,
-    id: ActionType.ENCODE_SELECT_LINK,
-    title: i18n.getMessage(ActionType.ENCODE_SELECT_LINK)
-  });
+    contextMenus.create({
+      contexts: ['link'],
+      documentUrlPatterns: matches,
+      id: ActionType.ENCODE_SELECT_LINK,
+      title: i18n.getMessage(ActionType.ENCODE_SELECT_LINK)
+    });
 
-  contextMenus.create({
-    contexts: ['image'],
-    documentUrlPatterns: matches,
-    id: ActionType.DECODE_SELECT_IMAGE,
-    title: i18n.getMessage(ActionType.DECODE_SELECT_IMAGE)
-  });
+    contextMenus.create({
+      contexts: ['image'],
+      documentUrlPatterns: matches,
+      id: ActionType.DECODE_SELECT_IMAGE,
+      title: i18n.getMessage(ActionType.DECODE_SELECT_IMAGE)
+    });
 
-  contextMenus.create({
-    contexts: ['selection'],
-    documentUrlPatterns: matches,
-    id: ActionType.ENCODE_SELECTION_TEXT,
-    title: i18n.getMessage(ActionType.ENCODE_SELECTION_TEXT)
-  });
+    contextMenus.create({
+      contexts: ['selection'],
+      documentUrlPatterns: matches,
+      id: ActionType.ENCODE_SELECTION_TEXT,
+      title: i18n.getMessage(ActionType.ENCODE_SELECTION_TEXT)
+    });
 
-  contextMenus.create({
-    contexts: ['page'],
-    documentUrlPatterns: matches,
-    id: ActionType.DECODE_SELECT_CAPTURE_AREA,
-    title: i18n.getMessage(ActionType.DECODE_SELECT_CAPTURE_AREA)
-  });
+    contextMenus.create({
+      contexts: ['page'],
+      documentUrlPatterns: matches,
+      id: ActionType.DECODE_SELECT_CAPTURE_AREA,
+      title: i18n.getMessage(ActionType.DECODE_SELECT_CAPTURE_AREA)
+    });
 
-  contextMenus.create({
-    contexts: ['action'],
-    id: ActionType.OPEN_ADVANCED_TOOLBOX,
-    title: i18n.getMessage(ActionType.OPEN_ADVANCED_TOOLBOX)
+    contextMenus.create({
+      contexts: ['action'],
+      id: ActionType.OPEN_ADVANCED_TOOLBOX,
+      title: i18n.getMessage(ActionType.OPEN_ADVANCED_TOOLBOX)
+    });
   });
 });
 
