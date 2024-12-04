@@ -146,6 +146,7 @@ export default async mode => {
       new rspack.HtmlRspackPlugin(options),
       new rspack.CopyRspackPlugin({
         patterns: [
+          { from: 'fonts', to: 'fonts' },
           { from: 'images', to: 'images' },
           { from: '_locales', to: '_locales' },
           { from: 'manifest.json', to: 'manifest.json' }
