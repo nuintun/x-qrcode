@@ -7,7 +7,26 @@ import { DecodedItem, Pattern, Point } from './decode';
 
 export type Context2D = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 
-export type LocateItem = Pick<DecodedItem, 'timing' | 'finder' | 'corners' | 'alignment'>;
+export type LocateItem = Pick<DecodedItem, 'center' | 'finder' | 'timing' | 'corners' | 'alignment'>;
+
+function drawIndex(context: Context2D, index: number, center: Point, maxWidth?: number): void {
+  context.save();
+
+  context.lineWidth = 4;
+  context.lineCap = 'round';
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
+  context.strokeStyle = 'rgba(255, 0, 0)';
+  context.fillStyle = 'rgba(255, 255, 255)';
+  context.font = '18px Helvetica, Arial, sans-serif';
+
+  const serial = (index + 1).toString();
+
+  context.strokeText(serial, center.x, center.y, maxWidth);
+  context.fillText(serial, center.x, center.y, maxWidth);
+
+  context.restore();
+}
 
 function markPattern(context: Context2D, { x, y, moduleSize }: Pattern, fillStyle: string): void {
   context.save();
@@ -58,7 +77,7 @@ export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<str
 
   context.drawImage(image, 0, 0);
 
-  for (const { timing, finder, corners, alignment } of locations) {
+  for (const [index, { center, finder, timing, corners, alignment }] of locations.entries()) {
     drawLine(context, corners, '#00ff00', true);
     drawLine(context, [finder[2], finder[0], finder[1]], '#ff0000');
     drawLine(context, [timing[2], timing[0], timing[1]], '#00ff00');
@@ -70,6 +89,8 @@ export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<str
     if (alignment != null) {
       markPattern(context, alignment, '#ff00ff');
     }
+
+    drawIndex(context, index, center, width);
   }
 
   return canvasToDataURL(canvas);

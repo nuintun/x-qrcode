@@ -27,6 +27,7 @@ export interface Pattern extends Point {
 export type DecodeResult = DecodedItem[] | null;
 
 export interface DecodedItem extends Omit<Decoded, 'codewords'> {
+  center: Point;
   alignment: Pattern | null;
   timing: [topLeft: Point, topRight: Point, bottomLeft: Point];
   finder: [topLeft: Pattern, topRight: Pattern, bottomLeft: Pattern];
@@ -115,6 +116,7 @@ function decodeBitMatrix(matrix: BitMatrix, strict?: boolean): DecodeResult {
         symbology: decoded.symbology,
         structured: decoded.structured,
         alignment: alignment ? toPattern(alignment) : null,
+        center: toPoint(detect.mapping(size / 2, size / 2)),
         finder: [toPattern(topLeft), toPattern(topRight), toPattern(bottomLeft)],
         timing: [toPoint(topLeftTiming), toPoint(topRightTiming), toPoint(bottomLeftTiming)],
         corners: [toPoint(topLeftCorner), toPoint(topRightCorner), toPoint(bottomRightCorner), toPoint(bottomLeftCorner)]
