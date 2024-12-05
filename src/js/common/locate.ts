@@ -9,18 +9,6 @@ export type Context2D = CanvasRenderingContext2D | OffscreenCanvasRenderingConte
 
 export type LocateItem = Pick<DecodedItem, 'center' | 'finder' | 'timing' | 'corners' | 'alignment'>;
 
-const { runtime } = chrome;
-const font = runtime.getURL('fonts/serials.woff2');
-
-const fontFace = new FontFace(runtime.id, `url(${font})`, {
-  display: 'block'
-});
-
-const fontFamily = JSON.stringify(fontFace.family);
-
-// @ts-expect-error
-globalThis.fonts.add(fontFace);
-
 function drawIndex(context: Context2D, index: number, center: Point, maxWidth?: number): void {
   context.save();
 
@@ -31,13 +19,18 @@ function drawIndex(context: Context2D, index: number, center: Point, maxWidth?: 
   context.textBaseline = 'middle';
   context.shadowColor = 'rgba(255, 0, 0)';
   context.strokeStyle = 'rgba(255, 0, 0)';
-  context.fillStyle = 'rgba(255, 255, 255)';
-  context.font = `bold italic 20px/1 ${fontFamily}, monospace`;
+  context.font = `bold 20px/1 Arial, monospace`;
 
+  const x = Math.ceil(center.x + 1);
+  const y = Math.ceil(center.y + 1);
   const serial = (index + 1).toString();
 
-  context.strokeText(serial, center.x, center.y, maxWidth);
-  context.fillText(serial, center.x, center.y, maxWidth);
+  context.strokeText(serial, x, y, maxWidth);
+
+  context.shadowBlur = 0;
+  context.fillStyle = 'rgba(255, 255, 255)';
+
+  context.fillText(serial, x, y, maxWidth);
 
   context.restore();
 }
@@ -84,9 +77,7 @@ function drawLine(context: Context2D, points: Point[], strokeStyle: string, clos
   context.restore();
 }
 
-export async function locate(image: ImageBitmap, locations: LocateItem[]): Promise<string> {
-  await fontFace.load();
-
+export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<string> {
   const { width, height } = image;
   const entries = locations.entries();
   const canvas = new OffscreenCanvas(width, height);
