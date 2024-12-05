@@ -51,7 +51,7 @@ function markPattern(context: Context2D, { x, y, moduleSize }: Pattern, fillStyl
 function drawLine(context: Context2D, points: Point[], strokeStyle: string, closePath?: boolean): void {
   context.save();
 
-  context.lineWidth = 1;
+  context.lineWidth = 2;
   context.lineCap = 'square';
   context.lineJoin = 'miter';
   context.strokeStyle = strokeStyle;
