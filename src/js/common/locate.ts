@@ -19,10 +19,11 @@ function drawIndex(context: Context2D, index: number, center: Point, maxWidth?: 
   context.textBaseline = 'middle';
   context.shadowColor = 'rgba(255, 0, 0)';
   context.strokeStyle = 'rgba(255, 0, 0)';
-  context.font = `bold 20px/1 Arial, monospace`;
+  context.textRendering = 'geometricPrecision';
+  context.font = 'bold 20px/1 Arial, monospace';
 
-  const x = Math.ceil(center.x + 1);
-  const y = Math.ceil(center.y + 1);
+  const x = center.x;
+  const y = Math.round(center.y + 1);
   const serial = (index + 1).toString();
 
   context.strokeText(serial, x, y, maxWidth);
