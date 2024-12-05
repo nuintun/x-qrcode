@@ -48,12 +48,12 @@ function markPattern(context: Context2D, { x, y, moduleSize }: Pattern, fillStyl
   context.restore();
 }
 
-function drawLine(context: Context2D, points: Point[], strokeStyle: string, closePath?: boolean): void {
+function drawLine(context: Context2D, points: Point[], strokeStyle: string, lineWidth = 1, closePath?: boolean): void {
   context.save();
 
-  context.lineWidth = 2;
   context.lineCap = 'square';
   context.lineJoin = 'miter';
+  context.lineWidth = lineWidth;
   context.strokeStyle = strokeStyle;
 
   const [start] = points;
@@ -86,7 +86,7 @@ export function locate(image: ImageBitmap, locations: LocateItem[]): Promise<str
   context.drawImage(image, 0, 0);
 
   for (const [index, { center, finder, timing, corners, alignment }] of entries) {
-    drawLine(context, corners, '#00ff00', true);
+    drawLine(context, corners, '#00ff00', 2, true);
     drawLine(context, [finder[2], finder[0], finder[1]], '#ff0000');
     drawLine(context, [timing[2], timing[0], timing[1]], '#00ff00');
 
