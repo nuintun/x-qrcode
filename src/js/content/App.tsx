@@ -33,7 +33,7 @@ const Page = memo(function Page() {
         const rect = await selectCaptureArea();
 
         if (rect !== null) {
-          const unloading = message.loading('解码中...');
+          const unloading = message.loading('解码中...', 0);
 
           interface Message {
             action: string;
