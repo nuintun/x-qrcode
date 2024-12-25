@@ -24,24 +24,24 @@
   "homepage": "https://github.com/nuintun/x-qrcode#readme",
   "dependencies": {
     "@ant-design/cssinjs": "^1.22.1",
-    "@nuintun/qrcode": "^4.1.6",
+    "@nuintun/qrcode": "^4.1.12",
     "@swc/helpers": "^0.5.15",
-    "antd": "^5.22.3",
+    "antd": "^5.22.6",
     "chardet": "^2.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@nuintun/svgo-loader": "^0.2.16",
-    "@rspack/core": "^1.1.5",
+    "@nuintun/svgo-loader": "^0.3.3",
+    "@rspack/core": "^1.1.8",
     "@types/chrome": "^0.0.287",
-    "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
-    "nodemon": "^3.1.7",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
-    "sass-embedded": "^1.82.0",
+    "sass-embedded": "^1.83.0",
     "sass-loader": "^16.0.4",
-    "svgc-loader": "^0.2.16",
+    "svgc-loader": "^0.3.3",
     "typescript": "^5.7.2"
   }
 }
