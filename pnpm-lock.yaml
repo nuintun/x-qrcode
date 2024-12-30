@@ -18,8 +18,8 @@ importers:
         specifier: ^0.5.15
         version: 0.5.15
       antd:
-        specifier: ^5.22.6
-        version: 5.22.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^5.22.7
+        version: 5.22.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       chardet:
         specifier: ^2.0.0
         version: 2.0.0
@@ -290,8 +290,8 @@ packages:
   '@types/react@18.3.18':
     resolution: {integrity: sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==}
 
-  antd@5.22.6:
-    resolution: {integrity: sha512-ZYURSV3FR8qQgbfpa554thlO07L6PeHwhAM0wmxnobOBogND/HqSnTU+UZTqT2b2y9MxSfAIu5Xn1uEM9UpceQ==}
+  antd@5.22.7:
+    resolution: {integrity: sha512-koT5QMliDgXc21yNcs4Uyuq6TeB5AJbzGZ2qjNExzE7Tjr8yYIX6sJsQfunsEV80wC1mpF7m9ldKuNj+PafcFA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -1236,7 +1236,7 @@ snapshots:
       '@types/prop-types': 15.7.14
       csstype: 3.1.3
 
-  antd@5.22.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  antd@5.22.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@ant-design/colors': 7.1.0
       '@ant-design/cssinjs': 1.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
