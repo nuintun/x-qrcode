@@ -12,8 +12,8 @@ importers:
         specifier: ^1.22.1
         version: 1.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nuintun/qrcode':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@swc/helpers':
         specifier: ^0.5.15
         version: 0.5.15
@@ -37,8 +37,8 @@ importers:
         specifier: ^1.1.8
         version: 1.1.8(@swc/helpers@0.5.15)
       '@types/chrome':
-        specifier: ^0.0.290
-        version: 0.0.290
+        specifier: ^0.0.291
+        version: 0.0.291
       '@types/react':
         specifier: ^18.3.18
         version: 18.3.18
@@ -61,8 +61,8 @@ importers:
         specifier: ^0.3.3
         version: 0.3.3(@rspack/core@1.1.8(@swc/helpers@0.5.15))(react@18.3.1)
       typescript:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^5.7.3
+        version: 5.7.3
 
 packages:
 
@@ -125,8 +125,8 @@ packages:
   '@module-federation/webpack-bundler-runtime@0.5.1':
     resolution: {integrity: sha512-mMhRFH0k2VjwHt3Jol9JkUsmI/4XlrAoBG3E0o7HoyoPYv1UFOWyqAflfANcUPgbYpvqmyLzDcO+3IT36LXnrA==}
 
-  '@nuintun/qrcode@4.1.12':
-    resolution: {integrity: sha512-JyXpf0rsBokNQoFSDlyVc+YHTTOSzCTh30wt4tHMGyGZ//7mR0cCMTusVVV6uOBsLoUd8ZIha+6fZ3dtMpn85g==}
+  '@nuintun/qrcode@4.1.13':
+    resolution: {integrity: sha512-xg9CeAG8pxohYTUeJ4Rodc2q8cuHY4ml2TTJGajC1BT8f2GiP2Nd6+mIszQqkeICBh/0hk5keg4WBPQCyhsaWw==}
 
   '@nuintun/svgo-loader@0.3.3':
     resolution: {integrity: sha512-ZD8YYqMgbOtBJRqH+rdB1H+lEu6fNBXNlwkVYJsYIJFFFBI9rbSsWiqgN1wcg84aBltXzgSnsN2XycLhGNKgkA==}
@@ -263,8 +263,8 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  '@types/chrome@0.0.290':
-    resolution: {integrity: sha512-N92vsAdlwoWameDQ8D4K0EZXXvxsJ1+gJg+4TWjUUsZ6gpontVmwl1XVtysA3mso45Fcn5UPiX/yqiT8GcBV3A==}
+  '@types/chrome@0.0.291':
+    resolution: {integrity: sha512-pvzuUGY0dpO6qbikDEiKbiLLEUgSgnYnvk5mPNWImPcB/HWwkH/bvU5lR/XdPpB03W0jnEuOIXjblzAq759zkg==}
 
   '@types/filesystem@0.0.36':
     resolution: {integrity: sha512-vPDXOZuannb9FZdxgHnqSwAG/jvdGM8Wq+6N4D/d80z+D4HWH+bItqsZaVRQykAn6WEVeEkLm2oQigyHtgb0RA==}
@@ -393,8 +393,8 @@ packages:
     resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
     engines: {node: '>= 4'}
 
-  domutils@3.2.1:
-    resolution: {integrity: sha512-xWXmuRnN9OMP6ptPd2+H0cCbcYBULa5YDTbMm/2lvkWvNA3O4wcW+GvzooqBuNM8yy6pl3VIAeJTUUWUbfI5Fw==}
+  domutils@3.2.2:
+    resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
@@ -584,8 +584,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-overflow@1.3.2:
-    resolution: {integrity: sha512-nsUm78jkYAoPygDAcGZeC2VwIg/IBGSodtOY3pMof4W3M9qRJgqaDYm03ZayHlde3I6ipliAxbN0RUcGf5KOzw==}
+  rc-overflow@1.4.1:
+    resolution: {integrity: sha512-3MoPQQPV1uKyOMVNd6SZfONi+f3st0r8PksexIdBTeIYbMX0Jr+k7pHEDvsXtR4BpCv90/Pv2MovVNhktKrwvw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -596,8 +596,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-picker@4.9.0:
-    resolution: {integrity: sha512-37Cx1tCsKuCMCLRAJZTjLJNVmX14QcapLlNQFUhcBjpPbzT3a62Q+p9ct7Oa9oKDn6nvfBh4I5CC3q92pOPq3w==}
+  rc-picker@4.9.2:
+    resolution: {integrity: sha512-SLW4PRudODOomipKI0dvykxW4P8LOqtMr17MOaLU6NQJhkh9SZeh44a/8BMxwv5T6e3kiIeYc9k5jFg2Mv35Pg==}
     engines: {node: '>=8.x'}
     peerDependencies:
       date-fns: '>= 2.x'
@@ -668,8 +668,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-table@7.50.1:
-    resolution: {integrity: sha512-+kt7uQvJUsGBwVStrFwS6lMuQTY1TlH7Zh82PB7JflbD968qXyZ6tSTyQjXW0ObFsqpKB/lprdqqU4fl6cj9Uw==}
+  rc-table@7.50.2:
+    resolution: {integrity: sha512-+nJbzxzstBriLb5sr9U7Vjs7+4dO8cWlouQbMwBVYghk2vr508bBdkHJeP/z9HVjAIKmAgMQKxmtbgDd3gc5wA==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -719,8 +719,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-virtual-list@3.16.1:
-    resolution: {integrity: sha512-algM5UsB7vrlPNr9lsZEH8s9KHkP8XbT/Y0qylyPkiM8mIOlSJLjBNADcmbYPEQCm4zW82mZRJuVHNzqqN0EAQ==}
+  rc-virtual-list@3.17.0:
+    resolution: {integrity: sha512-h0jPHWt8/Ots9eiGVSGQTxwrSuQ3kxqL/ERKubv8zzIMICGQaDDWm/JoUa31MdQUC7PKDMiy5KDLkNfHcWo+iQ==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -982,8 +982,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  typescript@5.7.2:
-    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1070,7 +1070,7 @@ snapshots:
       '@module-federation/runtime': 0.5.1
       '@module-federation/sdk': 0.5.1
 
-  '@nuintun/qrcode@4.1.12':
+  '@nuintun/qrcode@4.1.13':
     dependencies:
       tslib: 2.8.1
 
@@ -1206,7 +1206,7 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
-  '@types/chrome@0.0.290':
+  '@types/chrome@0.0.291':
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
@@ -1262,7 +1262,7 @@ snapshots:
       rc-motion: 2.9.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-notification: 5.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-pagination: 5.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-picker: 4.9.0(dayjs@1.11.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-picker: 4.9.2(dayjs@1.11.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-progress: 4.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-rate: 2.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-resize-observer: 1.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1271,7 +1271,7 @@ snapshots:
       rc-slider: 11.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-steps: 6.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-switch: 4.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-table: 7.50.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-table: 7.50.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-tabs: 15.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-textarea: 1.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-tooltip: 6.3.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1345,7 +1345,7 @@ snapshots:
       boolbase: 1.0.0
       css-what: 6.1.0
       domhandler: 5.0.3
-      domutils: 3.2.1
+      domutils: 3.2.2
       nth-check: 2.1.1
 
   css-tree@2.2.1:
@@ -1391,7 +1391,7 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
-  domutils@3.2.1:
+  domutils@3.2.2:
     dependencies:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
@@ -1592,7 +1592,7 @@ snapshots:
       '@rc-component/trigger': 2.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-overflow: 1.3.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-overflow: 1.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-util: 5.44.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -1614,7 +1614,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  rc-overflow@1.3.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  rc-overflow@1.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.0
       classnames: 2.5.1
@@ -1631,12 +1631,12 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  rc-picker@4.9.0(dayjs@1.11.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  rc-picker@4.9.2(dayjs@1.11.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames: 2.5.1
-      rc-overflow: 1.3.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-overflow: 1.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-resize-observer: 1.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-util: 5.44.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
@@ -1684,9 +1684,9 @@ snapshots:
       '@rc-component/trigger': 2.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-overflow: 1.3.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-overflow: 1.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-util: 5.44.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-virtual-list: 3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-virtual-list: 3.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -1714,14 +1714,14 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  rc-table@7.50.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  rc-table@7.50.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.0
       '@rc-component/context': 1.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames: 2.5.1
       rc-resize-observer: 1.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-util: 5.44.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-virtual-list: 3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-virtual-list: 3.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -1771,7 +1771,7 @@ snapshots:
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-util: 5.44.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-virtual-list: 3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-virtual-list: 3.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -1790,7 +1790,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-is: 18.3.1
 
-  rc-virtual-list@3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  rc-virtual-list@3.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.0
       classnames: 2.5.1
@@ -1987,7 +1987,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  typescript@5.7.2: {}
+  typescript@5.7.3: {}
 
   undefsafe@2.0.5: {}
 
