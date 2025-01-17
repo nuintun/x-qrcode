@@ -37,8 +37,8 @@ importers:
         specifier: ^1.1.8
         version: 1.1.8(@swc/helpers@0.5.15)
       '@types/chrome':
-        specifier: ^0.0.296
-        version: 0.0.296
+        specifier: ^0.0.297
+        version: 0.0.297
       '@types/react':
         specifier: ^18.3.18
         version: 18.3.18
@@ -263,8 +263,8 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  '@types/chrome@0.0.296':
-    resolution: {integrity: sha512-EWVcJlIXi2PzKfnzOXkIfySMFkdOQ6DiKkhbuHeuvTxOcVYeUBXbfiExSJ5EDS4M0gAChO/15tDHqMWP47muYw==}
+  '@types/chrome@0.0.297':
+    resolution: {integrity: sha512-e7HM20aH/0Ate5zEP00il2Dzlt8HvO6nXGgxiXKuc1E5cVsNvcykBiTyrSvmWPPDzdZRC5QZvVDYXTihiF1Jfw==}
 
   '@types/filesystem@0.0.36':
     resolution: {integrity: sha512-vPDXOZuannb9FZdxgHnqSwAG/jvdGM8Wq+6N4D/d80z+D4HWH+bItqsZaVRQykAn6WEVeEkLm2oQigyHtgb0RA==}
@@ -1206,7 +1206,7 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
-  '@types/chrome@0.0.296':
+  '@types/chrome@0.0.297':
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
