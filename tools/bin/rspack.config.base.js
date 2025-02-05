@@ -90,6 +90,7 @@ export default async mode => {
 
   return {
     mode,
+    cache: true,
     name: appConfig.name,
     entry: appConfig.entry,
     context: appConfig.context,
