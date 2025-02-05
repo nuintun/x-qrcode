@@ -105,7 +105,11 @@ export default async mode => {
       assetModuleFilename: '[path][name][ext]'
     },
     experiments: {
-      css: true
+      css: true,
+      cache: {
+        type: 'persistent'
+      },
+      parallelCodeSplitting: true
     },
     externals: appConfig.externals,
     externalsType: appConfig.externalsType,
@@ -144,6 +148,7 @@ export default async mode => {
       new rspack.ProgressPlugin(progress),
       new rspack.HtmlRspackPlugin(popup),
       new rspack.HtmlRspackPlugin(options),
+      new rspack.WarnCaseSensitiveModulesPlugin(),
       new rspack.CopyRspackPlugin({
         patterns: [
           { from: 'images', to: 'images' },

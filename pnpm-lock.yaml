@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@ant-design/cssinjs':
-        specifier: ^1.22.1
-        version: 1.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.23.0
+        version: 1.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nuintun/qrcode':
         specifier: ^4.1.13
         version: 4.1.13
@@ -18,8 +18,8 @@ importers:
         specifier: ^0.5.15
         version: 0.5.15
       antd:
-        specifier: ^5.23.2
-        version: 5.23.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^5.23.3
+        version: 5.23.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       chardet:
         specifier: ^2.0.0
         version: 2.0.0
@@ -32,13 +32,13 @@ importers:
     devDependencies:
       '@nuintun/svgo-loader':
         specifier: ^0.3.3
-        version: 0.3.3(@rspack/core@1.1.8(@swc/helpers@0.5.15))
+        version: 0.3.3(@rspack/core@1.2.2(@swc/helpers@0.5.15))
       '@rspack/core':
-        specifier: ^1.1.8
-        version: 1.1.8(@swc/helpers@0.5.15)
+        specifier: ^1.2.2
+        version: 1.2.2(@swc/helpers@0.5.15)
       '@types/chrome':
-        specifier: ^0.0.298
-        version: 0.0.298
+        specifier: ^0.0.301
+        version: 0.0.301
       '@types/react':
         specifier: ^18.3.18
         version: 18.3.18
@@ -56,10 +56,10 @@ importers:
         version: 1.83.4
       sass-loader:
         specifier: ^16.0.4
-        version: 16.0.4(@rspack/core@1.1.8(@swc/helpers@0.5.15))(sass-embedded@1.83.4)
+        version: 16.0.4(@rspack/core@1.2.2(@swc/helpers@0.5.15))(sass-embedded@1.83.4)
       svgc-loader:
         specifier: ^0.3.3
-        version: 0.3.3(@rspack/core@1.1.8(@swc/helpers@0.5.15))(react@18.3.1)
+        version: 0.3.3(@rspack/core@1.2.2(@swc/helpers@0.5.15))(react@18.3.1)
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -75,8 +75,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  '@ant-design/cssinjs@1.22.1':
-    resolution: {integrity: sha512-SLuXM4wiEE1blOx94iXrkOgseMZHzdr4ngdFu3VVDq6AOWh7rlwqTkMAtJho3EsBF6x/eUGOtK53VZXGQG7+sQ==}
+  '@ant-design/cssinjs@1.23.0':
+    resolution: {integrity: sha512-7GAg9bD/iC9ikWatU9ym+P9ugJhi/WbsTWzcKN6T4gU0aehsprtke1UAaaSxxkjjmkJb3llet/rbUSLPgwlY4w==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -88,8 +88,8 @@ packages:
   '@ant-design/icons-svg@4.4.2':
     resolution: {integrity: sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==}
 
-  '@ant-design/icons@5.5.2':
-    resolution: {integrity: sha512-xc53rjVBl9v2BqFxUjZGti/RfdDeA8/6KYglmInM2PNqSXc/WfuGDTifJI/ZsokJK0aeKvOIbXc9y2g8ILAhEA==}
+  '@ant-design/icons@5.6.0':
+    resolution: {integrity: sha512-Mb6QkQmPLZsmIHJ6oBsoyKrrT8/kAUdQ6+8q38e2bQSclROi69SiDlI4zZroaIPseae1w110RJH0zGrphAvlSQ==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.0.0'
@@ -113,17 +113,20 @@ packages:
   '@emotion/unitless@0.7.5':
     resolution: {integrity: sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==}
 
-  '@module-federation/runtime-tools@0.5.1':
-    resolution: {integrity: sha512-nfBedkoZ3/SWyO0hnmaxuz0R0iGPSikHZOAZ0N/dVSQaIzlffUo35B5nlC2wgWIc0JdMZfkwkjZRrnuuDIJbzg==}
+  '@module-federation/error-codes@0.8.4':
+    resolution: {integrity: sha512-55LYmrDdKb4jt+qr8qE8U3al62ZANp3FhfVaNPOaAmdTh0jHdD8M3yf5HKFlr5xVkVO4eV/F/J2NCfpbh+pEXQ==}
 
-  '@module-federation/runtime@0.5.1':
-    resolution: {integrity: sha512-xgiMUWwGLWDrvZc9JibuEbXIbhXg6z2oUkemogSvQ4LKvrl/n0kbqP1Blk669mXzyWbqtSp6PpvNdwaE1aN5xQ==}
+  '@module-federation/runtime-tools@0.8.4':
+    resolution: {integrity: sha512-fjVOsItJ1u5YY6E9FnS56UDwZgqEQUrWFnouRiPtK123LUuqUI9FH4redZoKWlE1PB0ir1Z3tnqy8eFYzPO38Q==}
 
-  '@module-federation/sdk@0.5.1':
-    resolution: {integrity: sha512-exvchtjNURJJkpqjQ3/opdbfeT2wPKvrbnGnyRkrwW5o3FH1LaST1tkiNviT6OXTexGaVc2DahbdniQHVtQ7pA==}
+  '@module-federation/runtime@0.8.4':
+    resolution: {integrity: sha512-yZeZ7z2Rx4gv/0E97oLTF3V6N25vglmwXGgoeju/W2YjsFvWzVtCDI7zRRb0mJhU6+jmSM8jP1DeQGbea/AiZQ==}
 
-  '@module-federation/webpack-bundler-runtime@0.5.1':
-    resolution: {integrity: sha512-mMhRFH0k2VjwHt3Jol9JkUsmI/4XlrAoBG3E0o7HoyoPYv1UFOWyqAflfANcUPgbYpvqmyLzDcO+3IT36LXnrA==}
+  '@module-federation/sdk@0.8.4':
+    resolution: {integrity: sha512-waABomIjg/5m1rPDBWYG4KUhS5r7OUUY7S+avpaVIY/tkPWB3ibRDKy2dNLLAMaLKq0u+B1qIdEp4NIWkqhqpg==}
+
+  '@module-federation/webpack-bundler-runtime@0.8.4':
+    resolution: {integrity: sha512-HggROJhvHPUX7uqBD/XlajGygMNM1DG0+4OAkk8MBQe4a18QzrRNzZt6XQbRTSG4OaEoyRWhQHvYD3Yps405tQ==}
 
   '@nuintun/qrcode@4.1.13':
     resolution: {integrity: sha512-xg9CeAG8pxohYTUeJ4Rodc2q8cuHY4ml2TTJGajC1BT8f2GiP2Nd6+mIszQqkeICBh/0hk5keg4WBPQCyhsaWw==}
@@ -195,60 +198,63 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  '@rspack/binding-darwin-arm64@1.1.8':
-    resolution: {integrity: sha512-I7avr471ghQ3LAqKm2fuXuJPLgQ9gffn5Q4nHi8rsukuZUtiLDPfYzK1QuupEp2JXRWM1gG5lIbSUOht3cD6Ug==}
+  '@rspack/binding-darwin-arm64@1.2.2':
+    resolution: {integrity: sha512-h23F8zEkXWhwMeScm0ZnN78Zh7hCDalxIWsm7bBS0eKadnlegUDwwCF8WE+8NjWr7bRzv0p3QBWlS5ufkcL4eA==}
     cpu: [arm64]
     os: [darwin]
 
-  '@rspack/binding-darwin-x64@1.1.8':
-    resolution: {integrity: sha512-vfqf/c+mcx8rr1M8LnqKmzDdnrgguflZnjGerBLjNerAc+dcUp3lCvNxRIvZ2TkSZZBW8BpCMgjj3n70CZ4VLQ==}
+  '@rspack/binding-darwin-x64@1.2.2':
+    resolution: {integrity: sha512-vG5s7FkEvwrGLfksyDRHwKAHUkhZt1zHZZXJQn4gZKjTBonje8ezdc7IFlDiWpC4S+oBYp73nDWkUzkGRbSdcQ==}
     cpu: [x64]
     os: [darwin]
 
-  '@rspack/binding-linux-arm64-gnu@1.1.8':
-    resolution: {integrity: sha512-lZlO/rAJSeozi+qtVLkGSXfe+riPawCwM4FsrflELfNlvvEXpANwtrdJ+LsaNVXcgvhh50ZX2KicTdmx9G2b6Q==}
+  '@rspack/binding-linux-arm64-gnu@1.2.2':
+    resolution: {integrity: sha512-VykY/kiYOzO8E1nYzfJ9+gQEHxb5B6lt5wa8M6xFi5B6jEGU+OsaGskmAZB9/GFImeFDHxDPvhUalI4R9p8O2Q==}
     cpu: [arm64]
     os: [linux]
 
-  '@rspack/binding-linux-arm64-musl@1.1.8':
-    resolution: {integrity: sha512-bX7exULSZwy8xtDh6Z65b6sRC4uSxGuyvSLCEKyhmG6AnJkg0gQMxk3hoO0hWnyGEZgdJEn+jEhk0fjl+6ZRAQ==}
+  '@rspack/binding-linux-arm64-musl@1.2.2':
+    resolution: {integrity: sha512-Z5vAC4wGfXi8XXZ6hs8Q06TYjr3zHf819HB4DI5i4C1eQTeKdZSyoFD0NHFG23bP4NWJffp8KhmoObcy9jBT5Q==}
     cpu: [arm64]
     os: [linux]
 
-  '@rspack/binding-linux-x64-gnu@1.1.8':
-    resolution: {integrity: sha512-2Prw2USgTJ3aLdLExfik8pAwAHbX4MZrACBGEmR7Vbb56kLjC+++fXkciRc50pUDK4JFr1VQ7eNZrJuDR6GG6Q==}
+  '@rspack/binding-linux-x64-gnu@1.2.2':
+    resolution: {integrity: sha512-o3pDaL+cH5EeRbDE9gZcdZpBgp5iXvYZBBhe8vZQllYgI4zN5MJEuleV7WplG3UwTXlgZg3Kht4RORSOPn96vg==}
     cpu: [x64]
     os: [linux]
 
-  '@rspack/binding-linux-x64-musl@1.1.8':
-    resolution: {integrity: sha512-bnVGB/mQBKEdzOU/CPmcOE3qEXxGOGGW7/i6iLl2MamVOykJq8fYjL9j86yi6L0r009ja16OgWckykQGc4UqGw==}
+  '@rspack/binding-linux-x64-musl@1.2.2':
+    resolution: {integrity: sha512-RE3e0xe4DdchHssttKzryDwjLkbrNk/4H59TkkWeGYJcLw41tmcOZVFQUOwKLUvXWVyif/vjvV/w1SMlqB4wQg==}
     cpu: [x64]
     os: [linux]
 
-  '@rspack/binding-win32-arm64-msvc@1.1.8':
-    resolution: {integrity: sha512-u+na3gxhzeksm4xZyAzn1+XWo5a5j7hgWA/KcFPDQ8qQNkRknx4jnQMxVtcZ9pLskAYV4AcOV/AIximx7zvv8A==}
+  '@rspack/binding-win32-arm64-msvc@1.2.2':
+    resolution: {integrity: sha512-R+PKBYn6uzTaDdVqTHvjqiJPBr5ZHg1wg5UmFDLNH9OklzVFyQh1JInSdJRb7lzfzTRz6bEkkwUFBPQK/CGScw==}
     cpu: [arm64]
     os: [win32]
 
-  '@rspack/binding-win32-ia32-msvc@1.1.8':
-    resolution: {integrity: sha512-FijUxym1INd5fFHwVCLuVP8XEAb4Sk1sMwEEQUlugiDra9ZsLaPw4OgPGxbxkD6SB0DeUz9Zq46Xbcf6d3OgfA==}
+  '@rspack/binding-win32-ia32-msvc@1.2.2':
+    resolution: {integrity: sha512-dBqz3sRAGZ2f31FgzKLDvIRfq2haRP3X3XVCT0PsiMcvt7QJng+26aYYMy2THatd/nM8IwExYeitHWeiMBoruw==}
     cpu: [ia32]
     os: [win32]
 
-  '@rspack/binding-win32-x64-msvc@1.1.8':
-    resolution: {integrity: sha512-SBzIcND4qpDt71jlu1MCDxt335tqInT3YID9V4DoQ4t8wgM/uad7EgKOWKTK6vc2RRaOIShfS2XzqjNUxPXh4w==}
+  '@rspack/binding-win32-x64-msvc@1.2.2':
+    resolution: {integrity: sha512-eeAvaN831KG553cMSHkVldyk6YQn4ujgRHov6r1wtREq7CD3/ka9LMkJUepCN85K7XtwYT0N4KpFIQyf5GTGoA==}
     cpu: [x64]
     os: [win32]
 
-  '@rspack/binding@1.1.8':
-    resolution: {integrity: sha512-+/JzXx1HctfgPj+XtsCTbRkxiaOfAXGZZLEvs7jgp04WgWRSZ5u97WRCePNPvy+sCfOEH/2zw2ZK36Z7oQRGhQ==}
+  '@rspack/binding@1.2.2':
+    resolution: {integrity: sha512-GCZwpGFYlLTdJ2soPLwjw9z4LSZ+GdpbHNfBt3Cm/f/bAF8n6mZc7dHUqN893RFh7MPU17HNEL3fMw7XR+6pHg==}
 
-  '@rspack/core@1.1.8':
-    resolution: {integrity: sha512-pcZtcj5iXLCuw9oElTYC47bp/RQADm/MMEb3djHdwJuSlFWfWPQi5QFgJ/lJAxIW9UNHnTFrYtytycfjpuoEcA==}
+  '@rspack/core@1.2.2':
+    resolution: {integrity: sha512-EeHAmY65Uj62hSbUKesbrcWGE7jfUI887RD03G++Gj8jS4WPHEu1TFODXNOXg6pa7zyIvs2BK0Bm16Kwz8AEaQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
+      '@rspack/tracing': ^1.x
       '@swc/helpers': '>=0.5.1'
     peerDependenciesMeta:
+      '@rspack/tracing':
+        optional: true
       '@swc/helpers':
         optional: true
 
@@ -263,8 +269,8 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  '@types/chrome@0.0.298':
-    resolution: {integrity: sha512-Ji8C9usu/bG80SX3LzyagjlmhvFZXPGk5/Pp2xgmdpdxyG+PwAytCPdBO9/gxyicO2tSOLfkpekgn+14QU941A==}
+  '@types/chrome@0.0.301':
+    resolution: {integrity: sha512-BljW7InXXOfDYr4nG79y5lnaklrZ0gmeTwCUkuCXK2+69dHnZIrg13KhXJE/HrcFUmy8NG/EK+RTGScsh/Hbiw==}
 
   '@types/filesystem@0.0.36':
     resolution: {integrity: sha512-vPDXOZuannb9FZdxgHnqSwAG/jvdGM8Wq+6N4D/d80z+D4HWH+bItqsZaVRQykAn6WEVeEkLm2oQigyHtgb0RA==}
@@ -286,8 +292,8 @@ packages:
   '@types/react@18.3.18':
     resolution: {integrity: sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==}
 
-  antd@5.23.2:
-    resolution: {integrity: sha512-h39z/uSeNvF3FtSMytle58s68zQFXJ+XuLm31l6mPBBq99tUSxO9b1Wfnw7b8Q5Mfl4hsXjoz85+/jIRGfYJ5Q==}
+  antd@5.23.3:
+    resolution: {integrity: sha512-xDvwl7C43/NZ9rTOS1bkbuKoSxqZKf6FlaSW/BRsV8QST3Ce2jGx7dJzYahKIZwe3WNSgvEXAlTrckBHMKHcgQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -442,6 +448,10 @@ packages:
   is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
+
+  isomorphic-rslog@0.0.6:
+    resolution: {integrity: sha512-HM0q6XqQ93psDlqvuViNs/Ea3hAyGDkIdVAHlrEocjjAwGrs1fZ+EdQjS9eUPacnYB7Y8SoDdSY3H8p3ce205A==}
+    engines: {node: '>=14.17.6'}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -1001,13 +1011,13 @@ snapshots:
 
   '@ant-design/cssinjs-utils@1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@ant-design/cssinjs': 1.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@ant-design/cssinjs': 1.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@babel/runtime': 7.26.0
       rc-util: 5.44.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@ant-design/cssinjs@1.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@ant-design/cssinjs@1.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.0
       '@emotion/hash': 0.8.0
@@ -1025,7 +1035,7 @@ snapshots:
 
   '@ant-design/icons-svg@4.4.2': {}
 
-  '@ant-design/icons@5.5.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@ant-design/icons@5.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@ant-design/colors': 7.2.0
       '@ant-design/icons-svg': 4.4.2
@@ -1054,32 +1064,37 @@ snapshots:
 
   '@emotion/unitless@0.7.5': {}
 
-  '@module-federation/runtime-tools@0.5.1':
-    dependencies:
-      '@module-federation/runtime': 0.5.1
-      '@module-federation/webpack-bundler-runtime': 0.5.1
+  '@module-federation/error-codes@0.8.4': {}
 
-  '@module-federation/runtime@0.5.1':
+  '@module-federation/runtime-tools@0.8.4':
     dependencies:
-      '@module-federation/sdk': 0.5.1
+      '@module-federation/runtime': 0.8.4
+      '@module-federation/webpack-bundler-runtime': 0.8.4
 
-  '@module-federation/sdk@0.5.1': {}
-
-  '@module-federation/webpack-bundler-runtime@0.5.1':
+  '@module-federation/runtime@0.8.4':
     dependencies:
-      '@module-federation/runtime': 0.5.1
-      '@module-federation/sdk': 0.5.1
+      '@module-federation/error-codes': 0.8.4
+      '@module-federation/sdk': 0.8.4
+
+  '@module-federation/sdk@0.8.4':
+    dependencies:
+      isomorphic-rslog: 0.0.6
+
+  '@module-federation/webpack-bundler-runtime@0.8.4':
+    dependencies:
+      '@module-federation/runtime': 0.8.4
+      '@module-federation/sdk': 0.8.4
 
   '@nuintun/qrcode@4.1.13':
     dependencies:
       tslib: 2.8.1
 
-  '@nuintun/svgo-loader@0.3.3(@rspack/core@1.1.8(@swc/helpers@0.5.15))':
+  '@nuintun/svgo-loader@0.3.3(@rspack/core@1.2.2(@swc/helpers@0.5.15))':
     dependencies:
       svgo: 3.3.2
       tslib: 2.8.1
     optionalDependencies:
-      '@rspack/core': 1.1.8(@swc/helpers@0.5.15)
+      '@rspack/core': 1.2.2(@swc/helpers@0.5.15)
 
   '@rc-component/async-validator@5.0.4':
     dependencies:
@@ -1150,49 +1165,49 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@rspack/binding-darwin-arm64@1.1.8':
+  '@rspack/binding-darwin-arm64@1.2.2':
     optional: true
 
-  '@rspack/binding-darwin-x64@1.1.8':
+  '@rspack/binding-darwin-x64@1.2.2':
     optional: true
 
-  '@rspack/binding-linux-arm64-gnu@1.1.8':
+  '@rspack/binding-linux-arm64-gnu@1.2.2':
     optional: true
 
-  '@rspack/binding-linux-arm64-musl@1.1.8':
+  '@rspack/binding-linux-arm64-musl@1.2.2':
     optional: true
 
-  '@rspack/binding-linux-x64-gnu@1.1.8':
+  '@rspack/binding-linux-x64-gnu@1.2.2':
     optional: true
 
-  '@rspack/binding-linux-x64-musl@1.1.8':
+  '@rspack/binding-linux-x64-musl@1.2.2':
     optional: true
 
-  '@rspack/binding-win32-arm64-msvc@1.1.8':
+  '@rspack/binding-win32-arm64-msvc@1.2.2':
     optional: true
 
-  '@rspack/binding-win32-ia32-msvc@1.1.8':
+  '@rspack/binding-win32-ia32-msvc@1.2.2':
     optional: true
 
-  '@rspack/binding-win32-x64-msvc@1.1.8':
+  '@rspack/binding-win32-x64-msvc@1.2.2':
     optional: true
 
-  '@rspack/binding@1.1.8':
+  '@rspack/binding@1.2.2':
     optionalDependencies:
-      '@rspack/binding-darwin-arm64': 1.1.8
-      '@rspack/binding-darwin-x64': 1.1.8
-      '@rspack/binding-linux-arm64-gnu': 1.1.8
-      '@rspack/binding-linux-arm64-musl': 1.1.8
-      '@rspack/binding-linux-x64-gnu': 1.1.8
-      '@rspack/binding-linux-x64-musl': 1.1.8
-      '@rspack/binding-win32-arm64-msvc': 1.1.8
-      '@rspack/binding-win32-ia32-msvc': 1.1.8
-      '@rspack/binding-win32-x64-msvc': 1.1.8
+      '@rspack/binding-darwin-arm64': 1.2.2
+      '@rspack/binding-darwin-x64': 1.2.2
+      '@rspack/binding-linux-arm64-gnu': 1.2.2
+      '@rspack/binding-linux-arm64-musl': 1.2.2
+      '@rspack/binding-linux-x64-gnu': 1.2.2
+      '@rspack/binding-linux-x64-musl': 1.2.2
+      '@rspack/binding-win32-arm64-msvc': 1.2.2
+      '@rspack/binding-win32-ia32-msvc': 1.2.2
+      '@rspack/binding-win32-x64-msvc': 1.2.2
 
-  '@rspack/core@1.1.8(@swc/helpers@0.5.15)':
+  '@rspack/core@1.2.2(@swc/helpers@0.5.15)':
     dependencies:
-      '@module-federation/runtime-tools': 0.5.1
-      '@rspack/binding': 1.1.8
+      '@module-federation/runtime-tools': 0.8.4
+      '@rspack/binding': 1.2.2
       '@rspack/lite-tapable': 1.0.1
       caniuse-lite: 1.0.30001690
     optionalDependencies:
@@ -1206,7 +1221,7 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
-  '@types/chrome@0.0.298':
+  '@types/chrome@0.0.301':
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
@@ -1230,13 +1245,13 @@ snapshots:
       '@types/prop-types': 15.7.14
       csstype: 3.1.3
 
-  antd@5.23.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  antd@5.23.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@ant-design/colors': 7.2.0
-      '@ant-design/cssinjs': 1.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@ant-design/cssinjs': 1.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/cssinjs-utils': 1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/fast-color': 2.0.6
-      '@ant-design/icons': 5.5.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@ant-design/icons': 5.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/react-slick': 1.1.2(react@18.3.1)
       '@babel/runtime': 7.26.0
       '@rc-component/color-picker': 2.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1429,6 +1444,8 @@ snapshots:
       is-extglob: 2.1.1
 
   is-number@7.0.0: {}
+
+  isomorphic-rslog@0.0.6: {}
 
   js-tokens@4.0.0: {}
 
@@ -1915,11 +1932,11 @@ snapshots:
       sass-embedded-win32-ia32: 1.83.4
       sass-embedded-win32-x64: 1.83.4
 
-  sass-loader@16.0.4(@rspack/core@1.1.8(@swc/helpers@0.5.15))(sass-embedded@1.83.4):
+  sass-loader@16.0.4(@rspack/core@1.2.2(@swc/helpers@0.5.15))(sass-embedded@1.83.4):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
-      '@rspack/core': 1.1.8(@swc/helpers@0.5.15)
+      '@rspack/core': 1.2.2(@swc/helpers@0.5.15)
       sass-embedded: 1.83.4
 
   scheduler@0.23.2:
@@ -1950,13 +1967,13 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  svgc-loader@0.3.3(@rspack/core@1.1.8(@swc/helpers@0.5.15))(react@18.3.1):
+  svgc-loader@0.3.3(@rspack/core@1.2.2(@swc/helpers@0.5.15))(react@18.3.1):
     dependencies:
       css-tree: 3.1.0
       svgo: 3.3.2
       tslib: 2.8.1
     optionalDependencies:
-      '@rspack/core': 1.1.8(@swc/helpers@0.5.15)
+      '@rspack/core': 1.2.2(@swc/helpers@0.5.15)
       react: 18.3.1
 
   svgo@3.3.2:
