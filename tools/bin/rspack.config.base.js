@@ -108,7 +108,11 @@ export default async mode => {
     experiments: {
       css: true,
       cache: {
-        type: 'persistent'
+        type: 'persistent',
+        storage: {
+          type: 'filesystem',
+          directory: path.resolve('node_modules/.cache/rspack')
+        }
       },
       parallelCodeSplitting: true
     },
