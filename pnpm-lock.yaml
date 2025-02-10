@@ -37,8 +37,8 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2(@swc/helpers@0.5.15)
       '@types/chrome':
-        specifier: ^0.0.303
-        version: 0.0.303
+        specifier: ^0.0.304
+        version: 0.0.304
       '@types/react':
         specifier: ^18.3.18
         version: 18.3.18
@@ -49,8 +49,8 @@ importers:
         specifier: ^3.1.9
         version: 3.1.9
       prettier:
-        specifier: ^3.4.2
-        version: 3.4.2
+        specifier: ^3.5.0
+        version: 3.5.0
       sass-embedded:
         specifier: ^1.83.4
         version: 1.83.4
@@ -269,8 +269,8 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  '@types/chrome@0.0.303':
-    resolution: {integrity: sha512-ARroKcZYkK/4Bpn6U8ZC6WHueCznhYpAnjCfLBdaFWh3YFo0op7IAm1FgbGtosYWL2vMjt5JdTlvnA4SUyE3OQ==}
+  '@types/chrome@0.0.304':
+    resolution: {integrity: sha512-ms9CLILU+FEMK7gcmgz/Mtn2E81YQWiMIzCFF8ktp98EVNIIfoqaDTD4+ailOCq1sGjbnEmfJxQ1FAsQtk5M3A==}
 
   '@types/filesystem@0.0.36':
     resolution: {integrity: sha512-vPDXOZuannb9FZdxgHnqSwAG/jvdGM8Wq+6N4D/d80z+D4HWH+bItqsZaVRQykAn6WEVeEkLm2oQigyHtgb0RA==}
@@ -500,8 +500,8 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
-  prettier@3.4.2:
-    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
+  prettier@3.5.0:
+    resolution: {integrity: sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1221,7 +1221,7 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
-  '@types/chrome@0.0.303':
+  '@types/chrome@0.0.304':
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
@@ -1494,7 +1494,7 @@ snapshots:
 
   picomatch@2.3.1: {}
 
-  prettier@3.4.2: {}
+  prettier@3.5.0: {}
 
   pstree.remy@1.1.8: {}
 
