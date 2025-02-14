@@ -3,8 +3,17 @@
  * @description 类型定义
  */
 
-import { Options as SvgoOptions } from '@nuintun/svgo-loader';
-import { Configuration, Plugin, SwcLoaderOptions } from '@rspack/core';
+import { Configuration } from '@rspack/core';
+
+/**
+ * @description Page 配置
+ */
+export interface Page {
+  title?: string;
+  chunks: string[];
+  filename: string;
+  meta?: Record<string, string>;
+}
 
 /**
  * @description Env 配置
@@ -24,22 +33,11 @@ interface EnvFunction {
 type Prop<T, K extends keyof T> = NonNullable<T[K]>;
 
 /**
- * @description Swc 配置
- */
-export { SwcLoaderOptions as SwcConfig };
-
-/**
- * @description Svgo 配置
- */
-export interface SvgoConfig extends Omit<SvgoOptions, 'configFile'> {
-  path?: string;
-}
-
-/**
  * @description App 配置
  */
-export interface AppConfig extends Pick<Configuration, 'context' | 'externals'> {
+export interface AppConfig extends Pick<Configuration, 'context' | 'plugins' | 'externals'> {
   name: string;
+  pages?: Page[];
   outputPath: string;
   publicPath?: string;
   env?: Env | EnvFunction;

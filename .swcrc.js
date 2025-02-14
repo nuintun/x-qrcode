@@ -1,13 +1,14 @@
 /**
  * @module .swcrc
- * @description SWC 配置
+ * @description Swc 配置
  */
 
 import targets from './tools/lib/targets.js';
 
 /**
  * @function swcrc
- * @return {Promise<import('./tools/interface').SwcConfig>}
+ * @param {string} mode
+ * @return {Promise<import('@rspack/core').SwcLoaderOptions>}
  */
 export default async () => {
   return {

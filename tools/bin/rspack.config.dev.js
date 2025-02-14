@@ -17,6 +17,7 @@ import resolveConfigure from './rspack.config.base.js';
   const configure = await resolveConfigure(mode);
 
   configure.devtool = 'inline-source-map';
+  configure.experiments.cache.version = 'dev';
 
   const compiler = rspack(configure);
   const logger = compiler.getInfrastructureLogger(configure.name);

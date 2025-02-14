@@ -2,6 +2,8 @@
  * @module App
  */
 
+import '/css/global.scss';
+
 import { ActionType } from '/js/common/action';
 import { sendRequest } from '/js/common/message';
 import { memo, useEffect, useState } from 'react';

@@ -1,5 +1,4 @@
 # Ignore files
 *.min.*
-/wwwroot/
-/x-qrcode/
+/extension/
 pnpm-lock.yaml

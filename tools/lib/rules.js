@@ -4,6 +4,8 @@
  */
 
 import swcrc from '../../.swcrc.js';
+import svgorc from '../../.svgorc.js';
+import lightningcssrc from '../../.lightningcssrc.js';
 
 /**
  * @function resolveRules
@@ -11,8 +13,10 @@ import swcrc from '../../.swcrc.js';
  * @return {Promise<NonNullable<import('webpack').Configuration['module']>['rules']>}
  */
 export default async mode => {
+  const swcOptions = await swcrc(mode);
   const isDevelopment = mode !== 'production';
-  const swcOptions = { ...(await swcrc()), swcrc: false };
+  const lightningcssOptions = await lightningcssrc(mode);
+  const svgoOptions = { ...(await svgorc(mode)), configFile: false };
 
   return [
     {
@@ -31,7 +35,13 @@ export default async mode => {
         // The loader for css
         {
           test: /\.css$/i,
-          type: 'css/auto'
+          type: 'css/auto',
+          use: [
+            {
+              loader: 'builtin:lightningcss-loader',
+              options: lightningcssOptions
+            }
+          ]
         },
         // The loader for scss or sass
         {
@@ -39,7 +49,14 @@ export default async mode => {
           test: /\.s[ac]ss$/i,
           use: [
             {
-              loader: 'sass-loader'
+              loader: 'builtin:lightningcss-loader',
+              options: lightningcssOptions
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: isDevelopment
+              }
             }
           ]
         },
@@ -57,7 +74,8 @@ export default async mode => {
               resourceQuery: /^\?url$/,
               use: [
                 {
-                  loader: '@nuintun/svgo-loader'
+                  loader: '@nuintun/svgo-loader',
+                  options: svgoOptions
                 }
               ]
             },
@@ -69,7 +87,8 @@ export default async mode => {
                   options: swcOptions
                 },
                 {
-                  loader: 'svgc-loader'
+                  loader: 'svgc-loader',
+                  options: svgoOptions
                 }
               ]
             },
@@ -77,7 +96,8 @@ export default async mode => {
               type: 'asset/resource',
               use: [
                 {
-                  loader: '@nuintun/svgo-loader'
+                  loader: '@nuintun/svgo-loader',
+                  options: svgoOptions
                 }
               ]
             }

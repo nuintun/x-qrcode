@@ -128,7 +128,7 @@ async function resolveContextMenuEvent(tabId: number, event: ContextMenuEvent): 
       break;
     case ActionType.OPEN_ADVANCED_TOOLBOX:
       tabs.create({
-        url: 'https://nuintun.github.io/qrcode/packages/examples/app/index.html'
+        url: 'https://nuintun.github.io/qrcode'
       });
       break;
     default:

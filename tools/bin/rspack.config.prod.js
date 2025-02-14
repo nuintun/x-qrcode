@@ -16,16 +16,22 @@ import resolveConfigure from './rspack.config.base.js';
   const configure = await resolveConfigure(mode);
 
   configure.devtool = false;
+  configure.experiments.cache.version = 'prod';
 
   // 使用自定义 minimizer 工具
   configure.optimization.minimizer = [
-    new rspack.LightningCssMinimizerRspackPlugin({
+    new rspack.SwcJsMinimizerRspackPlugin({
       minimizerOptions: {
-        targets: await targets()
+        format: {
+          comments: false
+        }
       }
     }),
-    new rspack.SwcJsMinimizerRspackPlugin({
-      minimizerOptions: { format: { comments: false } }
+    new rspack.LightningCssMinimizerRspackPlugin({
+      minimizerOptions: {
+        errorRecovery: false,
+        targets: await targets()
+      }
     })
   ];
 

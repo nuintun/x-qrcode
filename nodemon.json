@@ -3,8 +3,10 @@
   "delay": "128ms",
   "watch": [
     ".swcrc.js",
+    ".svgorc.js",
     "tools/**/*",
-    "svgo.config.js",
-    ".browserslistrc"
+    "app.config.js",
+    ".browserslistrc",
+    ".lightningcssrc.js"
   ]
 }

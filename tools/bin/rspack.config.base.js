@@ -3,12 +3,10 @@
  * @description 基础 Rspack 配置
  */
 
-import path from 'node:path';
 import rspack from '@rspack/core';
 import { resolve } from 'node:path';
 import resolveRules from '../lib/rules.js';
-
-const root = path.resolve('src');
+import appConfig from '../../app.config.js';
 
 /**
  * @function resolveEnvironment
@@ -38,21 +36,25 @@ async function resolveEnvironment(mode, env) {
 }
 
 /**
- * @type {import('../interface').AppConfig}
+ * @function getHtmlRspackPlugins
+ * @param {string} mode
+ * @param {import('../interface.ts').Page[]} pages
+ * @return {import('@rspack/core').HtmlRspackPluginOptions[]}
  */
-const appConfig = {
-  name: 'QRCode',
-  publicPath: '',
-  alias: { '/': root },
-  context: path.resolve('src'),
-  outputPath: path.resolve('extension'),
-  entry: {
-    popup: path.resolve('./src/js/popup/index.tsx'),
-    content: path.resolve('./src/js/content/index.tsx'),
-    options: path.resolve('./src/js/options/index.tsx'),
-    background: path.resolve('src/js/background/index.ts')
-  },
-  meta: { viewport: 'width=device-width,initial-scale=1.0' }
+
+const getHtmlRspackPlugins = (mode, pages) => {
+  const plugins = [];
+  const minify = mode === 'production';
+  const template = resolve('tools/lib/template.ejs');
+
+  for (const page of pages) {
+    const meta = page.meta || appConfig.meta;
+    const title = page.title || appConfig.name;
+
+    plugins.push(new rspack.HtmlRspackPlugin({ ...page, meta, title, minify, template }));
+  }
+
+  return plugins;
 };
 
 /**
@@ -61,36 +63,18 @@ const appConfig = {
  * @return {Promise<import('@rspack/core').Configuration>}
  */
 export default async mode => {
-  const isDevelopment = mode !== 'production';
+  const env = await resolveEnvironment(mode, appConfig.env);
 
   const progress = {
-    prefix: '[Rspack]',
-    progressChars: '█▒'
+    progressChars: '█▒',
+    prefix: `[${appConfig.name}]`,
+    template: '{prefix:.bold} {bar:25.green/white.dim} ({percent}%) {wide_msg:.dim}'
   };
-
-  const popup = {
-    chunks: ['popup'],
-    meta: appConfig.meta,
-    title: appConfig.name,
-    minify: !isDevelopment,
-    template: resolve('tools/lib/template.ejs'),
-    filename: path.resolve('extension/popup.html')
-  };
-
-  const options = {
-    chunks: ['options'],
-    meta: appConfig.meta,
-    title: appConfig.name,
-    minify: !isDevelopment,
-    template: resolve('tools/lib/template.ejs'),
-    filename: path.resolve('extension/options.html')
-  };
-
-  const env = await resolveEnvironment(mode, appConfig.env);
 
   return {
     mode,
     cache: true,
+    performance: false,
     name: appConfig.name,
     entry: appConfig.entry,
     context: appConfig.context,
@@ -104,35 +88,6 @@ export default async mode => {
       publicPath: appConfig.publicPath,
       cssChunkFilename: 'css/[name].css',
       assetModuleFilename: '[path][name][ext]'
-    },
-    experiments: {
-      css: true,
-      cache: {
-        type: 'persistent',
-        storage: {
-          type: 'filesystem',
-          directory: path.resolve('node_modules/.cache/rspack')
-        }
-      },
-      parallelCodeSplitting: true
-    },
-    externals: appConfig.externals,
-    externalsType: appConfig.externalsType,
-    stats: {
-      colors: true,
-      chunks: false,
-      children: false,
-      entrypoints: false,
-      runtimeModules: false,
-      dependentModules: false
-    },
-    performance: {
-      hints: false
-    },
-    resolve: {
-      alias: appConfig.alias,
-      fallback: { url: false },
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     module: {
       parser: {
@@ -148,19 +103,16 @@ export default async mode => {
         }
       }
     },
+    resolve: {
+      alias: appConfig.alias,
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
     plugins: [
-      new rspack.DefinePlugin(env),
       new rspack.ProgressPlugin(progress),
-      new rspack.HtmlRspackPlugin(popup),
-      new rspack.HtmlRspackPlugin(options),
       new rspack.WarnCaseSensitiveModulesPlugin(),
-      new rspack.CopyRspackPlugin({
-        patterns: [
-          { from: 'images', to: 'images' },
-          { from: '_locales', to: '_locales' },
-          { from: 'manifest.json', to: 'manifest.json' }
-        ]
-      })
+      new rspack.DefinePlugin(env),
+      ...getHtmlRspackPlugins(mode, appConfig.pages),
+      ...(appConfig.plugins || [])
     ],
     optimization: {
       splitChunks: false,
@@ -168,6 +120,27 @@ export default async mode => {
       removeEmptyChunks: true,
       mergeDuplicateChunks: true,
       removeAvailableModules: true
+    },
+    stats: {
+      colors: true,
+      chunks: false,
+      children: false,
+      entrypoints: false,
+      runtimeModules: false,
+      dependentModules: false
+    },
+    externals: appConfig.externals,
+    externalsType: appConfig.externalsType,
+    experiments: {
+      css: true,
+      parallelCodeSplitting: true,
+      cache: {
+        type: 'persistent',
+        storage: {
+          type: 'filesystem',
+          directory: resolve('node_modules/.cache/rspack')
+        }
+      }
     }
   };
 };
