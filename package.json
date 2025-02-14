@@ -1,14 +1,8 @@
 {
   "name": "x-qrcode",
-  "version": "1.0.0",
   "description": "A powerfull chrome extension for qrcode encoding and decoding.",
+  "private": true,
   "type": "module",
-  "scripts": {
-    "lint": "tsc --noEmit",
-    "prod": "node tools/bin/rspack.config.prod.js",
-    "dev": "nodemon tools/bin/rspack.config.dev.js",
-    "format": "prettier --write . --ignore-path .prettierignore"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nuintun/x-qrcode.git"
@@ -22,6 +16,12 @@
     "url": "https://github.com/nuintun/x-qrcode/issues"
   },
   "homepage": "https://github.com/nuintun/x-qrcode#readme",
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "prod": "node tools/bin/rspack.config.prod.js",
+    "dev": "nodemon tools/bin/rspack.config.dev.js",
+    "format": "prettier --write . --ignore-path .prettierignore"
+  },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
     "@nuintun/qrcode": "^4.1.13",
