@@ -63,6 +63,8 @@ const getHtmlRspackPlugins = (mode, pages) => {
  * @return {Promise<import('@rspack/core').Configuration>}
  */
 export default async mode => {
+  const isDevelopment = mode !== 'production';
+
   const env = await resolveEnvironment(mode, appConfig.env);
 
   const progress = {
@@ -83,11 +85,11 @@ export default async mode => {
       filename: 'js/[name].js',
       hashFunction: 'xxhash64',
       path: appConfig.outputPath,
-      chunkFilename: 'js/[name].js',
-      cssFilename: 'css/[name].css',
       publicPath: appConfig.publicPath,
-      cssChunkFilename: 'css/[name].css',
-      assetModuleFilename: '[path][name][ext]'
+      chunkFilename: `js/[${isDevelopment ? 'name' : 'contenthash'}].js`,
+      cssFilename: `css/[${isDevelopment ? 'name' : 'contenthash'}].css`,
+      cssChunkFilename: `css/[${isDevelopment ? 'name' : 'contenthash'}].css`,
+      assetModuleFilename: `[path][${isDevelopment ? 'name' : 'contenthash'}][ext]`
     },
     module: {
       parser: {
