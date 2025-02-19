@@ -139,6 +139,7 @@ export default async mode => {
     externalsType: appConfig.externalsType,
     experiments: {
       css: true,
+      incremental: isDevelopment,
       parallelCodeSplitting: true,
       cache: {
         type: 'persistent',
