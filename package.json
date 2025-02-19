@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@nuintun/svgo-loader": "^0.4.0",
-    "@rspack/core": "^1.2.3",
+    "@rspack/core": "^1.2.5",
     "@types/chrome": "^0.0.304",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
