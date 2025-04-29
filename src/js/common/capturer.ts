@@ -45,7 +45,6 @@ const CSS = `
   width: 0;
   height: 0;
   will-change: background-position;
-  animation: marching-ants 1s linear infinite;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
   box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.45);
   background-image:
@@ -55,6 +54,10 @@ const CSS = `
     linear-gradient(to bottom, #fff 50%, #000 50%);
   background-size: 10px 1px, 10px 1px, 1px 10px, 1px 10px;
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+.${COMPONENT_NAME}-selection-active {
+  animation: marching-ants 1s linear infinite;
 }
 
 @keyframes marching-ants {
@@ -121,6 +124,8 @@ export function selectCaptureArea(): Promise<DOMRectReadOnly | null> {
           style.height = '0';
           style.top = `${startY}px`;
           style.left = `${startX}px`;
+
+          selection.classList.add(`${COMPONENT_NAME}-selection-active`);
         }
       };
 
