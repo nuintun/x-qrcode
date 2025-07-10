@@ -32,16 +32,16 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@nuintun/svgo-loader": "^0.5.0",
-    "@rspack/core": "^1.4.4",
-    "@types/chrome": "^0.0.329",
+    "@nuintun/svgo-loader": "^0.5.1",
+    "@rspack/core": "^1.4.5",
+    "@types/chrome": "^0.0.332",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "sass-embedded": "^1.89.2",
     "sass-loader": "^16.0.5",
-    "svgc-loader": "^0.5.0",
+    "svgc-loader": "^0.5.1",
     "typescript": "^5.8.3"
   }
 }
