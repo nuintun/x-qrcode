@@ -18,8 +18,8 @@ importers:
         specifier: ^0.5.17
         version: 0.5.17
       antd:
-        specifier: ^5.26.7
-        version: 5.26.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^5.27.1
+        version: 5.27.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       chardet:
         specifier: ^2.1.0
         version: 2.1.0
@@ -37,8 +37,8 @@ importers:
         specifier: ^1.4.11
         version: 1.4.11(@swc/helpers@0.5.17)
       '@types/chrome':
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.1.4
+        version: 0.1.4
       '@types/react':
         specifier: ^18.3.23
         version: 18.3.23
@@ -366,8 +366,8 @@ packages:
   '@tybys/wasm-util@0.10.0':
     resolution: {integrity: sha512-VyyPYFlOMNylG45GoAe0xDoLwWuowvf92F9kySqzYh8vmYm7D2u4iUJKa1tOUpS70Ku13ASrOkS4ScXFsTaCNQ==}
 
-  '@types/chrome@0.1.1':
-    resolution: {integrity: sha512-MLtFW++/n+OPQIaf5hA6pmURd3Zn+OxuvASyf2mYh8B8pHDpbhHjwlVHMw3H/aJC9Z7Z3itO0AFaZeegrGk0yA==}
+  '@types/chrome@0.1.4':
+    resolution: {integrity: sha512-vfISO7SPppN3OKVUqWujtZ4vux3nhDqKaHYEHgfQuPARHuWJ3jjyc1s13H0ckzEc86/neTkCl1TeW72UK6jYKA==}
 
   '@types/filesystem@0.0.36':
     resolution: {integrity: sha512-vPDXOZuannb9FZdxgHnqSwAG/jvdGM8Wq+6N4D/d80z+D4HWH+bItqsZaVRQykAn6WEVeEkLm2oQigyHtgb0RA==}
@@ -389,8 +389,8 @@ packages:
   '@types/react@18.3.23':
     resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
 
-  antd@5.26.7:
-    resolution: {integrity: sha512-iCyXN6+i2CUVEOSzzJKfbKeg115qoJhGvSkCh5uzAf9hANwHUOJQhsMn+KtN+Lx/2NQ6wfM7nGZ+7NPNO5Pn1w==}
+  antd@5.27.1:
+    resolution: {integrity: sha512-jGMSdBN7hAMvPV27B4RhzZfL6n6yu8yDbo7oXrlJasaOqB7bSDPcjdEy1kXy3JPsny/Qazb1ykzRI4EfcByAPQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -784,8 +784,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-tabs@15.6.1:
-    resolution: {integrity: sha512-/HzDV1VqOsUWyuC0c6AkxVYFjvx9+rFPKZ32ejxX0Uc7QCzcEjTA9/xMgv4HemPKwzBNX8KhGVbbumDjnj92aA==}
+  rc-tabs@15.7.0:
+    resolution: {integrity: sha512-ZepiE+6fmozYdWf/9gVp7k56PKHB1YYoDsKeQA1CBlJ/POIhjkcYiv0AGP0w2Jhzftd3AVvZP/K+V+Lpi2ankA==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -1407,7 +1407,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@types/chrome@0.1.1':
+  '@types/chrome@0.1.4':
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
@@ -1431,7 +1431,7 @@ snapshots:
       '@types/prop-types': 15.7.15
       csstype: 3.1.3
 
-  antd@5.26.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  antd@5.27.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@ant-design/colors': 7.2.1
       '@ant-design/cssinjs': 1.24.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1473,7 +1473,7 @@ snapshots:
       rc-steps: 6.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-switch: 4.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-table: 7.51.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-tabs: 15.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      rc-tabs: 15.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-textarea: 1.10.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-tooltip: 6.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-tree: 5.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1934,7 +1934,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  rc-tabs@15.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  rc-tabs@15.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.28.2
       classnames: 2.5.1
