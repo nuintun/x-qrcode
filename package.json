@@ -33,13 +33,13 @@
   },
   "devDependencies": {
     "@nuintun/svgo-loader": "^0.5.3",
-    "@rspack/core": "^1.4.11",
+    "@rspack/core": "^1.5.0",
     "@types/chrome": "^0.1.4",
     "@types/react": "^18.3.24",
     "@types/react-dom": "^18.3.7",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
-    "sass-embedded": "^1.90.0",
+    "sass-embedded": "^1.91.0",
     "sass-loader": "^16.0.5",
     "svgc-loader": "^0.5.3",
     "typescript": "^5.9.2"
