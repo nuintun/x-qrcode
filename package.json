@@ -23,25 +23,25 @@
     "format": "prettier --write . --ignore-path .prettierignore"
   },
   "dependencies": {
-    "@ant-design/cssinjs": "^2.0.1",
-    "@nuintun/qrcode": "^5.0.2",
-    "@swc/helpers": "^0.5.18",
-    "antd": "^6.1.4",
+    "@ant-design/cssinjs": "^2.1.0",
+    "@nuintun/qrcode": "^5.0.3",
+    "@swc/helpers": "^0.5.19",
+    "antd": "^6.3.1",
     "chardet": "^2.1.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@nuintun/svgo-loader": "^0.5.7",
-    "@rspack/core": "^1.7.0",
-    "@types/chrome": "^0.1.32",
-    "@types/react": "^19.2.7",
+    "@nuintun/svgo-loader": "^0.5.8",
+    "@rspack/core": "^1.7.7",
+    "@types/chrome": "^0.1.37",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "nodemon": "^3.1.11",
-    "prettier": "^3.7.4",
-    "sass-embedded": "^1.97.1",
-    "sass-loader": "^16.0.6",
-    "svgc-loader": "^0.5.7",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1",
+    "sass-embedded": "^1.97.3",
+    "sass-loader": "^16.0.7",
+    "svgc-loader": "^0.5.8",
     "typescript": "^5.9.3"
   }
 }
